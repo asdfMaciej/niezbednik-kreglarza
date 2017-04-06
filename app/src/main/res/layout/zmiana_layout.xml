@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/colorBg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:id="@+id/linearlayout">
+
+            <View android:layout_width="fill_parent" android:id="@+id/focus_view" android:layout_height="0dp" android:focusable="true" android:focusableInTouchMode="true"><requestFocus/></View>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/edPelne"
+                android:hint="Pełne (np. 400)"
+                style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                android:background="@android:drawable/editbox_background"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:padding="20dp"
+                android:maxLines="1"
+                android:layout_below="@+id/editText"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/edZbierane"
+                android:layout_alignParentEnd="true"
+                android:hint="Zbierane (np. 200)"
+                android:layout_alignParentStart="true"
+                style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                android:background="@android:drawable/editbox_background"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:padding="20dp"
+                android:maxLines="1" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/edDziury"
+                android:layout_alignParentEnd="true"
+                android:hint="Rzuty zerowe (np. 10)"
+                android:layout_alignParentStart="true"
+                style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                android:background="@android:drawable/editbox_background"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:padding="20dp"
+                android:maxLines="1" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/edWynik"
+                android:hint="Wynik (np. 500)"
+                style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                android:background="@android:drawable/editbox_background"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:padding="20dp"
+                android:maxLines="1"
+                android:layout_below="@+id/editText"
+                android:layout_toEndOf="@+id/editText" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:text="data "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btData"
+                    android:layout_weight="1"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spnKlub"
+                android:spinnerMode="dialog"
+                android:minHeight="50dp"
+                android:background="@color/cardview_light_background"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="4dp" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spnKregielnia"
+                android:spinnerMode="dialog"
+                android:minHeight="50dp"
+                android:background="@color/cardview_light_background"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:ems="10"
+                android:id="@+id/edZawodnik"
+                android:layout_alignParentEnd="true"
+                android:hint="Imię/nazwisko zawodnika"
+                android:layout_alignParentStart="true"
+                style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                android:background="@android:drawable/editbox_background"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:padding="20dp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_marginTop="5dp" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:text="Dodać tory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/linearlayout"
+            android:textColor="?attr/colorControlNormal"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:checked="true" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/button2"
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayout3"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/button2"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="15dp">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="left">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:text="Tor 1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView4"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textStyle="normal|bold"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textColor="@android:color/black" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edPelne1"
+                            android:hint="Pełne"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edZbierane1"
+                            android:hint="Zbierane"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edDziury1"
+                            android:hint="Rzuty zerowe"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edWynik1"
+                            android:hint="Wynik"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="right">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+                        <TextView
+                            android:text="Tor 2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView5"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textStyle="normal|bold"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textColor="@android:color/black" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edPelne2"
+                            android:hint="Pełne"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edZbierane2"
+                            android:hint="Zbierane"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edDziury2"
+                            android:hint="Rzuty zerowe"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edWynik2"
+                            android:hint="Wynik"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/button2"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="15dp">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="left">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:text="Tor 3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView4"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textStyle="normal|bold"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textColor="@android:color/black" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edPelne3"
+                            android:hint="Pełne"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edZbierane3"
+                            android:hint="Zbierane"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edDziury3"
+                            android:hint="Rzuty zerowe"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edWynik3"
+                            android:hint="Wynik"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="right">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+                        <TextView
+                            android:text="Tor 4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView5"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textStyle="normal|bold"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textColor="@android:color/black" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edPelne4"
+                            android:hint="Pełne"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edZbierane4"
+                            android:hint="Zbierane"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edDziury4"
+                            android:hint="Rzuty zerowe"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/edWynik4"
+                            android:hint="Wynik"
+                            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+                            android:background="@android:drawable/editbox_background"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:layout_below="@+id/editText"
+                            android:layout_toEndOf="@+id/editText" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:text="zapisz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btZapisz"
+            android:layout_below="@+id/linearLayout3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp" />
+    </RelativeLayout>
+</ScrollView>

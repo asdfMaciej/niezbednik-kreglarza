@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBg"
+    android:id="@+id/lGlowny">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:minHeight="450dp"
+        android:id="@+id/lRelative">
+
+
+        <TextView
+            android:text="Wynik: XXX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:id="@+id/tWynik"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textStyle="normal|bold"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="Z: xxx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tZbierane"
+            android:layout_alignBaseline="@+id/tPelne"
+            android:layout_alignBottom="@+id/tPelne"
+            android:layout_alignEnd="@+id/tWynik"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="X: xx"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tDziury"
+            android:layout_below="@+id/tWynik"
+            />
+
+        <TextView
+            android:text="Kręgielnia Ośrodka Sportu i Rekreacji w Gostyniu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tKregielnia"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tPelne"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:text="2016-01-17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tData"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="Mariusz Pudzianowski"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tZawodnik"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:textStyle="normal|italic" />
+
+        <TextView
+            android:text="P: xxx"
+            android:layout_width="wrap_content"
+            android:id="@+id/tPelne"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_below="@+id/tWynik"
+            android:layout_alignStart="@+id/tWynik" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:padding="5dp"
+            android:layout_marginTop="80dp"
+            android:layout_below="@+id/tKregielnia"
+            android:layout_alignParentStart="true"
+            android:id="@+id/lTory1">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tKregielnia"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@color/cardBg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:background="@color/cardBg">
+
+                    <TextView
+                        android:text="Tor 1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/article_wynik"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Wynik"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="40sp"
+                        android:textAlignment="center" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/article_pelne"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="P: xxx"
+                            android:textColor="#888"
+                            android:textSize="14sp"
+                            android:textAlignment="viewStart"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true" />
+
+                        <TextView
+                            android:text="X: xx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/article_dziury"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                        <TextView
+                            android:text="Z: xx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/article_zbierane"
+                            android:textAlignment="viewEnd"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"
+                android:background="@color/cardBg">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:background="@color/cardBg">
+
+                    <TextView
+                        android:text="Tor 2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:text="Wynik"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="40sp"
+                        android:textAlignment="center"
+                        android:id="@+id/article_wynik2" />
+                        android:id="@+id/textView9" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/article_pelne2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="P: xxx"
+                            android:textColor="#888"
+                            android:textSize="14sp"
+                            android:textAlignment="viewStart"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true" />
+
+                        <TextView
+                            android:text="X: xx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/article_dziury2"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                        <TextView
+                            android:text="Z: xx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/article_zbierane2"
+                            android:textAlignment="viewEnd"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:layout_marginTop="200dp"
+            android:layout_below="@+id/tKregielnia"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="false"
+            android:id="@+id/lTory2">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tKregielnia"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@color/cardBg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:background="@color/cardBg">
+
+                    <TextView
+                        android:text="Tor 3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/article_wynik3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Wynik"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="40sp"
+                        android:textAlignment="center" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/article_pelne3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="P: xxx"
+                            android:textColor="#888"
+                            android:textSize="14sp"
+                            android:textAlignment="viewStart"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true" />
+
+                        <TextView
+                            android:text="X: xx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/article_dziury3"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                        <TextView
+                            android:text="Z: xx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/article_zbierane3"
+                            android:textAlignment="viewEnd"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"
+                android:background="@color/cardBg">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:background="@color/cardBg">
+
+                    <TextView
+                        android:text="Tor 4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:text="Wynik"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="40sp"
+                        android:textAlignment="center"
+                        android:id="@+id/article_wynik4" />
+                        android:id="@+id/textView9" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/article_pelne4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="P: xxx"
+                            android:textColor="#888"
+                            android:textSize="14sp"
+                            android:textAlignment="viewStart"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true" />
+
+                        <TextView
+                            android:text="X: xx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/article_dziury4"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                        <TextView
+                            android:text="Z: xx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/article_zbierane4"
+                            android:textAlignment="viewEnd"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <Button
+            android:text="zmień wynik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bZmiana"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/tKregielnia"
+            android:layout_alignStart="@+id/tPelne" />
+
+        <Button
+            android:text="usuń"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bUsun"
+            android:padding="5dp"
+            android:layout_alignBaseline="@+id/bZmiana"
+            android:layout_alignBottom="@+id/bZmiana"
+            android:layout_alignEnd="@+id/tZbierane" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/edKomentarz"
+            android:layout_below="@+id/lTory2"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:hint="Tutaj możesz dodać własny komentarz."
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="12dp"
+            android:padding="8dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/cardBg"
+            android:elevation="1dp"
+            android:textAlignment="textStart"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</ScrollView>

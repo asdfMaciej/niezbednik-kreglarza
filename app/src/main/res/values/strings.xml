@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Niezbędnik Kręglarza</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="anim_duration">300</string>
+
+    <string-array name="kluby">
+        <item>KK Dziewiątka-Amica Wronki</item>
+        <item>KK Polonia 1912 Leszno</item>
+        <item>KK Wrzos Sieraków</item>
+        <item>KS Zatoka Puck</item>
+        <item>KS Polonia Łaziska Górne</item>
+        <item>KS Start Gostyń</item>
+        <item>KS Pilica Tomaszów Mazowiecki</item>
+        <item>OSiR Vector Tarnowo Podgórne</item>
+        <item>Alfa Vector Tarnowo Podgórne</item>
+        <item>BOSiR Brzesko</item>
+        <item>MLKS Tucholanka Tuchola</item>
+        <item>TPK Wejherowo</item>
+    </string-array>
+
+    <string-array name="kregielnie">
+        <item>Kręgielnia Dziewiątka-Amica Wronki</item>
+        <item>Kręgielnia Vector Tarnowo Podgórne</item>
+        <item>Kręgielnia Polonia 1912 Leszno</item>
+        <item>Kręgielnia KS Czarna Kula Poznań</item>
+        <item>Kręgielnia TKKF Sokół Śrem</item>
+        <item>Kręgielnia OSiRu w Gostyniu</item>
+        <item>Kręgielnia OSiRu w Tucholi</item>
+        <item>Kręgielnia OSiRu w Sierakowie</item>
+        <item>Kręgielnia OSiRu w Tomaszowie Mazowieckim</item>
+        <item>Kręgielnia MOSiRu w Łaziskach Górnych</item>
+        <item>Kręgielnia MOKSiRu w Pucku</item>
+    </string-array>
+</resources>

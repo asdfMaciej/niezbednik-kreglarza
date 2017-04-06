@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="0"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <group android:visible="true">
+        <item
+            android:title="Sortuj wynik rosnąco"
+            android:id="@+id/action_wynik" />
+        <item
+            android:title="Sortuj wynik malejąco"
+            android:id="@+id/action_wynik2" />
+        <item
+            android:title="Sortuj datę rosnąco"
+            android:id="@+id/action_data" />
+        <item
+            android:title="Sortuj datę malejąco"
+            android:id="@+id/action_data2" />
+    </group>
+</menu>

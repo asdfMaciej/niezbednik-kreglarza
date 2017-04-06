@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Standardowe ustawienia">
+
+        <EditTextPreference android:title="Imię i nazwisko"
+            android:key="zawodnik"
+            android:summary="Domyślne imię i nazwisko zawodnika"
+            android:defaultValue="Standardowy Zawodnik"></EditTextPreference>
+        <ListPreference     android:title="Klub"
+            android:summary="Domyślny klub zawodnika"
+            android:key="klub"
+            android:defaultValue="1"
+            android:entries="@array/kluby"
+            android:entryValues="@array/kluby" />
+        <ListPreference     android:title="Kręgielnia"
+            android:summary="Domyślna kręgielnia zawodnika"
+            android:key="kregielnia"
+            android:defaultValue="1"
+            android:entries="@array/kregielnie"
+            android:entryValues="@array/kregielnie" />
+    </PreferenceCategory>
+</PreferenceScreen>
