@@ -151,6 +151,17 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
         mKregielnia = kregielnia;
     }
 
+    public boolean contains(String cont) {
+        boolean x = false;
+        if (mZawodnik.toLowerCase().contains(cont)) {x = true;}
+        if (mWynik.toLowerCase().contains(cont)) {x = true;}
+        if (mDataString.toLowerCase().contains(cont)) {x = true;}
+        if (mKregielnia.toLowerCase().contains(cont)) {x = true;}
+        if (mKlub.toLowerCase().contains(cont)) {x = true;}
+        if (mKomentarz.toLowerCase().contains(cont)) {x = true;}
+
+        return x;
+    }
     public void ustawKomentarz(String komentarz) {
         mKomentarz = komentarz;
     }

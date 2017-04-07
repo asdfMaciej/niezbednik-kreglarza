@@ -3,9 +3,12 @@ package maciej01.soft.niezbednikkreglarza;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,10 +17,11 @@ import java.util.ArrayList;
  * Created by Maciej on 2017-03-19.
  */
 
-public class MyAdapter extends RecyclerView.Adapter {
+public class MyAdapter extends RecyclerView.Adapter implements Filterable {
 
     // źródło danych
     private ArrayList<Article> mArticles = new ArrayList<>();
+    private ArrayList<Article> originalList;
     // obiekt listy artykułów
     private RecyclerView mRecyclerView;
     public MainActivity contex;
@@ -48,6 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter {
     // konstruktor adaptera
     public MyAdapter(ArrayList<Article> pArticles, RecyclerView pRecyclerView, MainActivity cnt){
         mArticles = pArticles;
+        originalList = pArticles;
         mRecyclerView = pRecyclerView;
         contex = cnt;
     }
@@ -89,6 +94,47 @@ public class MyAdapter extends RecyclerView.Adapter {
         ((MyViewHolder) viewHolder).mData.setText(article.getData());
         ((MyViewHolder) viewHolder).mZawodnik.setText(article.getZawodnik());
         ((MyViewHolder) viewHolder).mKregielnia.setText(article.getKregielnia());
+    }
+    @Override
+    public Filter getFilter() {
+        Log.v("test", "getfilter");
+        return new Filter() {
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mArticles = (ArrayList<Article>) results.values;
+                notifyDataSetChanged();
+                Log.v("test", "publishresults");
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                Log.v("test", "performfiltering");
+                ArrayList<Article> filteredResults = null;
+                if (constraint.length() == 0) {
+                    filteredResults = originalList;
+                } else {
+                    filteredResults = getFilteredResults(constraint.toString().toLowerCase());
+                }
+
+                FilterResults results = new FilterResults();
+                results.values = filteredResults;
+
+                return results;
+            }
+        };
+    }
+
+    protected ArrayList<Article> getFilteredResults(String constraint) {
+        Log.v("test", "getfiltered");
+        ArrayList<Article> results = new ArrayList<>();
+
+        for (Article item : originalList) {
+            if (item.contains(constraint)) {
+                results.add(item);
+            }
+        }
+        return results;
     }
 
     @Override

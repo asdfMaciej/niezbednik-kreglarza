@@ -2,6 +2,7 @@ package maciej01.soft.niezbednikkreglarza;
 
 import android.app.ActivityOptions;
 import android.app.Application;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.transition.Explode;
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity
         findViewById(R.id.lapp2).setVisibility(View.GONE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        handleIntent(getIntent());
 
         try {
             BufferedReader reader = new BufferedReader(
@@ -215,6 +218,7 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
 
         // tworzymy adapter oraz łączymy go z RecyclerView
@@ -238,6 +242,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
+        }
+    }
+
 
     public void updateNavBar() {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -306,20 +323,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-        /*
-        //Toast.makeText(getApplicationContext(), "prank", Toast.LENGTH_LONG).show();
-        Zapisane a = new Zapisane();
-        a.ustawarticles(articles);
-        try {
-            a.zapisz(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
         Article.deleteAll(Article.class); // :^^^))))
-        for (Article a: articles) { // i mean there's a better way but
-            a.save();  // screw the police etc
+
+        for (Article a : articles) {
+            a.save();
+            Log.e("more", "equals or less copied");
         }
+
     }
 
     public void openWynik(Article wynik) {
@@ -414,6 +424,27 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.v("test", "onquerysub");
+                adapter.getFilter().filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.v("test", "onquerychang");
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
         return true;
     }
 
@@ -449,7 +480,10 @@ public class MainActivity extends AppCompatActivity
             losoweWyniki();
             adapter.notifyDataSetChanged();
             ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.GONE);
-
+        } else if (id == R.id.action_usun) {
+            articles.clear();
+            adapter.notifyDataSetChanged();
+            ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.VISIBLE);
         }
 
         return super.onOptionsItemSelected(item);
