@@ -20,4 +20,7 @@
             android:title="Sortuj datę malejąco"
             android:id="@+id/action_data2" />
     </group>
+    <item
+        android:title="DEBUG - losowe"
+        android:id="@+id/action_losowe" />
 </menu>

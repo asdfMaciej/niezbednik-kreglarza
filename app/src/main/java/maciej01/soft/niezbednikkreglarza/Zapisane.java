@@ -2,6 +2,8 @@ package maciej01.soft.niezbednikkreglarza;
 
 import android.content.Context;
 
+import com.orm.SugarRecord;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

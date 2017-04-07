@@ -265,6 +265,7 @@ public class WynikActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 scores = (Article) data.getSerializableExtra("wynik");
                 setTextViews();
+                scores.save();
             }
         }
     }

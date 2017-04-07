@@ -1,5 +1,7 @@
 package maciej01.soft.niezbednikkreglarza;
 
+import com.orm.SugarRecord;
+
 import java.io.Serializable;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -12,7 +14,7 @@ import java.util.Random;
  */
 
 @SuppressWarnings("serial")
-public class Article implements Serializable, Cloneable {
+public class Article extends SugarRecord implements Serializable, Cloneable {
     private String mDataString = "";
 
     private String mWynik; // i mean, you should use Int instead of String
@@ -26,10 +28,25 @@ public class Article implements Serializable, Cloneable {
 
     private String mKomentarz = "";
 
-    private String[] mTor1 = new String[4]; // the same, int array should be better
-    private String[] mTor2 = new String[4]; // but since we're doing this, here's the syntax
-    private String[] mTor3 = new String[4]; // [0] - mWynik, [1] - mPelne
-    private String[] mTor4 = new String[4]; // [2] - mZbierane, [3] - mDziury
+    private String mTor11;  // so, I don't want to bother with implementing custom SQL database helper
+    private String mTor12;  // as i said above, i'm lazy
+    private String mTor13;  // so i'd rather this library i found - Sugar
+    private String mTor14;  // and as you can see - it doesn't support arrays nor lists
+
+    private String mTor21;  // wynik
+    private String mTor22;  // pelne
+    private String mTor23;  // zbierane
+    private String mTor24;  // dziury
+
+    private String mTor31;
+    private String mTor32;
+    private String mTor33;
+    private String mTor34;
+
+    private String mTor41;
+    private String mTor42;
+    private String mTor43;
+    private String mTor44;
 
     private boolean czyTory = false;
 
@@ -97,10 +114,25 @@ public class Article implements Serializable, Cloneable {
     }
 
     public void ustawTory(String[][] tory) {
-        mTor1 = tory[0];
-        mTor2 = tory[1];
-        mTor3 = tory[2];
-        mTor4 = tory[3];
+        mTor11 = tory[0][0];  // sigh
+        mTor12 = tory[0][1];  // this code is painful to look at
+        mTor13 = tory[0][2];
+        mTor14 = tory[0][3];
+
+        mTor21 = tory[1][0];
+        mTor22 = tory[1][1];
+        mTor23 = tory[1][2];
+        mTor24 = tory[1][3];
+
+        mTor31 = tory[2][0];
+        mTor32 = tory[2][1];
+        mTor33 = tory[2][2];
+        mTor34 = tory[2][3];
+
+        mTor41 = tory[3][0];
+        mTor42 = tory[3][1];
+        mTor43 = tory[3][2];
+        mTor44 = tory[3][3];
         czyTory = true;
     }
 
@@ -110,8 +142,6 @@ public class Article implements Serializable, Cloneable {
         String sdy = Integer.toString(dayOfMonth);
         if (smt.length() == 1) { md += "0"+smt; } else { md += smt; } md += "-";
         if (sdy.length() == 1) { md += "0"+sdy; } else { md += sdy; }
-        //mDataString = Integer.toString(year) + "-" + Integer.toString(month+1); // month is index
-        //mDataString += "-" + Integer.toString(dayOfMonth); // not the month picked
         mDataString = md;
     }
 
@@ -136,7 +166,7 @@ public class Article implements Serializable, Cloneable {
         if (!d.getKregielnia().equals(mKregielnia)) {x = false;}
         if (!d.getKlub().equals(mKlub)) {x = false;}
         if (!d.getKomentarz().equals(mKomentarz)) {x = false;}
-        if (!Arrays.deepEquals(d.getTory(), new String[][]{mTor1, mTor2, mTor3, mTor4})) {x = false;}
+        if (!Arrays.deepEquals(d.getTory(), this.getTory())) {x = false;}
 
         return x;
     }
@@ -153,6 +183,13 @@ public class Article implements Serializable, Cloneable {
     public String getKlub() {return mKlub; }
     public String getKomentarz() {return mKomentarz;}
 
-    public String[][] getTory() { return new String[][]{mTor1, mTor2, mTor3, mTor4};}
+    public String[][] getTory() {
+        return new String[][]{
+                new String[]{mTor11, mTor12, mTor13, mTor14},
+                new String[]{mTor21, mTor22, mTor23, mTor24},
+                new String[]{mTor31, mTor32, mTor33, mTor34},
+                new String[]{mTor41, mTor42, mTor43, mTor44},
+        };
+    }
     public boolean czyTory() { return czyTory; }
 }

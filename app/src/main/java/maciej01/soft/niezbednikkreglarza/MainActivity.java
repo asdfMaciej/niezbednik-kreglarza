@@ -1,6 +1,7 @@
 package maciej01.soft.niezbednikkreglarza;
 
 import android.app.ActivityOptions;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.orm.SugarContext;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -69,7 +71,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        SugarContext.init(getApplicationContext());
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         //getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity
         //getWindow().setEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.activity_slide));//new Explode());
         //getWindow().setExitTransition(TransitionInflater.from(this).inflateTransition(R.transition.activity_slide));//(new Explode());
         //setupWindowAnimations();
+        //SugarContext.init(getApplicationContext());
         setContentView(R.layout.activity_main);
         findViewById(R.id.lapp1).setVisibility(View.VISIBLE);
         findViewById(R.id.lapp2).setVisibility(View.GONE);
@@ -124,6 +129,7 @@ public class MainActivity extends AppCompatActivity
 
 
         //losoweWyniki();
+        /*
         Zapisane a = new Zapisane();
         try {
             Zapisane b = a.wczytaj(this);
@@ -133,6 +139,9 @@ public class MainActivity extends AppCompatActivity
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
+        articles = (ArrayList<Article>) Article.listAll(Article.class);
+
         /*
         A sad story about Java:
         [i have many of them]
@@ -220,6 +229,7 @@ public class MainActivity extends AppCompatActivity
         System.gc();
     }
 
+
     public void sortArticlesByWynik(ArrayList<Article> art, final int tryb) {
 
         Collections.sort(art, new Comparator<Article>() {
@@ -259,6 +269,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
+        /*
         //Toast.makeText(getApplicationContext(), "prank", Toast.LENGTH_LONG).show();
         Zapisane a = new Zapisane();
         a.ustawarticles(articles);
@@ -267,7 +278,13 @@ public class MainActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
+        Article.deleteAll(Article.class); // :^^^))))
+        for (Article a: articles) { // i mean there's a better way but
+            a.save();  // screw the police etc
+        }
     }
+
     public void openWynik(Article wynik) {
         Intent intent;
         intent = new Intent(this, WynikActivity.class);
@@ -331,6 +348,9 @@ public class MainActivity extends AppCompatActivity
                 articles.set(index, scores);
                 adapter.notifyItemChanged(index);
                 Log.e("komentarz", "inny wynik");
+                Article xd = Article.findById(Article.class, index);
+                xd = scores;
+                xd.save();
                 recyclerView.smoothScrollToPosition(index);
             }
         } else if (requestCode == 3) { // aktualizacja ustawien
@@ -383,6 +403,8 @@ public class MainActivity extends AppCompatActivity
             sortArticlesByWynik(articles, 4);
             adapter.notifyDataSetChanged();
             return true;
+        } else if (id == R.id.action_losowe) {
+            losoweWyniki();
         }
 
         return super.onOptionsItemSelected(item);
