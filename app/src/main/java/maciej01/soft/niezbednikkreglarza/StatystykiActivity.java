@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -39,7 +40,10 @@ import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.File;
@@ -120,6 +124,10 @@ public class StatystykiActivity  extends AppCompatActivity
         sortArticlesByWynik(articles, 3);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        updateMeme();
+    }
+
+    public void updateMeme() {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run() {
@@ -145,9 +153,7 @@ public class StatystykiActivity  extends AppCompatActivity
                 updateStats();
             }});
         thread.run();
-
     }
-
     public void sortArticlesByWynik(ArrayList<Article> art, final int tryb) {
 
         Collections.sort(art, new Comparator<Article>() {
@@ -193,30 +199,58 @@ public class StatystykiActivity  extends AppCompatActivity
     }
     public void updateGraph(final Integer grp, Integer sortBy) throws ParseException, IndexOutOfBoundsException {
         try {
+            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            boolean showNorma = SP.getBoolean("norma", true);
             ArrayList<DataPoint> grArr = new ArrayList<DataPoint>();
+            ArrayList<DataPoint> grNorma = new ArrayList<DataPoint>();
             GraphView graph = (GraphView) findViewById(grp);
 
+            graph.removeAllSeries();
             for (int i = 0; i < articles.size(); i++) {
                 Article art = articles.get(i);
                 SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-DD", Locale.ENGLISH);
                 Date dat = sd.parse(art.getData());
                 int coolstuff = 0;
+                int norma = 0;
                 if (sortBy == 0) { // wynik
                     coolstuff = Integer.parseInt(art.getWynik());
+                    norma = Integer.parseInt(SP.getString("normaWynik", "666"));
                 } else if (sortBy == 1) {
                     coolstuff = Integer.parseInt(art.getPelne());
+                    norma = Integer.parseInt(SP.getString("normaPelne", "66"));
                 } else if (sortBy == 2) {
                     coolstuff = Integer.parseInt(art.getZbierane());
+                    norma = Integer.parseInt(SP.getString("normaZbierane", "6"));
                 } else if (sortBy == 3) {
                     coolstuff = Integer.parseInt(art.getDziury());
                 }
                 grArr.add(new DataPoint(i, coolstuff));
+                if ((norma != 0) && showNorma) {
+                    grNorma.add(new DataPoint(i, norma));
+                }
                 Log.v("data", Integer.toString((int) dat.getTime()));
                 Log.v("test", art.getWynik());
             }
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(((DataPoint[]) grArr.toArray(new DataPoint[grArr.size()])));
             graph.addSeries(series);
+            series.setOnDataPointTapListener(new OnDataPointTapListener() {
+                @Override
+                public void onTap(Series series, DataPointInterface dataPoint) {
+                    int i = (int) dataPoint.getX();
+                    Intent intent;
+                    intent = new Intent(StatystykiActivity.this, WynikActivity.class);
+                    intent.putExtra("wynik", articles.get(i));
+                    intent.putExtra("disabled", true);
+                    startActivityForResult(intent, 2);
+                }
+            });
+            if ((!grNorma.isEmpty()) && showNorma) {
+                LineGraphSeries<DataPoint> seriesNorma = new LineGraphSeries<>(((DataPoint[]) grNorma.toArray(new DataPoint[grNorma.size()])));
+                seriesNorma.setColor(Color.RED);
+                graph.addSeries(seriesNorma);
+            }
+
 
             graph.getViewport().setScalable(true);
             graph.getViewport().setScrollable(true);
@@ -293,7 +327,7 @@ public class StatystykiActivity  extends AppCompatActivity
 
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == 3) { // aktualizacja ustawien
-            updateNavBar();
+            updateMeme();
         }
         if (requestCode == 666 && resultCode == RESULT_OK && null != data) {
             Thread thread = new Thread(new Runnable(){

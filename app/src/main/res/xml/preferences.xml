@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="Standardowe ustawienia">
+    <PreferenceCategory android:title="Personalia">
 
         <EditTextPreference android:title="Imię i nazwisko"
             android:key="zawodnik"
@@ -18,5 +18,36 @@
             android:defaultValue="1"
             android:entries="@array/kregielnie"
             android:entryValues="@array/kregielnie" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Statystyki">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="Wyświetlanie normy"
+            android:key="norma" />
+        <EditTextPreference
+            android:defaultValue="510"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Norma wyniku"
+            android:inputType="numberDecimal"
+            android:key="normaWynik"
+            android:summary="Norma wyniku - np. 510" />
+        <EditTextPreference
+            android:defaultValue="360"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Norma pełnych"
+            android:key="normaPelne"
+            android:inputType="numberDecimal"
+            android:summary="Norma pełnych - np. 360" />
+        <EditTextPreference
+            android:defaultValue="150"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Norma zbieranych"
+            android:key="normaZbierane"
+            android:inputType="numberDecimal"
+            android:summary="Norma zbieranych - np. 150" />
     </PreferenceCategory>
 </PreferenceScreen>

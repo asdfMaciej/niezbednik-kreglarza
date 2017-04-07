@@ -34,6 +34,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import static android.view.View.GONE;
+
 /**
  * Created by Maciej on 2017-03-21.
  */
@@ -87,6 +89,7 @@ public class WynikActivity extends AppCompatActivity {
             @Override
             public void run(){
                 Intent i = getIntent();
+                boolean disabled = (boolean) i.getSerializableExtra("disabled");
                 if (scores == null) {
                     scores = (Article) i.getSerializableExtra("wynik");
                     scores_old = ((Article) i.getSerializableExtra("wynik")).clone();
@@ -94,12 +97,23 @@ public class WynikActivity extends AppCompatActivity {
                 setTextViews();
 
                 Button zmiana = (Button) findViewById(R.id.bZmiana);
+                Button usun = (Button) findViewById(R.id.bUsun);
+                EditText komek = (EditText) findViewById(R.id.edKomentarz);
                 zmiana.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         openZmiana(false);
                     }
                 });
+                if (disabled) {
+                    zmiana.setVisibility(GONE);
+                    usun.setVisibility(GONE);
+                    komek.setVisibility(GONE);
+                } else {
+                    zmiana.setVisibility(View.VISIBLE);
+                    usun.setVisibility(View.VISIBLE);
+                    komek.setVisibility(View.VISIBLE);
+                }
 
                 return;
                     }
@@ -191,9 +205,12 @@ public class WynikActivity extends AppCompatActivity {
             tor1.setVisibility(View.VISIBLE);
             tor2.setVisibility(View.VISIBLE);
             setTory();
+            ViewGroup.LayoutParams lp = (tvKomentarz).getLayoutParams();
+            if( lp instanceof ViewGroup.MarginLayoutParams)
+            {((ViewGroup.MarginLayoutParams) lp).topMargin = 0;}
         } else {
-            tor1.setVisibility(View.GONE);
-            tor2.setVisibility(View.GONE);
+            tor1.setVisibility(GONE);
+            tor2.setVisibility(GONE);
             ViewGroup.LayoutParams lp = (tvKomentarz).getLayoutParams();
             if( lp instanceof ViewGroup.MarginLayoutParams)
             {((ViewGroup.MarginLayoutParams) lp).topMargin = px;}

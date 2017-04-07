@@ -272,6 +272,7 @@ public class MainActivity extends AppCompatActivity
         Intent intent;
         intent = new Intent(this, WynikActivity.class);
         intent.putExtra("wynik", wynik);
+        intent.putExtra("disabled", false);
         startActivityForResult(intent, 2);//, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         //finish();
         //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

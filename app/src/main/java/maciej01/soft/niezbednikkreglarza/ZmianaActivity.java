@@ -325,6 +325,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
 
         Intent returnIntent = new Intent();
         returnIntent.putExtra("wynik", scores);
+        returnIntent.putExtra("disabled", false);
         setResult(RESULT_OK, returnIntent);
         finish();
         backAnimation();
