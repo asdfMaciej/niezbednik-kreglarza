@@ -41,6 +41,8 @@ import android.widget.Toast;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orm.SugarContext;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -219,6 +221,11 @@ public class MainActivity extends AppCompatActivity
         adapter = new MyAdapter(articles, recyclerView, this);
         recyclerView.setAdapter(adapter);
         itemTouchHelper.attachToRecyclerView(recyclerView);
+        if (adapter.getItemCount() == 0) {
+            ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.VISIBLE);
+        } else {
+            ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.GONE);
+        }
 
         //bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
     }
@@ -386,6 +393,11 @@ public class MainActivity extends AppCompatActivity
         } else if (requestCode == 3) { // aktualizacja ustawien
             updateNavBar();
         }
+        if (adapter.getItemCount() == 0) {
+            ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.VISIBLE);
+        } else {
+            ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -435,6 +447,9 @@ public class MainActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.action_losowe) {
             losoweWyniki();
+            adapter.notifyDataSetChanged();
+            ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.GONE);
+
         }
 
         return super.onOptionsItemSelected(item);

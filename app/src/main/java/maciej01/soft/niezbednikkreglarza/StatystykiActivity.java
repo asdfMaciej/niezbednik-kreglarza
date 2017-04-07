@@ -61,6 +61,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /**
  * Created by Maciej on 2017-04-03.
@@ -84,7 +85,7 @@ public class StatystykiActivity  extends AppCompatActivity
         //setupWindowAnimations();
         setContentView(R.layout.activity_main);
         findViewById(R.id.lapp1).setVisibility(GONE);
-        findViewById(R.id.lapp2).setVisibility(View.VISIBLE);
+        findViewById(R.id.lapp2).setVisibility(VISIBLE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -124,18 +125,25 @@ public class StatystykiActivity  extends AppCompatActivity
         sortArticlesByWynik(articles, 3);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        graphVisiblity(true);
         updateMeme();
     }
 
+    public void graphVisiblity(boolean state) {
+        // state false - invisible, true - visible
+        if (state) {
+            (findViewById(R.id.layIdk)).setVisibility(GONE);
+            (findViewById(R.id.layProblemy)).setVisibility(VISIBLE);
+        } else {
+            (findViewById(R.id.layIdk)).setVisibility(VISIBLE);
+            (findViewById(R.id.layProblemy)).setVisibility(GONE);
+        }
+    }
     public void updateMeme() {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run() {
                 updateNavBar();
-                ((GraphView) findViewById(R.id.graphWynik)).setVisibility(View.VISIBLE);
-                ((GraphView) findViewById(R.id.graphPelne)).setVisibility(View.VISIBLE);
-                ((GraphView) findViewById(R.id.graphZbierane)).setVisibility(View.VISIBLE);
-                ((GraphView) findViewById(R.id.graphDziury)).setVisibility(View.VISIBLE);
                 try {
                     updateGraph(R.id.graphWynik, 0);
                     updateGraph(R.id.graphPelne, 1);
@@ -143,12 +151,13 @@ public class StatystykiActivity  extends AppCompatActivity
                     updateGraph(R.id.graphDziury, 3);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    graphVisiblity(false);
                     if (e instanceof IndexOutOfBoundsException) {
-                        ((GraphView) findViewById(R.id.graphWynik)).setVisibility(GONE);
-                        ((GraphView) findViewById(R.id.graphPelne)).setVisibility(GONE);
-                        ((GraphView) findViewById(R.id.graphZbierane)).setVisibility(GONE);
-                        ((GraphView) findViewById(R.id.graphDziury)).setVisibility(GONE);
+                        graphVisiblity(false);
                     }
+                }
+                if(articles.size() < 2) {
+                    graphVisiblity(false);
                 }
                 updateStats();
             }});
@@ -214,18 +223,18 @@ public class StatystykiActivity  extends AppCompatActivity
                 int norma = 0;
                 if (sortBy == 0) { // wynik
                     coolstuff = Integer.parseInt(art.getWynik());
-                    norma = Integer.parseInt(SP.getString("normaWynik", "666"));
+                    norma = Integer.parseInt(SP.getString("normaWynik", "9999"));
                 } else if (sortBy == 1) {
                     coolstuff = Integer.parseInt(art.getPelne());
-                    norma = Integer.parseInt(SP.getString("normaPelne", "66"));
+                    norma = Integer.parseInt(SP.getString("normaPelne", "9999"));
                 } else if (sortBy == 2) {
                     coolstuff = Integer.parseInt(art.getZbierane());
-                    norma = Integer.parseInt(SP.getString("normaZbierane", "6"));
+                    norma = Integer.parseInt(SP.getString("normaZbierane", "9999"));
                 } else if (sortBy == 3) {
                     coolstuff = Integer.parseInt(art.getDziury());
                 }
                 grArr.add(new DataPoint(i, coolstuff));
-                if ((norma != 0) && showNorma) {
+                if ((norma != 0) && showNorma && (norma != 9999)) {
                     grNorma.add(new DataPoint(i, norma));
                 }
                 Log.v("data", Integer.toString((int) dat.getTime()));
