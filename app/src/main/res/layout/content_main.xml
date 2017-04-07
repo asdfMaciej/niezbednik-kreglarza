@@ -20,7 +20,7 @@
         android:id="@+id/smieciarka" />
 
     <TextView
-        android:text="Narazie nie ma tu żadnych wyników. Aby dodać własne, naciśnij przycisk w prawym dolnym rogu ekranu."
+        android:text="Na razie nie ma tu żadnych wyników. Aby dodać własne, naciśnij przycisk w prawym dolnym rogu ekranu."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtPustaSmieciarka"
