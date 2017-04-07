@@ -41,10 +41,12 @@ import android.widget.Toast;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.orm.SugarContext;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -84,10 +86,38 @@ public class MainActivity extends AppCompatActivity
         //setupWindowAnimations();
         //SugarContext.init(getApplicationContext());
         setContentView(R.layout.activity_main);
+        Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(this));
         findViewById(R.id.lapp1).setVisibility(View.VISIBLE);
         findViewById(R.id.lapp2).setVisibility(View.GONE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        try {
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(MainActivity.this.openFileInput("stack.trace")));
+            String line;
+            String trace = "";
+            while((line = reader.readLine()) != null) {
+                trace += line+"\n";
+            }
+            Intent sendIntent = new Intent(Intent.ACTION_SEND);
+            String subject = "Error report";
+            String body = "Mail this to maciej.kaszkowiak@gmail.com: " + "\n" + trace + "\n";
+
+            sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {"maciej.kaszkowiak@gmail.com"});
+            sendIntent.putExtra(Intent.EXTRA_TEXT, body);
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            sendIntent.setType("message/rfc822");
+
+            MainActivity.this.startActivity(Intent.createChooser(sendIntent, "Title:"));
+
+            MainActivity.this.deleteFile("stack.trace");
+        } catch(FileNotFoundException fnfe) {
+            // ...
+        } catch(IOException ioe) {
+            // ...
+        }
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
