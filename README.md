@@ -8,7 +8,7 @@ ETA@pierwsza glowna wersja: 2-3 tygodnie.
 # Co muszę zrobić przed wyjściem aplikacji
 
 **Na głównym ekranie:**
-- dodać filtrowanie wyników
+- *dodać filtrowanie wyników* - w sumie, search bar starczy
 - ~sortowanie po zawodnikach/klubie~
 - ~szukajka w appbarze~
 - ~dodac cokolwiek na starcie co zacheca do dodania wynikow nowego uzytkownika~
