@@ -18,20 +18,19 @@ raczej nic, chyba że jakieś statystyki drobne etc
 
 **W statystykach:**
 - ~powiadomic ze nalezy dodac >2 wyniki aby byly wykresy, i ogarnac co sie dzieje przed ta liczba~
-- obecnie wszystkie wyniki to jeden zawodnik - trzeba dodac filtrowanie
-- i zarazem zmiane pomiedzy zawodnikami
-- przydalyby sie tabelki ze statystykami [zrobie je po wyjsciu aplikacji raczej, bo bym musial troche czasu poswiecic, a ciezko kiedy]
+- ~obecnie wszystkie wyniki to jeden zawodnik - trzeba dodac filtrowanie~
+- ~i zarazem zmiane pomiedzy zawodnikami~
+- tabelki ze statystykami
 
 **Ogółem:**
 - dostosowac bardziej aplikacje do material design [rozne drobne duperele]
 - ogarnac navbar i zrobic view o mnie/kontakt
-- moze cos zrobie z baza danych, bo obecna jest smieszna [ale i tak lepiej niz w pliku, bo moge chociaz migracje zrobic]
-- jakies powiadomienia aby bylo bardziej intuicyjnie? np. mozna ustawic wlasne zdjecie, ale ciezko to wyczaic samemu
+- ~moze cos zrobie z baza danych, bo obecna jest smieszna [ale i tak lepiej niz w pliku, bo moge chociaz migracje zrobic]~
+- krotki tutorial przy pierwszym uruchomieniu aplikacji
 
 # Potencjalne ficzery
-*Czyli przydatne, lecz nie esencjalne*
+*Czyli przydatne, lecz nie esencjalne - raczej dodam po pierwszym wyjsciu*
 
-- j.w - tabele ze statystykami, to dodam chyba jako pierwsze
 - możliwość dodawania treningow
 - zmiana kolorystyki aplikacji [np. tryb nocny]
 - możliwość dodawania sprintow [w sumie malo roboty by to wymagalo]
