@@ -3,6 +3,7 @@ package maciej01.soft.niezbednikkreglarza;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,13 +28,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -101,6 +105,10 @@ public class StatystykiActivity  extends AppCompatActivity
         Intent i = getIntent();
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
+        spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
+        if (spKlub.equals("1")) {
+            spKlub = "KK Ustaw Klub w Opcjach";
+        }
         articles = (ArrayList<Article>)i.getSerializableExtra("articles");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -128,7 +136,7 @@ public class StatystykiActivity  extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         graphVisiblity(true);
-        updateMeme(spZawodnik);
+        updateMeme(spZawodnik, spKlub);
     }
 
     public void graphVisiblity(boolean state) {
@@ -141,13 +149,13 @@ public class StatystykiActivity  extends AppCompatActivity
             (findViewById(R.id.layProblemy)).setVisibility(GONE);
         }
     }
-    public void updateMeme(final String spZawodnik) {
+    public void updateMeme(final String spZawodnik, final String spKlub) {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run() {
                 graphVisiblity(true);
                 updateNavBar();
-                updateStats(spZawodnik);
+                updateStats(spZawodnik, spKlub);
                 try {
                     updateGraph(R.id.graphWynik, 0, spZawodnik);
                     updateGraph(R.id.graphPelne, 1, spZawodnik);
@@ -214,6 +222,10 @@ public class StatystykiActivity  extends AppCompatActivity
             GraphView graph = (GraphView) findViewById(grp);
 
             graph.removeAllSeries();
+            int minX1 = -1;
+            int maxX1 = -1;
+            int minY1 = -1;
+            int maxY1 = -1;
             for (int i = 0; i < articles.size(); i++) {
                 Article art = articles.get(i);
                 SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-DD", Locale.ENGLISH);
@@ -236,12 +248,20 @@ public class StatystykiActivity  extends AppCompatActivity
                     throw new IndexOutOfBoundsException();
                 } else if (art.getZawodnik().equals(zawodnik)){
                     grArr.add(new DataPoint(i, coolstuff));
+                    maxX1 = i;
+                    if (minX1 == -1) {
+                        minX1 = i;
+                    }
+                    if (coolstuff > maxY1) {
+                        maxY1 = coolstuff;
+                    }
+                    if ((coolstuff < minY1) || (minY1 == -1)) {
+                        minY1 = coolstuff;
+                    }
                 }
-                if ((norma != 0) && showNorma && (norma != 9999)) {
+                if (art.getZawodnik().equals(zawodnik) && (norma != 0) && showNorma && (norma != 9999)) {
                     grNorma.add(new DataPoint(i, norma));
                 }
-                Log.v("data", Integer.toString((int) dat.getTime()));
-                Log.v("test", art.getWynik());
             }
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(((DataPoint[]) grArr.toArray(new DataPoint[grArr.size()])));
@@ -270,8 +290,18 @@ public class StatystykiActivity  extends AppCompatActivity
             graph.getViewport().setScrollableY(true);
 
 
-            graph.getGridLabelRenderer().setHumanRounding(false);
+            graph.getGridLabelRenderer().setHumanRounding(true);
             graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+            graph.getViewport().setXAxisBoundsManual(true);
+            graph.getViewport().setMinX(minX1);
+            graph.getViewport().setMaxX(maxX1);
+            graph.getViewport().setMinY(minY1);
+            graph.getViewport().setMaxY(maxY1);
+            Log.v("minx", Integer.toString(minX1));
+        Log.v("maxx", Integer.toString(maxX1));
+        Log.v("miny", Integer.toString(minY1));
+        Log.v("maxy", Integer.toString(maxY1));
+
 
             graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
                 @Override
@@ -321,22 +351,43 @@ public class StatystykiActivity  extends AppCompatActivity
         sup = null;
         System.gc();
     }
-    public void updateStats(String spZawodnik) {
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String spKlub;
-        if (!articles.isEmpty()) {
-            spKlub = articles.get(0).klubFromZawodnik(articles, spZawodnik);
-        } else {
-            spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
-        }
 
-        if (spKlub.equals("1")) {
-            spKlub = "KK Ustaw Klub w Opcjach";
+    int dptopx(int px) {
+        return ((int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                px,
+                getApplicationContext().getResources().getDisplayMetrics()
+        ));}
+
+    public void zmienLayout(boolean jestObrazek) {
+        CircularImageView imgTwarz = (CircularImageView) findViewById(R.id.imgTwarz);
+        View rect = (View) findViewById(R.id.rectangle_at_the_top);
+        ViewGroup.MarginLayoutParams lRect = (ViewGroup.MarginLayoutParams) ((rect).getLayoutParams());
+        if (jestObrazek) {
+            imgTwarz.setVisibility(View.VISIBLE);
+            lRect.bottomMargin = dptopx(72);
+            lRect.height = dptopx(195);
+        } else {
+            imgTwarz.setVisibility(View.GONE);
+            lRect.bottomMargin = dptopx(16);
+            lRect.height = dptopx(130);
         }
+    }
+    public void updateStats(String spZawodnik, String spKlub) {
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean toja = spZawodnik.equals(SP.getString("zawodnik", "Zawodnik Domyślny"));
+        zmienLayout(toja);
+
         TextView statZawodnik = (TextView)findViewById(R.id.statZawodnik);
         TextView statKlub = (TextView)findViewById(R.id.statKlub);
         statZawodnik.setText(spZawodnik);
-        statKlub.setText(spKlub);
+        if (toja) {
+            String spK = SP.getString("klub","KK Dziewiątka-Amica Wronki");
+            if (spK.equals("1")) {spK = "KK Ustaw Klub w Opcjach";}
+            statKlub.setText(spK);
+        } else {
+            statKlub.setText(spKlub);
+        }
 
         if (!articles.isEmpty()) {
             if (articles.get(0).wynikiFromZawodnik(articles, spZawodnik).size() < 2) {
@@ -357,7 +408,7 @@ public class StatystykiActivity  extends AppCompatActivity
                 ArrayList<Article> zawWyniki = new ArrayList<Article>();
                 zawWyniki.addAll(articles.get(0).wynikiFromZawodnik(articles, spZawodnik));
                 if (zawWyniki.size() > 1) {
-                    updateMeme(spZawodnik);
+                    updateMeme(spZawodnik, spKlub);
                     selectSpinnerValue(spinner, spZawodnik);
                 }
             }
@@ -439,7 +490,8 @@ public class StatystykiActivity  extends AppCompatActivity
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String zawodnik = parent.getItemAtPosition(pos).toString();
                 spZawodnik = zawodnik;
-                updateMeme(spZawodnik);
+                spKlub = articles.get(0).klubFromZawodnik(articles, spZawodnik);
+                updateMeme(spZawodnik, spKlub);
             }
             public void onNothingSelected(AdapterView<?> parent) {}
         });

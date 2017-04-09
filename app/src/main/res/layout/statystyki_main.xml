@@ -174,9 +174,9 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/imgTwarz"
+            android:layout_below="@id/rectangle_at_the_top"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:id="@+id/layIdk"
             android:visibility="invisible">
 

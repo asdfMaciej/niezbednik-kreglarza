@@ -67,6 +67,10 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
     private static String[] sData = {
             "2014-12-15", "2016-1-13", "2012-11-1", "2000-5-1", "2016-11-3"
     };
+    private static String[] sKluby = {
+            "KK Dziewiątka-Amica Wronki", "KK Polonia 1912 Leszno",
+        "KK Wrzos Sieraków","KS Zatoka Puck"
+    };
 
     public Article(String wynik, String pelne, String zbierane, String dziury) {
         mWynik = wynik;
@@ -105,7 +109,7 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
         mZawodnik = sZawodnik[random.nextInt(sZawodnik.length)];
         mKregielnia = sKregielnia[random.nextInt(sKregielnia.length)];
         mDataString = sData[random.nextInt(sData.length)];
-        mKlub = "KS Start Gostyń";
+        mKlub = sKluby[random.nextInt(sKluby.length)];
     }
 
     public void ustawWynik(String wynik, String pelne, String zbierane, String dziury) {
