@@ -262,7 +262,16 @@ public class StatystykiActivity  extends AppCompatActivity
                 if (art.getZawodnik().equals(zawodnik) && (norma != 0) && showNorma && (norma != 9999)) {
                     grNorma.add(new DataPoint(i, norma));
                 }
+                if ((norma != 0) && showNorma && (norma != 9999)) {
+                    if (norma > maxY1) {
+                        maxY1 = norma;
+                    }
+                    if ((norma < minY1) || (minY1 == -1)) {
+                        minY1 = norma;
+                    }
+                }
             }
+
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(((DataPoint[]) grArr.toArray(new DataPoint[grArr.size()])));
             graph.addSeries(series);
