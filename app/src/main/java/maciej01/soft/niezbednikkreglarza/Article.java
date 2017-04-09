@@ -3,8 +3,10 @@ package maciej01.soft.niezbednikkreglarza;
 import com.orm.SugarRecord;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
@@ -161,6 +163,38 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
         if (mKomentarz.toLowerCase().contains(cont)) {x = true;}
 
         return x;
+    }
+
+    public ArrayList<String> zawodnicyFromArray(ArrayList<Article> articles) {
+        String zawodnik;
+        ArrayList<String> ret_arr = new ArrayList<String>();
+        for (Article wynik : articles) {
+            zawodnik = wynik.getZawodnik();
+            if (!ret_arr.contains(zawodnik)) {
+                ret_arr.add(zawodnik);
+            }
+        }
+        return ret_arr;
+    }
+
+    public ArrayList<Article> wynikiFromZawodnik(ArrayList<Article> articles, String zawodnik) {
+        ArrayList<Article> ret_arr = new ArrayList<Article>();
+        for (Article wynik : articles) {
+            if (wynik.getZawodnik().equals(zawodnik)) {
+                ret_arr.add(wynik);
+            }
+        }
+        return ret_arr;
+    }
+
+    public String klubFromZawodnik(ArrayList<Article> articles, String zawodnik) {
+        String klub = "";
+        for (Article wynik : articles) {
+            if (wynik.getZawodnik().equals(zawodnik)) {
+                klub = wynik.getKlub();
+            }
+        }
+        return klub;
     }
     public void ustawKomentarz(String komentarz) {
         mKomentarz = komentarz;

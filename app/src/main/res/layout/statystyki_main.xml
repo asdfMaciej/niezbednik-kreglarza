@@ -12,7 +12,8 @@
             android:background="@color/colorPrimaryLight"
             android:visibility="visible"
             android:elevation="3dp"
-            android:layout_height="280dp" />
+            android:layout_marginBottom="72dp"
+            android:layout_height="195dp" />
 
         <TextView
             android:text="Statystyki"
@@ -176,10 +177,11 @@
             android:layout_below="@+id/imgTwarz"
             android:layout_alignParentStart="true"
             android:layout_marginTop="24dp"
-            android:id="@+id/layIdk">
+            android:id="@+id/layIdk"
+            android:visibility="invisible">
 
             <TextView
-                android:text="Na razie nie ma tu żadnych statystyk - potrzebne są minimum dwa wyniki."
+                android:text="Na razie nie ma tu żadnych statystyk - potrzebne są minimum dwa wyniki!"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtPusteStatystyki"

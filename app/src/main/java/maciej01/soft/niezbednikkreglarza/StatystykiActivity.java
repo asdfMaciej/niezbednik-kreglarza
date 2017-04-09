@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +31,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -71,18 +75,14 @@ public class StatystykiActivity  extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Serializable {
 
     public ArrayList<Article> articles = new ArrayList<>();
+    public String spZawodnik;
+    public String spKlub;
+    public Spinner spinner;
+    public ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        //getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
-        //Slide s = new Slide();
-        //s.setInterpolator(bi);
-        //getWindow().setEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.activity_slide));//new Explode());
-        //getWindow().setExitTransition(TransitionInflater.from(this).inflateTransition(R.transition.activity_slide));//(new Explode());
-        //setupWindowAnimations();
         setContentView(R.layout.activity_main);
         findViewById(R.id.lapp1).setVisibility(GONE);
         findViewById(R.id.lapp2).setVisibility(VISIBLE);
@@ -99,6 +99,8 @@ public class StatystykiActivity  extends AppCompatActivity
         fab.setVisibility(GONE);
 
         Intent i = getIntent();
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
         articles = (ArrayList<Article>)i.getSerializableExtra("articles");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -126,7 +128,7 @@ public class StatystykiActivity  extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         graphVisiblity(true);
-        updateMeme();
+        updateMeme(spZawodnik);
     }
 
     public void graphVisiblity(boolean state) {
@@ -139,27 +141,25 @@ public class StatystykiActivity  extends AppCompatActivity
             (findViewById(R.id.layProblemy)).setVisibility(GONE);
         }
     }
-    public void updateMeme() {
+    public void updateMeme(final String spZawodnik) {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run() {
+                graphVisiblity(true);
                 updateNavBar();
+                updateStats(spZawodnik);
                 try {
-                    updateGraph(R.id.graphWynik, 0);
-                    updateGraph(R.id.graphPelne, 1);
-                    updateGraph(R.id.graphZbierane, 2);
-                    updateGraph(R.id.graphDziury, 3);
+                    updateGraph(R.id.graphWynik, 0, spZawodnik);
+                    updateGraph(R.id.graphPelne, 1, spZawodnik);
+                    updateGraph(R.id.graphZbierane, 2, spZawodnik);
+                    updateGraph(R.id.graphDziury, 3, spZawodnik);
                 } catch (Exception e) {
                     e.printStackTrace();
                     graphVisiblity(false);
-                    if (e instanceof IndexOutOfBoundsException) {
-                        graphVisiblity(false);
-                    }
                 }
                 if(articles.size() < 2) {
                     graphVisiblity(false);
                 }
-                updateStats();
             }});
         thread.run();
     }
@@ -206,8 +206,7 @@ public class StatystykiActivity  extends AppCompatActivity
         if (a1[2].length() == 1) { rt += "0"+a1[2]; } else { rt += a1[2]; }
         return rt;
     }
-    public void updateGraph(final Integer grp, Integer sortBy) throws ParseException, IndexOutOfBoundsException {
-        try {
+    public void updateGraph(final Integer grp, Integer sortBy, String zawodnik) throws ParseException, IndexOutOfBoundsException {
             SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
             boolean showNorma = SP.getBoolean("norma", true);
             ArrayList<DataPoint> grArr = new ArrayList<DataPoint>();
@@ -233,7 +232,11 @@ public class StatystykiActivity  extends AppCompatActivity
                 } else if (sortBy == 3) {
                     coolstuff = Integer.parseInt(art.getDziury());
                 }
-                grArr.add(new DataPoint(i, coolstuff));
+                if (zawodnik.equals("Domyślny Zawodnik")) {
+                    throw new IndexOutOfBoundsException();
+                } else if (art.getZawodnik().equals(zawodnik)){
+                    grArr.add(new DataPoint(i, coolstuff));
+                }
                 if ((norma != 0) && showNorma && (norma != 9999)) {
                     grNorma.add(new DataPoint(i, norma));
                 }
@@ -288,9 +291,7 @@ public class StatystykiActivity  extends AppCompatActivity
                     return "";
                 }
             });
-        } catch (IndexOutOfBoundsException e) {
-            ((GraphView) findViewById(grp)).setVisibility(GONE);
-        }
+
     }
     public void updateNavBar() {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -307,6 +308,7 @@ public class StatystykiActivity  extends AppCompatActivity
         TextView navKlub = (TextView)hView.findViewById(R.id.navKlub); //hView.findviewbyid
         navZawodnik.setText(spZawodnik);
         navKlub.setText(spKlub);
+
         //CircularImageView cimg = (CircularImageView) hView.findViewById(R.id.navTwarz);
        // File dir = getApplicationContext().getDir("images", Context.MODE_PRIVATE);
         Bitmap sup = new ImageSaver(getApplicationContext()).
@@ -319,24 +321,48 @@ public class StatystykiActivity  extends AppCompatActivity
         sup = null;
         System.gc();
     }
-    public void updateStats() {
+    public void updateStats(String spZawodnik) {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
-        String spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
+        String spKlub;
+        if (!articles.isEmpty()) {
+            spKlub = articles.get(0).klubFromZawodnik(articles, spZawodnik);
+        } else {
+            spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
+        }
 
         if (spKlub.equals("1")) {
             spKlub = "KK Ustaw Klub w Opcjach";
         }
         TextView statZawodnik = (TextView)findViewById(R.id.statZawodnik);
         TextView statKlub = (TextView)findViewById(R.id.statKlub);
-
         statZawodnik.setText(spZawodnik);
         statKlub.setText(spKlub);
+
+        if (!articles.isEmpty()) {
+            if (articles.get(0).wynikiFromZawodnik(articles, spZawodnik).size() < 2) {
+                graphVisiblity(false);
+            }
+        }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == 3) { // aktualizacja ustawien
-            updateMeme();
+            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
+            spKlub = SP.getString("klub", "KK Dziewiątka-Amica Wronki");
+            if (spKlub.equals("1")) {
+                spKlub = "KK Ustaw Klub w Opcjach";
+            }
+            if (!articles.isEmpty()) {
+                ArrayList<Article> zawWyniki = new ArrayList<Article>();
+                zawWyniki.addAll(articles.get(0).wynikiFromZawodnik(articles, spZawodnik));
+                if (zawWyniki.size() > 1) {
+                    updateMeme(spZawodnik);
+                    selectSpinnerValue(spinner, spZawodnik);
+                }
+            }
+
+
         }
         if (requestCode == 666 && resultCode == RESULT_OK && null != data) {
             Thread thread = new Thread(new Runnable(){
@@ -381,10 +407,43 @@ public class StatystykiActivity  extends AppCompatActivity
 
     }
 
+    private void selectSpinnerValue(Spinner spinner, String myString)
+    {
+        int index = 0;
+        for(int i = 0; i < spinner.getCount(); i++){
+            if(spinner.getItemAtPosition(i).toString().equals(myString)){
+                spinner.setSelection(i);
+                break;
+            }
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        Intent i = getIntent();
+        ArrayList<Article> optArticles = (ArrayList<Article>)i.getSerializableExtra("articles");
         getMenuInflater().inflate(R.menu.stat_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_zawodnik);
+        spinner = (Spinner) MenuItemCompat.getActionView(item);
+
+        ArrayList<String> zawodnicy = new ArrayList<String>();
+        if (!optArticles.isEmpty()) {
+            zawodnicy.addAll(optArticles.get(0).zawodnicyFromArray(optArticles));
+        }
+        adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, zawodnicy
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                String zawodnik = parent.getItemAtPosition(pos).toString();
+                spZawodnik = zawodnik;
+                updateMeme(spZawodnik);
+            }
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+        selectSpinnerValue(spinner, spZawodnik);
         return true;
     }
 

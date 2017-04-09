@@ -185,7 +185,8 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="5dp">
+                        android:padding="5dp"
+                        android:background="@color/cardBg">
 
                         <TextView
                             android:text="Tor 1"
@@ -276,7 +277,8 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="5dp">
+                        android:padding="5dp"
+                        android:background="@color/cardBg">
                         <TextView
                             android:text="Tor 2"
                             android:layout_width="match_parent"
@@ -375,7 +377,8 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="5dp">
+                        android:padding="5dp"
+                        android:background="@color/cardBg">
 
                         <TextView
                             android:text="Tor 3"
@@ -466,7 +469,8 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="5dp">
+                        android:padding="5dp"
+                        android:background="@color/cardBg">
                         <TextView
                             android:text="Tor 4"
                             android:layout_width="match_parent"
