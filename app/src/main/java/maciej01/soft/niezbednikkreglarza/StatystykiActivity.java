@@ -17,6 +17,7 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -38,6 +39,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -103,6 +105,38 @@ public class StatystykiActivity  extends AppCompatActivity
         fab.setVisibility(GONE);
 
         Intent i = getIntent();
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Wykresy"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tabele"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        tabLayout.addOnTabSelectedListener(
+                new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        RelativeLayout wykresy = (RelativeLayout) findViewById(R.id.include_wykres);
+                        RelativeLayout tabele = (RelativeLayout) findViewById(R.id.include_tabele);
+                        switch (tab.getPosition()) {
+                            case 0:
+                                Log.v("tab", "0");
+                                wykresy.setVisibility(VISIBLE);
+                                tabele.setVisibility(GONE);
+                                break;
+                            case 1:
+                                Log.v("tab", "1");
+                                wykresy.setVisibility(GONE);
+                                tabele.setVisibility(VISIBLE);
+                                break;
+                        }
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {}
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {}
+                }
+        );
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
         spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");

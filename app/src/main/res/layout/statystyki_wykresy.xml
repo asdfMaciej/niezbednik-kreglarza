@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rectangle_at_the_top"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:id="@+id/layProblemy">
+        <View android:layout_width="fill_parent" android:id="@+id/focus_view" android:layout_height="0dp" android:focusable="true" android:focusableInTouchMode="true"><requestFocus/></View>
+
+        <TextView
+            android:text="Wynik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtWynik"
+
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingBottom="8dp" />
+
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/graphWynik"
+            android:layout_below="@+id/imgTwarz"
+            android:layout_alignParentStart="true"
+            android:background="@color/cardBg"
+            android:padding="0dp"
+            android:layout_margin="8dp"
+            android:elevation="3dp" />
+
+        <TextView
+            android:text="Pełne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPelne"
+
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingBottom="8dp" />
+
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/graphPelne"
+            android:layout_below="@+id/imgTwarz"
+            android:layout_alignParentStart="true"
+            android:background="@color/cardBg"
+            android:padding="0dp"
+            android:layout_margin="8dp"
+            android:elevation="3dp" />
+
+        <TextView
+            android:text="Zbierane"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtZbierane"
+
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingBottom="8dp" />
+
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/graphZbierane"
+            android:layout_below="@+id/imgTwarz"
+            android:layout_alignParentStart="true"
+            android:background="@color/cardBg"
+            android:padding="0dp"
+            android:layout_margin="8dp"
+            android:elevation="3dp" />
+
+        <TextView
+            android:text="Rzuty zerowe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtDziury"
+
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingBottom="8dp" />
+
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/graphDziury"
+            android:layout_below="@+id/imgTwarz"
+            android:layout_alignParentStart="true"
+            android:background="@color/cardBg"
+            android:padding="0dp"
+            android:layout_margin="8dp"
+            android:elevation="3dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rectangle_at_the_top"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:id="@+id/layIdk"
+        android:visibility="invisible">
+
+        <TextView
+            android:text="Na razie nie ma tu żadnych statystyk - potrzebne są minimum dwa wyniki!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPusteStatystyki"
+
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="24dp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_below="@+id/rectangle_at_the_top"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</RelativeLayout>
