@@ -399,4 +399,31 @@
         </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:id="@+id/statLayBez"
+        android:visibility="invisible"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+
+        <TextView
+            android:text="Na razie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPusteStatystyki"
+
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="24dp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_below="@+id/rectangle_at_the_top"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
 </RelativeLayout>

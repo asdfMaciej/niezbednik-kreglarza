@@ -59,6 +59,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -188,8 +189,10 @@ public class StatystykiActivity  extends AppCompatActivity
             @Override
             public void run() {
                 graphVisiblity(true);
+                tabeleVisiblity(true);
                 updateNavBar();
                 updateStats(spZawodnik, spKlub);
+                updateTabele(spZawodnik);
                 try {
                     updateGraph(R.id.graphWynik, 0, spZawodnik);
                     updateGraph(R.id.graphPelne, 1, spZawodnik);
@@ -416,6 +419,88 @@ public class StatystykiActivity  extends AppCompatActivity
             lRect.height = dptopx(130);
         }
     }
+
+    public Integer[] articlesToStats(ArrayList<Article> arts,
+                                              Integer npelne, Integer nzbierane, Integer nwynik) {
+        Integer najW = 0;
+        Integer najgW = 9999;
+        Integer abvnWynik = 0;
+        Integer abvnPelne = 0;
+        Integer abvnZbierane = 0;
+        Integer n = 0;
+        Integer aWynik = 0;
+        Integer aPelne = 0;
+        Integer aZbierane = 0;
+        Integer aDziury = 0;
+
+        for (Article a : arts) {
+            Integer tWynik = Integer.valueOf(a.getWynik());
+            Integer tPelne = Integer.valueOf(a.getPelne());
+            Integer tZbierane = Integer.valueOf(a.getZbierane());
+            Integer tDziury = Integer.valueOf(a.getDziury());
+            n += 1;
+            if (tWynik > najW)  { najW = tWynik;  }
+            if (tWynik < najgW) { najgW = tWynik; }
+            aWynik += tWynik;
+            aPelne += tPelne;
+            aZbierane += tZbierane;
+            aDziury += tDziury;
+            if (tWynik >= nwynik)       {abvnWynik += 1;   }
+            if (tPelne >= npelne)       {abvnPelne += 1;   }
+            if (tZbierane >= nzbierane) {abvnZbierane += 1;}
+        }
+        aWynik = aWynik / n;
+        aPelne = aPelne / n;
+        aZbierane = aZbierane / n;
+        aDziury = aDziury / n;
+
+        Integer[] fun = new Integer[]{
+                najW, najgW, n, abvnWynik, abvnPelne, abvnZbierane,
+                aWynik, aPelne, aZbierane, aDziury
+        };
+        return fun;
+    }
+
+    public void updateTabele(String spZawodnik) {
+        if (!articles.isEmpty()) {
+            if (articles.get(0).wynikiFromZawodnik(articles, spZawodnik).size() < 1) {
+                tabeleVisiblity(false);
+                return;
+            }
+        } else {tabeleVisiblity(false); return;}
+
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean showNorma = SP.getBoolean("norma", true);
+        int normaW = Integer.parseInt(SP.getString("normaWynik", "9999"));
+        int normaP = Integer.parseInt(SP.getString("normaPelne", "9999"));
+        int normaZ = Integer.parseInt(SP.getString("normaZbierane", "9999"));
+        Integer[] staty = articlesToStats(
+                articles.get(0).wynikiFromZawodnik(articles, spZawodnik),
+                normaP, normaZ, normaW
+        );
+        Integer[] odpowiedniki = new Integer[]{
+                R.id.statNajlepszy, R.id.statNajgorszy, R.id.statIlosc, R.id.statNrmWynik,
+                R.id.statNrmPelne, R.id.statNrmZbierane, R.id.statSrWynik,
+                R.id.statSrPelne, R.id.statSrZbierane, R.id.statSrDziury
+        };
+        Integer a = 0;
+        for (Integer address : odpowiedniki) {
+            ((TextView) findViewById(address)).setText(Integer.toString(staty[a]));
+            a += 1;
+        }
+        findViewById(R.id.statLayNorma).setVisibility(showNorma ? VISIBLE : GONE);
+    }
+
+    public void tabeleVisiblity(boolean state) {
+        // state false - invisible, true - visible
+        if (state) {
+            (findViewById(R.id.statLayMain)).setVisibility(VISIBLE);
+            (findViewById(R.id.statLayBez)).setVisibility(GONE);
+        } else {
+            (findViewById(R.id.statLayMain)).setVisibility(GONE);
+            (findViewById(R.id.statLayBez)).setVisibility(VISIBLE);
+        }
+    }
     public void updateStats(String spZawodnik, String spKlub) {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         boolean toja = spZawodnik.equals(SP.getString("zawodnik", "Zawodnik Domyślny"));
@@ -447,6 +532,7 @@ public class StatystykiActivity  extends AppCompatActivity
             if (spKlub.equals("1")) {
                 spKlub = "KK Ustaw Klub w Opcjach";
             }
+            updateTabele(spZawodnik);
             if (!articles.isEmpty()) {
                 ArrayList<Article> zawWyniki = new ArrayList<Article>();
                 zawWyniki.addAll(articles.get(0).wynikiFromZawodnik(articles, spZawodnik));
