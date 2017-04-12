@@ -56,6 +56,8 @@ import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -462,20 +464,34 @@ public class StatystykiActivity  extends AppCompatActivity
     }
 
     public void updateTabele(String spZawodnik) {
-        if (!articles.isEmpty()) {
-            if (articles.get(0).wynikiFromZawodnik(articles, spZawodnik).size() < 1) {
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean showNorma = SP.getBoolean("norma", true);
+        boolean showSezon = SP.getBoolean("sezon", true);
+        ArrayList<Article> artykuly = new ArrayList<Article>();
+        tabeleSezon(showSezon);
+        if (showSezon) {
+            for (Article x : articles) {
+                if (x.obecnySezon()) {
+                    artykuly.add(x);
+                    Log.v("sezon", "obecny");
+                }
+            }
+        } else {
+            artykuly = articles;
+        }
+        if (!artykuly.isEmpty()) {
+            if (artykuly.get(0).wynikiFromZawodnik(artykuly, spZawodnik).size() < 1) {
                 tabeleVisiblity(false);
                 return;
             }
         } else {tabeleVisiblity(false); return;}
 
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean showNorma = SP.getBoolean("norma", true);
+
         int normaW = Integer.parseInt(SP.getString("normaWynik", "9999"));
         int normaP = Integer.parseInt(SP.getString("normaPelne", "9999"));
         int normaZ = Integer.parseInt(SP.getString("normaZbierane", "9999"));
         Integer[] staty = articlesToStats(
-                articles.get(0).wynikiFromZawodnik(articles, spZawodnik),
+                artykuly.get(0).wynikiFromZawodnik(artykuly, spZawodnik),
                 normaP, normaZ, normaW
         );
         Integer[] odpowiedniki = new Integer[]{
@@ -499,6 +515,22 @@ public class StatystykiActivity  extends AppCompatActivity
         } else {
             (findViewById(R.id.statLayMain)).setVisibility(GONE);
             (findViewById(R.id.statLayBez)).setVisibility(VISIBLE);
+        }
+    }
+    public void tabeleSezon(boolean state) {
+        // state false - wszystko, true - tylko sezon
+        TextView toset = (TextView) findViewById(R.id.txtPusteTabele);
+        TextView statokres = (TextView) findViewById(R.id.statOkres);
+        if (state) {
+            toset.setText(
+                    "Na razie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik w obecnym sezonie! (aby widzieć wszystkie, zmień ustawienia)"
+            );
+            statokres.setText("Sezon 2016/2017");
+        } else {
+            toset.setText(
+                    "Na razie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"
+            );
+            statokres.setText("Wszystkie wyniki");
         }
     }
     public void updateStats(String spZawodnik, String spKlub) {

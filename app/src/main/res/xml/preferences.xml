@@ -20,7 +20,6 @@
             android:entryValues="@array/kregielnie" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Statystyki">
-
         <CheckBoxPreference
             android:defaultValue="false"
             android:title="Wyświetlanie normy"
@@ -49,5 +48,12 @@
             android:key="normaZbierane"
             android:inputType="numberDecimal"
             android:summary="Norma zbieranych - np. 150" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Tabele">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="Uwzględniaj tylko obecny sezon"
+            android:key="sezon"
+            android:summary="Uwzględniaj tylko obecny sezon przy obliczaniu" />
     </PreferenceCategory>
 </PreferenceScreen>

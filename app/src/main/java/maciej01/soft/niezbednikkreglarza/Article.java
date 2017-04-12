@@ -5,9 +5,11 @@ import com.orm.SugarRecord;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -65,7 +67,7 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
             "Kręgielnia Ośrodka Sportu i Rekreacji w Gostyniu", "Kręgielnia Czarna Kula Poznań"
     };
     private static String[] sData = {
-            "2014-12-15", "2016-1-13", "2012-11-1", "2000-5-1", "2016-11-3"
+            "2014-12-15", "2016-01-13", "2012-11-1", "2000-05-1", "2016-11-3"
     };
     private static String[] sKluby = {
             "KK Dziewiątka-Amica Wronki", "KK Polonia 1912 Leszno",
@@ -202,6 +204,43 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
     }
     public void ustawKomentarz(String komentarz) {
         mKomentarz = komentarz;
+    }
+    public boolean obecnySezon() {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date d = sdf.parse(mDataString);
+            int irlmonth = Calendar.getInstance().get(Calendar.MONTH)+1; // it starts from 0
+            int irlyear = Calendar.getInstance().get(Calendar.YEAR);
+            Calendar dCal = Calendar.getInstance();
+            dCal.setTime(d);
+            int artmonth = dCal.get(Calendar.MONTH)+1;
+            int artyear = dCal.get(Calendar.YEAR);
+            if (irlmonth < 8) { // its before yyyy-08-xx - end of season
+                return (
+                        (
+                                (artyear == irlyear) && (artmonth < 8)
+                        )
+                                ||
+                                (
+                                        (artyear == irlyear-1) && (artmonth >= 8)
+                                )
+                );
+            } else {  // start of season
+                return (
+                        (
+                                (artyear == irlyear+1) && (artmonth < 8)
+                        )
+                                ||
+                                (
+                                        (artyear == irlyear) && (artmonth >= 8)
+                                )
+                );
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public boolean equals(Article d) {
