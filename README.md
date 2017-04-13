@@ -24,7 +24,7 @@ raczej nic, ~chyba że jakieś statystyki drobne etc~
 
 **Ogółem:**
 - dostosowac bardziej aplikacje do material design [rozne drobne duperele]
-- ~ogarnac navbar i ~zrobic view o mnie/kontakt
+- ~ogarnac navbar~ i zrobic view o mnie/kontakt
 - ~moze cos zrobie z baza danych, bo obecna jest smieszna [ale i tak lepiej niz w pliku, bo moge chociaz migracje zrobic]~
 - ~krotki tutorial przy pierwszym uruchomieniu aplikacji~
 - ~zmiany QoL w stylu cofania sie do gory przy zapomnieniu o jakims polu w ZmianaActivity~
