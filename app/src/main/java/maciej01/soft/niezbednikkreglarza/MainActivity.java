@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity
         //getWindow().setExitTransition(TransitionInflater.from(this).inflateTransition(R.transition.activity_slide));//(new Explode());
         //setupWindowAnimations();
         //SugarContext.init(getApplicationContext());
+        firstLaunch();
         setContentView(R.layout.activity_main);
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(this));
         findViewById(R.id.lapp1).setVisibility(View.VISIBLE);
@@ -231,6 +232,7 @@ public class MainActivity extends AppCompatActivity
             ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.GONE);
         }
 
+
         //bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
     }
 
@@ -347,6 +349,40 @@ public class MainActivity extends AppCompatActivity
     public void losoweWyniki() {
         for (int i = 0; i < 20; ++i)
             articles.add(new Article());
+    }
+
+    public void firstLaunch() {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //  Initialize SharedPreferences
+                SharedPreferences getPrefs = PreferenceManager
+                        .getDefaultSharedPreferences(getBaseContext());
+
+                //  Create a new boolean and preference and set it to true
+                boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+
+                //  If the activity has never started before...
+                //if (isFirstStart) {
+
+                    //  Launch app intro
+                    Intent i = new Intent(MainActivity.this, IntroActivity.class);
+                    startActivity(i);
+
+                    //  Make a new preferences editor
+                    SharedPreferences.Editor e = getPrefs.edit();
+
+                    //  Edit preference to make it false because we don't want this to run again
+                    e.putBoolean("firstStart", false);
+
+                    //  Apply changes
+                    e.apply();
+                //}
+            }
+        });
+
+        // Start the thread
+        t.start();
     }
 
     public void openZmiana(View view) {

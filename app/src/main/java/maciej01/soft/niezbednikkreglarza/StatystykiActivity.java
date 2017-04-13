@@ -65,6 +65,7 @@ import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -522,10 +523,18 @@ public class StatystykiActivity  extends AppCompatActivity
         TextView toset = (TextView) findViewById(R.id.txtPusteTabele);
         TextView statokres = (TextView) findViewById(R.id.statOkres);
         if (state) {
+            int irlyear = Calendar.getInstance().get(Calendar.YEAR);
+            int irlmonth = Calendar.getInstance().get(Calendar.MONTH)+1;
             toset.setText(
                     "Na razie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik w obecnym sezonie! (aby widzieć wszystkie, zmień ustawienia)"
             );
-            statokres.setText("Sezon 2016/2017");
+            String elo = "Sezon ";
+            if (irlmonth < 8) {
+                elo += Integer.toString(irlyear-1)+"/"+Integer.toString(irlyear);
+            } else {
+                elo += Integer.toString(irlyear)+"/"+Integer.toString(irlyear+1);
+            }
+            statokres.setText(elo);
         } else {
             toset.setText(
                     "Na razie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"

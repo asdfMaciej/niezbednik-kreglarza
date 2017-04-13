@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="maciej01.soft.niezbednikkreglarza">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:name=".SugarOrmTestApplication"
@@ -38,6 +37,8 @@
             android:name=".StatystykiActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".IntroActivity"
+            android:label="@string/app_name" />
         <activity
             android:label="@string/app_name"
             android:name=".MyPreferencesActivity"

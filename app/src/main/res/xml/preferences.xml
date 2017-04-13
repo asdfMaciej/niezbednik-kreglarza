@@ -54,6 +54,6 @@
             android:defaultValue="false"
             android:title="Uwzględniaj tylko obecny sezon"
             android:key="sezon"
-            android:summary="Uwzględniaj tylko obecny sezon przy obliczaniu" />
+            android:summary="Za początek sezonu przyjęty jest 1. sierpnia" />
     </PreferenceCategory>
 </PreferenceScreen>
