@@ -12,10 +12,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 
-import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntro2Fragment;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 
 /**
  * Created by Maciej on 2017-04-12.
@@ -23,17 +21,29 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 
 public class IntroActivity extends AppIntro2 {
     public static String FIRST_TITLE = "Niezbędnik Kręglarza";
-    public static String FIRST_DESC = "" +
-            "Czyli esencjalna aplikacja dla każdego z fanów kręglarstwa klasycznego.";
+    public static String FIRST_DESC = "Czyli niezastąpiona aplikacja dla fanów kręglarstwa klasycznego.";
+
+    public static String SECOND_TITLE = "Ustaw personalia";
+    public static String SECOND_DESC = "Wejdź w ustawienia oraz dodaj dane o sobie.";
+
+    public static String THIRD_TITLE = "Zmień zdjęcie";
+    public static String THIRD_DESC = "Naciśnij na obrazek w zakładce statystyk i ustaw wybraną fotografię.";
+
+    public static String FOURTH_TITLE = "Dodaj wyniki";
+    public static String FOURTH_DESC = "Uzupełnij aplikację swoimi wynikami, aby odblokować resztę funkcji.";
+
+    public static String FIFTH_TITLE = "Ciesz się statystykami";
+    public static String FIFTH_DESC = "Od tego momentu otrzymasz dostęp do wygenerowanych statystyk dla każdego dodanego zawodnika.";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hideSystemUI();
         addSlide(AppIntro2Fragment.newInstance(FIRST_TITLE, FIRST_DESC, R.drawable.kuzelki, getResources().getColor(R.color.colorPrimary)));
-
-        //setBarColor(getResources().getColor(R.color.colorAccentDark));
-        //setSeparatorColor(Color.parseColor("#2196F3"));
+        addSlide(AppIntro2Fragment.newInstance(SECOND_TITLE, SECOND_DESC, R.drawable.text_icon, getResources().getColor(R.color.colorTetradBlue)));
+        addSlide(AppIntro2Fragment.newInstance(THIRD_TITLE, THIRD_DESC, R.drawable.photo_icon, getResources().getColor(R.color.colorTetradOrange)));
+        addSlide(AppIntro2Fragment.newInstance(FOURTH_TITLE, FOURTH_DESC, R.drawable.add_icon, getResources().getColor(R.color.colorTetradRed)));
+        addSlide(AppIntro2Fragment.newInstance(FIFTH_TITLE, FIFTH_DESC, R.drawable.chart_icon, getResources().getColor(R.color.colorTriadPink)));
 
         showSkipButton(true);
         setProgressButtonEnabled(true);
@@ -42,7 +52,6 @@ public class IntroActivity extends AppIntro2 {
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.READ_EXTERNAL_STORAGE)) {
             } else {
@@ -70,7 +79,6 @@ public class IntroActivity extends AppIntro2 {
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
-        // Do something when the slide changes.
     }
 
     // This snippet hides the system bars.

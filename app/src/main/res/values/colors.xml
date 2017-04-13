@@ -4,9 +4,14 @@
     <color name="colorPrimaryLight">#43de7d</color>
     <color name="colorPrimaryLightest">#9BF3BC</color>
     <color name="colorPrimaryDark">#159943</color>
-    <color name="colorAccent">#ff4a24</color>
+    <color name="colorAccentOld">#ff4a24</color>
+    <color name="colorAccent">#FF9624</color>
     <color name="colorAccentLight">#ff6c4d</color>
     <color name="colorAccentDark">#AB1E00</color>
+    <color name="colorTetradBlue">#239BC9</color>
+    <color name="colorTetradOrange">#FF9624</color>
+    <color name="colorTetradRed">#FF4A24</color>
+    <color name="colorTriadPink">#EA2176</color>
     <color name="colorBg">#f7f7f7</color>
     <color name="buttonBg">#606450</color>
     <color name="cardBg">#f5f8fa</color>

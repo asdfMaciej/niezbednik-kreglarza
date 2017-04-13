@@ -363,7 +363,7 @@ public class MainActivity extends AppCompatActivity
                 boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
 
                 //  If the activity has never started before...
-                //if (isFirstStart) {
+                if (isFirstStart) {
 
                     //  Launch app intro
                     Intent i = new Intent(MainActivity.this, IntroActivity.class);
@@ -377,7 +377,7 @@ public class MainActivity extends AppCompatActivity
 
                     //  Apply changes
                     e.apply();
-                //}
+                }
             }
         });
 
