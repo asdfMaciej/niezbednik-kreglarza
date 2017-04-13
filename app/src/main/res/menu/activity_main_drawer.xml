@@ -9,27 +9,18 @@
         <item
             android:id="@+id/nav_statystyki"
             android:icon="@drawable/ic_insert_chart_black_24dp"
-            android:title="Wykresy" />
+            android:title="Statystyki" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Tabele" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_ustawienia"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Ustawienia" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Inne">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_aplikacja"
+                android:title="O aplikacji" />
         </menu>
     </item>
 

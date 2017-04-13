@@ -542,13 +542,12 @@ public class MainActivity extends AppCompatActivity
             finish();
             startActivity(i);
 
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_ustawienia) {
+            Intent i = new Intent(this, MyPreferencesActivity.class);
+            startActivityForResult(i, 3);
+            return true;
+        } else if (id == R.id.nav_aplikacja) {
 
         }
 

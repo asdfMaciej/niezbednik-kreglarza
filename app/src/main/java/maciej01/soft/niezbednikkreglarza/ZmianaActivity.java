@@ -24,6 +24,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -301,14 +302,28 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
                     R.id.edWynik3, R.id.edPelne3, R.id.edZbierane3, R.id.edDziury3,
                     R.id.edWynik4, R.id.edPelne4, R.id.edZbierane4, R.id.edDziury4
             };
+            EditText torerr = null;
             for (Integer item : torki) {
                 EditText tortemp = (EditText) findViewById(item);
+                tortemp.setError(null);
+                tortemp.clearFocus();
                 if (TextUtils.isEmpty(tortemp.getText().toString())) {
                     tortemp.setError("Należy uzupełnić pole!");
+                    torerr = tortemp;
                     correct = false;
                 }
             }
-            if (!correct) {return false;}
+            if (!correct) {
+                final ScrollView sc = (ScrollView) findViewById(R.id.scrollZmiana);
+                final EditText finalTorerr = torerr;
+                sc.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        sc.smoothScrollTo(0, finalTorerr.getTop());
+                    }
+                });
+                return false;
+            }
             scores.ustawTory(ttd(torki));
 
         }

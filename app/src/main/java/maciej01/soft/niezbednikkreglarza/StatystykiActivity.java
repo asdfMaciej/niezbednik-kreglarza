@@ -698,6 +698,12 @@ public class StatystykiActivity  extends AppCompatActivity
             finish();  //Kill the activity from which you will go to next activity
             startActivity(i);
         } else if (id == R.id.nav_statystyki) {
+            // nic nie rob
+        } else if (id == R.id.nav_ustawienia) {
+            Intent i = new Intent(this, MyPreferencesActivity.class);
+            startActivityForResult(i, 3);
+            return true;
+        } else if (id == R.id.nav_aplikacja) {
 
         }
 
