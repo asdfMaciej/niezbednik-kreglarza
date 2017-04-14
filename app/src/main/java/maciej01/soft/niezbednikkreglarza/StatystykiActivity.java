@@ -96,6 +96,7 @@ public class StatystykiActivity  extends AppCompatActivity
         setContentView(R.layout.activity_main);
         findViewById(R.id.lapp1).setVisibility(GONE);
         findViewById(R.id.lapp2).setVisibility(VISIBLE);
+        findViewById(R.id.lapp3).setVisibility(GONE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -704,7 +705,10 @@ public class StatystykiActivity  extends AppCompatActivity
             startActivityForResult(i, 3);
             return true;
         } else if (id == R.id.nav_aplikacja) {
-
+            Intent i = new Intent(this, KontaktActivity.class);
+            finish();
+            startActivity(i);
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

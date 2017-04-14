@@ -24,6 +24,7 @@
 
     <include layout="@layout/content_main" android:id="@+id/lapp1"/>
     <include layout="@layout/statystyki_layout" android:id="@+id/lapp2" android:visibility="gone"/>
+    <include layout="@layout/kontakt_main" android:id="@+id/lapp3" android:visibility="gone"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

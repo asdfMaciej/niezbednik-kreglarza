@@ -146,6 +146,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
 
         spinnerKlub.setSelection(getIndex(spinnerKlub, spKlub));
         spinnerKregielnia.setSelection(getIndex(spinnerKregielnia, spKregielnia));
+        ((CheckBox) findViewById(R.id.button2)).setChecked(false);
         ((EditText)findViewById(R.id.edZawodnik)).setText(spZawodnik);
                 if (rodzaj.equals("zmiana")) {
                     scores = (Article) i.getSerializableExtra("wynik");
@@ -283,16 +284,18 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
         Spinner krg = (Spinner) findViewById(R.id.spnKregielnia);
 
         CheckBox tor = (CheckBox) findViewById(R.id.button2);
-
+        View torerr = null;
         EditText[] lista = {zwd, wnk, pln, zbr, dzi};
         for (EditText item : lista) {
             if (TextUtils.isEmpty(item.getText().toString())) {
                 item.setError("Należy uzupełnić pole!");
+                torerr = item;
                 correct = false;
             }
         }
         if (scores.getData() == "") {
             ((Button) findViewById(R.id.btData)).setError("Należy ustawić datę!");
+            torerr = ((Button) findViewById(R.id.btData));
             correct = false;
         }
         if (tor.isChecked()) {
@@ -302,7 +305,6 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
                     R.id.edWynik3, R.id.edPelne3, R.id.edZbierane3, R.id.edDziury3,
                     R.id.edWynik4, R.id.edPelne4, R.id.edZbierane4, R.id.edDziury4
             };
-            EditText torerr = null;
             for (Integer item : torki) {
                 EditText tortemp = (EditText) findViewById(item);
                 tortemp.setError(null);
@@ -315,7 +317,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
             }
             if (!correct) {
                 final ScrollView sc = (ScrollView) findViewById(R.id.scrollZmiana);
-                final EditText finalTorerr = torerr;
+                final View finalTorerr = torerr;
                 sc.post(new Runnable() {
                     @Override
                     public void run() {

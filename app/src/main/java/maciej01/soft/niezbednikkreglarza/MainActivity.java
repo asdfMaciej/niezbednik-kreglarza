@@ -63,6 +63,7 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.view.View.GONE;
 import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(this));
         findViewById(R.id.lapp1).setVisibility(View.VISIBLE);
         findViewById(R.id.lapp2).setVisibility(View.GONE);
+        findViewById(R.id.lapp3).setVisibility(GONE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         handleIntent(getIntent());
@@ -541,14 +543,15 @@ public class MainActivity extends AppCompatActivity
             i.putExtra("articles", articles);
             finish();
             startActivity(i);
-
-
         } else if (id == R.id.nav_ustawienia) {
             Intent i = new Intent(this, MyPreferencesActivity.class);
             startActivityForResult(i, 3);
             return true;
         } else if (id == R.id.nav_aplikacja) {
-
+            Intent i = new Intent(this, KontaktActivity.class);
+            finish();
+            startActivity(i);
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
