@@ -3,6 +3,8 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="fb_url"><a href="http://fb.me/niezbednik.kreglarza">FB - Niezbędnik Kręglarza</a></string>
+    <string name="github_url"><a href="https://github.com/asdfMaciej/niezbednik-kreglarza">Github - Kod źródłowy</a></string>
     <string name="action_settings">Ustawienia</string>
     <string name="anim_duration">300</string>
 

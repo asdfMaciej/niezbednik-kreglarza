@@ -16,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -81,6 +82,14 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        TextView t2 = (TextView) findViewById(R.id.kontLink1);
+        t2.setMovementMethod(LinkMovementMethod.getInstance());
+        t2 = (TextView) findViewById(R.id.kontLink2);
+        t2.setMovementMethod(LinkMovementMethod.getInstance());
 
         updateNavBar();
     }
