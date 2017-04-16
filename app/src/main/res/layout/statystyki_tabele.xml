@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/colorBg">
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -34,7 +33,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="16dp"
-            android:paddingTop="4dp"
+            android:paddingTop="8dp"
             android:paddingBottom="4dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
@@ -50,8 +49,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="24sp"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textAlignment="center"
-                android:layout_marginTop="8dp" />
+                android:textAlignment="center" />
 
             <TextView
                 android:text="103"
@@ -76,7 +74,8 @@
                     android:layout_weight="1"
                     android:layout_marginRight="4dp"
                     android:elevation="1dp"
-                    android:background="@color/cardBg">
+                    android:background="@color/cardBg"
+                    android:paddingBottom="8dp">
 
                     <TextView
                         android:text="Najlepszy wynik:"
@@ -104,7 +103,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/cardBg"
-                    android:layout_marginLeft="4dp">
+                    android:layout_marginLeft="4dp"
+                    android:paddingBottom="8dp">
 
                     <TextView
                         android:text="Najgorszy wynik:"
@@ -135,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:paddingTop="4dp"
+            android:paddingTop="8dp"
             android:paddingBottom="4dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
@@ -154,8 +154,7 @@
                 android:textSize="24sp"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textAlignment="center"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp" />
+                android:layout_marginBottom="8dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -170,7 +169,8 @@
                     android:layout_width="0dp"
                     android:background="@color/cardBg"
                     android:layout_marginRight="4dp"
-                    android:elevation="1dp">
+                    android:elevation="1dp"
+                    android:paddingBottom="8dp">
 
                     <TextView
                         android:text="Sumy kręgli:"
@@ -190,7 +190,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textAlignment="center"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_marginBottom="8dp" />
 
                     <TextView
                         android:text="Zbieranych:"
@@ -219,7 +219,8 @@
                     android:layout_weight="1"
                     android:layout_marginLeft="4dp"
                     android:background="@color/cardBg"
-                    android:elevation="1dp">
+                    android:elevation="1dp"
+                    android:paddingBottom="8dp">
 
                     <TextView
                         android:text="Pełnych:"
@@ -239,7 +240,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textAlignment="center"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_marginBottom="8dp" />
 
                     <TextView
                         android:text="Rzutów zerowych:"
@@ -268,7 +269,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="4dp"
+            android:paddingTop="8dp"
             android:paddingBottom="4dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
@@ -289,8 +290,7 @@
                 android:textColor="?android:attr/textColorSecondary"
                 android:textAlignment="center"
                 android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:layout_marginTop="8dp" />
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -305,7 +305,8 @@
                     android:layout_width="0dp"
                     android:background="@color/cardBg"
                     android:layout_marginRight="4dp"
-                    android:elevation="1dp">
+                    android:elevation="1dp"
+                    android:paddingBottom="8dp">
 
                     <TextView
                         android:text="Wyniku:"
@@ -325,7 +326,6 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textAlignment="center"
-                        android:layout_marginBottom="16dp"
                         android:textSize="34sp" />
 
                 </LinearLayout>
@@ -338,7 +338,8 @@
                     android:background="@color/cardBg"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:elevation="1dp">
+                    android:elevation="1dp"
+                    android:paddingBottom="8dp">
 
                     <TextView
                         android:text="Pełnych:"
@@ -358,7 +359,6 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textAlignment="center"
-                        android:layout_marginBottom="16dp"
                         android:textSize="34sp" />
 
                 </LinearLayout>
@@ -370,7 +370,8 @@
                     android:layout_weight="1"
                     android:background="@color/cardBg"
                     android:layout_marginLeft="4dp"
-                    android:elevation="1dp">
+                    android:elevation="1dp"
+                    android:paddingBottom="8dp">
 
                     <TextView
                         android:text="Zbieranych:"
@@ -390,7 +391,6 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textAlignment="center"
-                        android:layout_marginBottom="16dp"
                         android:textSize="34sp" />
 
                 </LinearLayout>
@@ -411,7 +411,7 @@
         android:layout_marginRight="8dp">
 
         <TextView
-            android:text="Na razie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"
+            android:text="Obecnie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtPusteTabele"

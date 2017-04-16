@@ -113,7 +113,7 @@
         android:visibility="invisible">
 
         <TextView
-            android:text="Na razie nie ma tu żadnych wykresów - potrzebne są minimum dwa wyniki!"
+            android:text="Obecnie nie ma tu żadnych wykresów - potrzebne są minimum dwa wyniki!"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtPusteStatystyki"

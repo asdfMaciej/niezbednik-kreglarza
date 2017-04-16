@@ -527,7 +527,7 @@ public class StatystykiActivity  extends AppCompatActivity
             int irlyear = Calendar.getInstance().get(Calendar.YEAR);
             int irlmonth = Calendar.getInstance().get(Calendar.MONTH)+1;
             toset.setText(
-                    "Na razie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik w obecnym sezonie! (aby widzieć wszystkie, zmień ustawienia)"
+                    "Obecnie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik w obecnym sezonie! (aby widzieć wszystkie, zmień ustawienia)"
             );
             String elo = "Sezon ";
             if (irlmonth < 8) {
@@ -538,7 +538,7 @@ public class StatystykiActivity  extends AppCompatActivity
             statokres.setText(elo);
         } else {
             toset.setText(
-                    "Na razie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"
+                    "Obecnie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"
             );
             statokres.setText("Wszystkie wyniki");
         }

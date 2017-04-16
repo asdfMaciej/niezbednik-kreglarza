@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tKregielnia"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_below="@+id/tPelne"
             android:layout_centerHorizontal="true"
             android:textSize="16sp"
