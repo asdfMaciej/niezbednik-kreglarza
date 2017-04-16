@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -91,6 +93,13 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
         t2 = (TextView) findViewById(R.id.kontLink2);
         t2.setMovementMethod(LinkMovementMethod.getInstance());
 
+        ImageView paypal = (ImageView) findViewById(R.id.kontPaypal);
+        paypal.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://paypal.me/Kaszkowiak"));
+                startActivity(browserIntent);
+            }
+        });
         updateNavBar();
     }
 
