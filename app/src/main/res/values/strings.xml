@@ -22,6 +22,18 @@
         <item>BOSiR Brzesko</item>
         <item>MLKS Tucholanka Tuchola</item>
         <item>TPK Wejherowo</item>
+        <item>TJ Sokol Husovice</item>
+        <item>Klokani CB Dobřany</item>
+        <item>KK PSJ Jihlava</item>
+        <item>TJ Sokol Luhačovice</item>
+        <item>KK Slavoj Praha</item>
+        <item>SKK Rokycany</item>
+        <item>KK Inter Bratislava</item>
+        <item>ŽP Šport Podbrezová</item>
+        <item>KK Tatran Sučany</item>
+        <item>ŠKK Trstená</item>
+        <item>TJ Slavoj Veľký Šariš</item>
+        <item>ŠK Modranka</item>
     </string-array>
 
     <string-array name="kregielnie">
@@ -39,5 +51,8 @@
         <item>Kręgielnia BOSiRu w Brzesku</item>
         <item>Kręgielnia MOSiRu w Łaziskach Górnych</item>
         <item>Kręgielnia MOKSiRu w Pucku</item>
+        <item>Kręgielnia SKK Náchod</item>
+        <item>Kręgielnia ŽP Šport Podbrezová</item>
+        <item>Kręgielnia ŠKK Trstená</item>
     </string-array>
 </resources>

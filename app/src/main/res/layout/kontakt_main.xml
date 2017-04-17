@@ -47,8 +47,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/kontLink1"
                 android:textAlignment="center"
-                android:textSize="24sp"
-                android:layout_marginTop="2dp" />
+                android:textSize="18sp"
+                android:layout_marginTop="8dp" />
             <TextView
                 android:text='@string/mail_url'
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/kontLink2"
                 android:textAlignment="center"
-                android:textSize="12sp"
+                android:textSize="18sp"
                 android:layout_marginTop="8dp" />
 
             <TextView
