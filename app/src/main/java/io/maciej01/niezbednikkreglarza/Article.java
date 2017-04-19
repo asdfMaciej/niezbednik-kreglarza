@@ -1,10 +1,8 @@
-package maciej01.soft.niezbednikkreglarza;
+package io.maciej01.niezbednikkreglarza;
 
 import com.orm.SugarRecord;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

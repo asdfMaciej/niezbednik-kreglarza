@@ -1,4 +1,4 @@
-package maciej01.soft.niezbednikkreglarza;
+package io.maciej01.niezbednikkreglarza;
 
 import org.junit.Test;
 

@@ -34,6 +34,7 @@
         <item>ŠKK Trstená</item>
         <item>TJ Slavoj Veľký Šariš</item>
         <item>ŠK Modranka</item>
+        <item>SKV Rot-Weiß Zerbst \'99</item>
     </string-array>
 
     <string-array name="kregielnie">
@@ -54,5 +55,6 @@
         <item>Kręgielnia SKK Náchod</item>
         <item>Kręgielnia ŽP Šport Podbrezová</item>
         <item>Kręgielnia ŠKK Trstená</item>
+        <item>Kręgielnia SKV Rot-Weiß Zerbst \'99</item>
     </string-array>
 </resources>

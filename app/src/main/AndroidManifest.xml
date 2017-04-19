@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="maciej01.soft.niezbednikkreglarza">
+    package="io.maciej01.niezbednikkreglarza">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
-        android:name=".SugarOrmTestApplication"
+        android:name="io.maciej01.niezbednikkreglarza.SugarOrmTestApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -16,7 +16,7 @@
             android:name="VERSION"
             android:value="4" />
         <activity
-            android:name=".MainActivity"
+            android:name="io.maciej01.niezbednikkreglarza.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout">
@@ -29,27 +29,27 @@
         </activity>
         <activity
             android:label="@string/app_name"
-            android:name=".WynikActivity"
+            android:name="io.maciej01.niezbednikkreglarza.WynikActivity"
             android:windowSoftInputMode="stateHidden"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout">
         </activity>
         <activity android:label="@string/app_name"
-            android:name=".StatystykiActivity"
+            android:name="io.maciej01.niezbednikkreglarza.StatystykiActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:label="@string/app_name"
-            android:name=".KontaktActivity"
+            android:name="io.maciej01.niezbednikkreglarza.KontaktActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".IntroActivity"
+        <activity android:name="io.maciej01.niezbednikkreglarza.IntroActivity"
             android:label="@string/app_name" />
         <activity
             android:label="@string/app_name"
-            android:name=".MyPreferencesActivity"
+            android:name="io.maciej01.niezbednikkreglarza.MyPreferencesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout">
         </activity>
         <activity android:label="@string/app_name"
-            android:name=".ZmianaActivity"
+            android:name="io.maciej01.niezbednikkreglarza.ZmianaActivity"
             android:windowSoftInputMode="stateHidden"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout">
         </activity>

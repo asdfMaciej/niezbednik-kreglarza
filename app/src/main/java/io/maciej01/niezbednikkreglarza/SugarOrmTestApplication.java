@@ -1,10 +1,9 @@
-package maciej01.soft.niezbednikkreglarza;
+package io.maciej01.niezbednikkreglarza;
 
 /**
  * Created by Maciej on 2017-04-07.
  */
 
-import android.app.Application;
 import android.content.res.Configuration;
 import com.orm.SugarApp;
 import com.orm.SugarContext;

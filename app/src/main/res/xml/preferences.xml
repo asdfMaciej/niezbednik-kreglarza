@@ -51,7 +51,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="Tabele">
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:title="Uwzględniaj tylko obecny sezon"
             android:key="sezon"
             android:summary="Za początek sezonu przyjęty jest 1. sierpnia" />
