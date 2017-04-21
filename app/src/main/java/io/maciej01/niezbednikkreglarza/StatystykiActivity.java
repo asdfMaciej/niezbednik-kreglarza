@@ -522,7 +522,8 @@ public class StatystykiActivity  extends AppCompatActivity
     public void updateStats(String spZawodnik, String spKlub) {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         boolean toja = spZawodnik.equals(SP.getString("zawodnik", "Zawodnik Domyślny"));
-        zmienLayout(toja);
+        toja = toja || spZawodnik.equals("Domyślny Zawodnik");
+        zmienLayout(toja); // first launch
 
         TextView statZawodnik = (TextView)findViewById(R.id.statZawodnik);
         TextView statKlub = (TextView)findViewById(R.id.statKlub);
