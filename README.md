@@ -11,7 +11,7 @@
 Niezbędnik Kręglarza umożliwia dodawanie wyników oraz przechowywanie ich w poręczny sposób. Dzięki temu automatycznie zyskujemy dostęp do przydatnych statystyk, które ułatwiają analizowanie naszej gry.
 
 Przy dodaniu więcej niż jednego zawodnika, statystyki generowane są dla każdego z osobna.
-Aplikacja jest w pełni darmowa (również bez reklam) - aczkolwiek [dotacje](paypal.me/Kaszkowiak "C.R.E.A.M.") są mile widziane ;)
+Aplikacja jest w pełni darmowa (również bez reklam) - aczkolwiek [donacje](paypal.me/Kaszkowiak "C.R.E.A.M.") są mile widziane ;)
 
 ## Potencjalne ficzery
 *Jeśli będzie mi się chciało, to prawdopodobnie pojawią się w przyszłości*
