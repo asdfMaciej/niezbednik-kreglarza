@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_insert_chart_black_24dp"
             android:title="Statystyki" />
         <item
+            android:id="@+id/nav_narzedzia"
+            android:icon="@drawable/ic_wrench_black_24dp"
+            android:title="Narzędzia" />
+        <item
             android:id="@+id/nav_ustawienia"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="Ustawienia" />

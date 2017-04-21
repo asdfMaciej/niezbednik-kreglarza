@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -65,8 +66,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(this));
         findViewById(R.id.lapp1).setVisibility(View.VISIBLE);
-        findViewById(R.id.lapp2).setVisibility(View.GONE);
+        findViewById(R.id.lapp2).setVisibility(GONE);
         findViewById(R.id.lapp3).setVisibility(GONE);
+        findViewById(R.id.lapp4).setVisibility(GONE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         handleIntent(getIntent());
@@ -134,38 +136,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
-        // tworzymy źródło danych - tablicę z artykułami
-
-
-        //losoweWyniki();
-        /*
-        Zapisane a = new Zapisane();
-        try {
-            Zapisane b = a.wczytaj(this);
-            articles = b.dajarticles();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        */
         articles = (ArrayList<Article>) Article.listAll(Article.class);
-
-        /*
-        A sad story about Java:
-        [i have many of them]
-
-        In Python, i normally just pickle.dump(fn) things in order to save
-        [I'm lazy, and this isn't an important program security-wise
-        so why not dump stuff to a file?]
-        And if you loaded an older version of a class, it would simply load the old methods
-
-        Here - boom, error
-        So whenever I try to change something in Article - classnotfoundexception [i think]
-        and all the scores are lost
-
-        Another argument for Python > Java for being convenient
-         */
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {//  | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -192,7 +163,6 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
-
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
 
         // tworzymy adapter oraz łączymy go z RecyclerView
@@ -204,9 +174,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.GONE);
         }
-
-
-        //bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
     }
 
     private void co() {
@@ -378,6 +345,7 @@ public class MainActivity extends AppCompatActivity
         return 666;
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        adapter.notifyDataSetChanged();
         if (requestCode == 1) { // nowe do dodania
             if (resultCode == RESULT_OK) {
                 Article scores = (Article) data.getSerializableExtra("wynik");
@@ -393,6 +361,12 @@ public class MainActivity extends AppCompatActivity
                 int index = dajmicyferke(scores_old);
                 articles.remove(index);
                 adapter.notifyItemRemoved(index);
+                if (adapter.getItemCount() == 0) {
+                    ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.VISIBLE);
+                } else {
+                    ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.GONE);
+                }
+                return;
             }
             if (scores.equals(scores_old)) {
                 Log.e("komentarz", "taki sam");
@@ -411,6 +385,13 @@ public class MainActivity extends AppCompatActivity
             }
         } else if (requestCode == 3) { // aktualizacja ustawien
             updateNavBar();
+        } else if (requestCode == 2001) {
+            if (!articles.isEmpty()) {
+                adapter.notifyItemRangeRemoved(0, articles.size());
+            }
+            articles = (ArrayList<Article>) Article.listAll(Article.class);
+            adapter.notifyItemRangeInserted(0, articles.size());
+            adapter.notifyDataSetChanged();
         }
         if (adapter.getItemCount() == 0) {
             ((TextView) findViewById(R.id.txtPustaSmieciarka)).setVisibility(View.VISIBLE);
@@ -522,6 +503,11 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, KontaktActivity.class);
             finish();
             startActivity(i);
+            return true;
+        } else if (id == R.id.nav_narzedzia) {
+            Intent i = new Intent(MainActivity.this, NarzedziaActivity.class);
+            finish();
+            startActivityForResult(i, 2001);
             return true;
         }
 

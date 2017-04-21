@@ -73,6 +73,7 @@ public class StatystykiActivity  extends AppCompatActivity
         findViewById(R.id.lapp1).setVisibility(GONE);
         findViewById(R.id.lapp2).setVisibility(VISIBLE);
         findViewById(R.id.lapp3).setVisibility(GONE);
+        findViewById(R.id.lapp4).setVisibility(GONE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -562,6 +563,12 @@ public class StatystykiActivity  extends AppCompatActivity
             }
 
 
+        } else if (requestCode == 2001) {
+            articles = (ArrayList<Article>) Article.listAll(Article.class);
+            sortArticlesByWynik(articles, 3);
+            graphVisiblity(true);
+            updateMeme(spZawodnik, spKlub);
+
         }
         if (requestCode == 666 && resultCode == RESULT_OK && null != data) {
             Thread thread = new Thread(new Runnable(){
@@ -685,6 +692,11 @@ public class StatystykiActivity  extends AppCompatActivity
             Intent i = new Intent(this, KontaktActivity.class);
             finish();
             startActivity(i);
+            return true;
+        } else if (id == R.id.nav_narzedzia) {
+            Intent i = new Intent(StatystykiActivity.this, NarzedziaActivity.class);
+            finish();
+            startActivityForResult(i, 2001);
             return true;
         }
 

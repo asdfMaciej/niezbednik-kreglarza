@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.maciej01.niezbednikkreglarza">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:name="io.maciej01.niezbednikkreglarza.SugarOrmTestApplication"
@@ -39,6 +40,10 @@
         </activity>
         <activity android:label="@string/app_name"
             android:name="io.maciej01.niezbednikkreglarza.KontaktActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:label="@string/app_name"
+            android:name="io.maciej01.niezbednikkreglarza.NarzedziaActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name="io.maciej01.niezbednikkreglarza.IntroActivity"

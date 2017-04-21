@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,27 +18,31 @@ import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.io.IOException;
+
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 /**
- * Created by Maciej on 2017-04-14.
+ * Created by Maciej on 2017-04-21.
  */
 
-public class KontaktActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class NarzedziaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    public ExportHandler exdee = new ExportHandler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.lapp1).setVisibility(GONE);
         findViewById(R.id.lapp2).setVisibility(GONE);
-        findViewById(R.id.lapp3).setVisibility(VISIBLE);
-        findViewById(R.id.lapp4).setVisibility(GONE);
+        findViewById(R.id.lapp3).setVisibility(GONE);
+        findViewById(R.id.lapp4).setVisibility(VISIBLE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,21 +64,32 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView t2 = (TextView) findViewById(R.id.kontLink1);
-        t2.setMovementMethod(LinkMovementMethod.getInstance());
-        t2 = (TextView) findViewById(R.id.kontLink2);
-        t2.setMovementMethod(LinkMovementMethod.getInstance());
-        t2 = (TextView) findViewById(R.id.kontLink3);
-        t2.setMovementMethod(LinkMovementMethod.getInstance());
+        Button btZapisz = (Button) findViewById(R.id.nrzZapisz);
+        Button btWczytaj = (Button) findViewById(R.id.nrzWczytaj);
 
-        ImageView paypal = (ImageView) findViewById(R.id.kontPaypal);
-        paypal.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://paypal.me/Kaszkowiak"));
-                startActivity(browserIntent);
-            }
+        btZapisz.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {zapisz();}
+        });
+        btWczytaj.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {wczytaj();}
         });
         updateNavBar();
+    }
+
+    public void wczytaj() {
+        try {
+            exdee.importDatabase(getApplicationContext(), (Environment.getExternalStorageDirectory().getAbsolutePath() + "/niezbednik/niezbednikDb.db"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void zapisz() {
+        try {
+            exdee.copyDataBase(getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateNavBar() {
@@ -117,6 +133,7 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finish();
         }
     }
 
@@ -146,23 +163,22 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
 
         if (id == R.id.nav_wyniki) {
             // Handle the camera action
-            Intent i = new Intent(KontaktActivity.this, MainActivity.class);
+            Intent i = new Intent(NarzedziaActivity.this, MainActivity.class);
             finish();  //Kill the activity from which you will go to next activity
             startActivity(i);
         } else if (id == R.id.nav_statystyki) {
-            Intent i = new Intent(KontaktActivity.this, StatystykiActivity.class);
+            Intent i = new Intent(NarzedziaActivity.this, StatystykiActivity.class);
             finish();  //Kill the activity from which you will go to next activity
             startActivity(i);
         } else if (id == R.id.nav_ustawienia) {
-            Intent i = new Intent(KontaktActivity.this, MyPreferencesActivity.class);
+            Intent i = new Intent(NarzedziaActivity.this, MyPreferencesActivity.class);
             startActivityForResult(i, 3);
             return true;
         } else if (id == R.id.nav_aplikacja) {
-
-        }else if (id == R.id.nav_narzedzia) {
-            Intent i = new Intent(KontaktActivity.this, NarzedziaActivity.class);
-            startActivityForResult(i, 2001);
-            return true;
+            Intent i = new Intent(NarzedziaActivity.this, KontaktActivity.class);
+            finish();  //Kill the activity from which you will go to next activity
+            startActivity(i);
+        } else if (id == R.id.nav_narzedzia) {
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
