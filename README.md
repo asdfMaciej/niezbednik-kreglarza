@@ -6,6 +6,7 @@
 
 *Android 5.0+*
 
+-----------
 ## Krótko o aplikacji
 Niezbędnik Kręglarza umożliwia dodawanie wyników oraz przechowywanie ich w poręczny sposób. Dzięki temu automatycznie zyskujemy dostęp do przydatnych statystyk, które ułatwiają analizowanie naszej gry.
 
