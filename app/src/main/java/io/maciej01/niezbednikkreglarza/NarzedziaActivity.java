@@ -97,11 +97,18 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
     }
 
     public void zapisz() {
-        //String ret = exdee.copyDataBase(getApplicationContext()); albo jebac
-        String ret = "/niezbednik/niezbednikDb.db";
-        String wiad = "Zapisano bazę danych do: "+ret;
-        Toast.makeText(NarzedziaActivity.this, wiad,
-                Toast.LENGTH_LONG).show();
+        try {
+            exdee.copyDataBase(getApplicationContext());
+            String ret = "/niezbednik/niezbednikDb.db";
+            String wiad = "Zapisano bazę danych do: "+ret;
+            Toast.makeText(NarzedziaActivity.this, wiad,
+                    Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(NarzedziaActivity.this, "Wystąpił błąd przy zapisywaniu",
+                    Toast.LENGTH_LONG).show();
+        }
+
 
     }
 
