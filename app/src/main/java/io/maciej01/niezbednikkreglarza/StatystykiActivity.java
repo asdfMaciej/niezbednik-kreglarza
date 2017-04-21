@@ -148,7 +148,11 @@ public class StatystykiActivity  extends AppCompatActivity
         if (sup != null) {
             cimg.setImageBitmap(sup);
         }
-        sortArticlesByWynik(articles, 3);
+        if (articles != null) {
+            sortArticlesByWynik(articles, 3);
+        } else {
+            articles = (ArrayList<Article>)i.getSerializableExtra("articles");
+        }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         graphVisiblity(true);

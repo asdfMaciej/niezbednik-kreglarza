@@ -58,7 +58,7 @@ public class ExportHandler {
     }
 
 
-    public void copyDataBase(Context ctx) throws IOException {
+    public String copyDataBase(Context ctx) throws IOException {
         // Open your local db as the input stream
         FileInputStream myInput = new FileInputStream(new File(DB_FILEPATH));
         // Path to the just created empty db
@@ -66,6 +66,7 @@ public class ExportHandler {
         File dir = new File(sdCard.getAbsolutePath() + "/niezbednik");
         dir.mkdir();
         File file = new File(dir, "niezbednikDb.db");
+        String retStr = file.getCanonicalPath();
 
         file.createNewFile();
         // Open the empty db as the output stream
@@ -81,5 +82,6 @@ public class ExportHandler {
         myOutput.flush();
         myOutput.close();
         myInput.close();
+        return retStr;
     }
 }

@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.util.ArrayList;
+
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -151,6 +153,8 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
             startActivity(i);
         } else if (id == R.id.nav_statystyki) {
             Intent i = new Intent(KontaktActivity.this, StatystykiActivity.class);
+            ArrayList<Article> articles = (ArrayList<Article>) Article.listAll(Article.class);
+            i.putExtra("articles", articles);
             finish();  //Kill the activity from which you will go to next activity
             startActivity(i);
         } else if (id == R.id.nav_ustawienia) {

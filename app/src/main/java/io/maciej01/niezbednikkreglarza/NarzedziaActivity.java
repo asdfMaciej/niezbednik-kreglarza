@@ -1,5 +1,6 @@
 package io.maciej01.niezbednikkreglarza;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -15,16 +16,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -35,6 +41,7 @@ import static android.view.View.VISIBLE;
 
 public class NarzedziaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     public ExportHandler exdee = new ExportHandler();
+    public ArrayList<Article> articles = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,25 +78,31 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
             public void onClick(View v) {zapisz();}
         });
         btWczytaj.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {wczytaj();}
+            public void onClick(View v) {Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, 1337);
+            }
         });
         updateNavBar();
     }
 
-    public void wczytaj() {
+    public void wczytaj(String filen) {
         try {
-            exdee.importDatabase(getApplicationContext(), (Environment.getExternalStorageDirectory().getAbsolutePath() + "/niezbednik/niezbednikDb.db"));
+            exdee.importDatabase(getApplicationContext(), filen);
+            Toast.makeText(NarzedziaActivity.this, "Wczytano bazę danych.",
+                    Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void zapisz() {
-        try {
-            exdee.copyDataBase(getApplicationContext());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //String ret = exdee.copyDataBase(getApplicationContext()); albo jebac
+        String ret = "/niezbednik/niezbednikDb.db";
+        String wiad = "Zapisano bazę danych do: "+ret;
+        Toast.makeText(NarzedziaActivity.this, wiad,
+                Toast.LENGTH_LONG).show();
+
     }
 
     public void updateNavBar() {
@@ -123,6 +136,30 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == 3) { // aktualizacja ustawien
             updateNavBar();
+        } else if (requestCode == 1337) { // wybor pickera
+            if(resultCode != RESULT_CANCELED) {
+                Uri TappName = data.getData();
+                if (TappName != null) {
+                    //String appName = TappName.getPath();
+                    //Log.v("appname", (new File(appName)).getAbsolutePath());
+                    PathUtil util = new PathUtil();
+                    try {
+                        String appName = util.getPath(getApplicationContext(), TappName);
+                        if (appName.endsWith(".db")) {
+                            wczytaj(appName);
+                        } else {
+                            Toast.makeText(NarzedziaActivity.this, "Wybierz poprawny plik!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Log.v("appname", "null");
+                }
+            } else {
+                Log.v("appname", "cancel");
+            }
         }
     }
 
@@ -168,6 +205,8 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
             startActivity(i);
         } else if (id == R.id.nav_statystyki) {
             Intent i = new Intent(NarzedziaActivity.this, StatystykiActivity.class);
+            articles = (ArrayList<Article>) Article.listAll(Article.class);
+            i.putExtra("articles", articles);
             finish();  //Kill the activity from which you will go to next activity
             startActivity(i);
         } else if (id == R.id.nav_ustawienia) {

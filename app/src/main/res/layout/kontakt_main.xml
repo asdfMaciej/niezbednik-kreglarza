@@ -13,6 +13,13 @@
             android:layout_height="wrap_content"
             android:background="@color/colorBg">
 
+            <TextView
+                android:text="v1.0.1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView11"
+                android:textAlignment="center" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 app:srcCompat="@drawable/banner_app"
