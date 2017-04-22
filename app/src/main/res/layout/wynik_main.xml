@@ -117,7 +117,7 @@
                     android:background="@color/cardBg">
 
                     <TextView
-                        android:text="Tor 1"
+                        android:text="@string/lane_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -185,7 +185,7 @@
                     android:background="@color/cardBg">
 
                     <TextView
-                        android:text="Tor 2"
+                        android:text="@string/lane_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -266,7 +266,7 @@
                     android:background="@color/cardBg">
 
                     <TextView
-                        android:text="Tor 3"
+                        android:text="@string/lane_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -334,7 +334,7 @@
                     android:background="@color/cardBg">
 
                     <TextView
-                        android:text="Tor 4"
+                        android:text="@string/lane_4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -387,7 +387,7 @@
         </LinearLayout>
 
         <Button
-            android:text="zmień wynik"
+            android:text="@string/modify_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bZmiana"
@@ -396,7 +396,7 @@
             android:layout_alignStart="@+id/tPelne" />
 
         <Button
-            android:text="usuń"
+            android:text="@string/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bUsun"
@@ -413,7 +413,7 @@
             android:id="@+id/edKomentarz"
             android:layout_below="@+id/lTory2"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
-            android:hint="Tutaj możesz dodać własny komentarz."
+            android:hint="@string/remarks"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="12dp"

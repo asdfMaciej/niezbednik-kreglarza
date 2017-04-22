@@ -15,7 +15,7 @@
             android:padding="8dp">
 
             <TextView
-                android:text="Kopia zapasowa"
+                android:text="@string/backup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9"
@@ -31,7 +31,7 @@
                 android:layout_marginTop="8dp">
 
                 <Button
-                    android:text="zapisz"
+                    android:text="@string/save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/nrzZapisz"
@@ -42,7 +42,7 @@
                     android:layout_marginRight="4dp" />
 
                 <Button
-                    android:text="wczytaj"
+                    android:text="@string/load"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/nrzWczytaj"

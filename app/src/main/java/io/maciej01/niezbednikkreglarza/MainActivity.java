@@ -200,11 +200,11 @@ public class MainActivity extends AppCompatActivity
 
     public void updateNavBar() {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
-        String spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
+        String spKlub = SP.getString("klub",getString(R.string.team_default));
+        String spZawodnik = SP.getString("zawodnik",getString(R.string.player_default));
 
         if (spKlub.equals("1")) {
-            spKlub = "KK Ustaw Klub w Opcjach";
+            spKlub = getString(R.string.team_default);
         }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

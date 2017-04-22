@@ -17,25 +17,27 @@ import com.github.paolorotolo.appintro.AppIntro2Fragment;
  */
 
 public class IntroActivity extends AppIntro2 {
-    public static String FIRST_TITLE = "Niezbędnik Kręglarza";
-    public static String FIRST_DESC = "Czyli niezastąpiona aplikacja dla fanów kręglarstwa klasycznego.";
+    public static String FIRST_TITLE;
+    public static String FIRST_DESC;
 
-    public static String SECOND_TITLE = "Ustaw personalia";
-    public static String SECOND_DESC = "Wejdź w ustawienia oraz dodaj dane o sobie.";
+    public static String SECOND_TITLE;
+    public static String SECOND_DESC;
 
-    public static String THIRD_TITLE = "Zmień zdjęcie";
-    public static String THIRD_DESC = "Naciśnij na obrazek w zakładce statystyk i ustaw wybraną fotografię.";
+    public static String THIRD_TITLE;
+    public static String THIRD_DESC;
 
-    public static String FOURTH_TITLE = "Dodaj wyniki";
-    public static String FOURTH_DESC = "Uzupełnij aplikację swoimi wynikami, aby odblokować resztę funkcji.";
+    public static String FOURTH_TITLE;
+    public static String FOURTH_DESC;
 
-    public static String FIFTH_TITLE = "Ciesz się statystykami";
-    public static String FIFTH_DESC = "Od tego momentu otrzymasz dostęp do wygenerowanych statystyk dla każdego dodanego zawodnika.";
+    public static String FIFTH_TITLE;
+    public static String FIFTH_DESC;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hideSystemUI();
+        initVariables();
+
         addSlide(AppIntro2Fragment.newInstance(FIRST_TITLE, FIRST_DESC, R.drawable.kuzelki, getResources().getColor(R.color.colorPrimary)));
         addSlide(AppIntro2Fragment.newInstance(SECOND_TITLE, SECOND_DESC, R.drawable.text_icon, getResources().getColor(R.color.colorTetradBlue)));
         addSlide(AppIntro2Fragment.newInstance(THIRD_TITLE, THIRD_DESC, R.drawable.photo_icon, getResources().getColor(R.color.colorTetradOrange)));
@@ -90,6 +92,18 @@ public class IntroActivity extends AppIntro2 {
         super.onSlideChanged(oldFragment, newFragment);
     }
 
+    private void initVariables() {
+        FIRST_TITLE = getString(R.string.app_name);
+        FIRST_DESC = getString(R.string.intro_desc1);
+        SECOND_TITLE = getString(R.string.intro_title2);
+        SECOND_DESC = getString(R.string.intro_desc2);
+        THIRD_TITLE = getString(R.string.intro_title3);
+        THIRD_DESC = getString(R.string.intro_desc3);
+        FOURTH_TITLE = getString(R.string.intro_title4);
+        FOURTH_DESC = getString(R.string.intro_desc4);
+        FIFTH_TITLE = getString(R.string.intro_title5);
+        FIFTH_DESC = getString(R.string.intro_desc5);
+    }
     // This snippet hides the system bars.
     private void hideSystemUI() {
         getWindow().getDecorView().setSystemUiVisibility(

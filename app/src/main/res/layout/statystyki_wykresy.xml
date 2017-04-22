@@ -13,7 +13,7 @@
         <View android:layout_width="fill_parent" android:id="@+id/focus_view" android:layout_height="0dp" android:focusable="true" android:focusableInTouchMode="true"><requestFocus/></View>
 
         <TextView
-            android:text="Wynik"
+            android:text="@string/score_m"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtWynik"
@@ -35,7 +35,7 @@
             android:elevation="3dp" />
 
         <TextView
-            android:text="Pełne"
+            android:text="@string/score_full_m"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtPelne"
@@ -57,7 +57,7 @@
             android:elevation="3dp" />
 
         <TextView
-            android:text="Zbierane"
+            android:text="@string/score_collected_m"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtZbierane"
@@ -79,7 +79,7 @@
             android:elevation="3dp" />
 
         <TextView
-            android:text="Rzuty zerowe"
+            android:text="@string/score_misses_m"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtDziury"
@@ -113,7 +113,7 @@
         android:visibility="invisible">
 
         <TextView
-            android:text="Obecnie nie ma tu żadnych wykresów - potrzebne są minimum dwa wyniki!"
+            android:text="@string/brak_wykresow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtPusteStatystyki"

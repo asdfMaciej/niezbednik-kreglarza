@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/search"
-        android:title="Super tytul"
+        android:title="@string/easter_egg_filler"
         android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" />
@@ -14,16 +14,16 @@
         app:showAsAction="never" />
     <group android:visible="true">
         <item
-            android:title="Sortuj wynik rosnąco"
+            android:title="@string/sort_score_ascending"
             android:id="@+id/action_wynik" />
         <item
-            android:title="Sortuj wynik malejąco"
+            android:title="@string/sort_score_descending"
             android:id="@+id/action_wynik2" />
         <item
-            android:title="Sortuj datę rosnąco"
+            android:title="@string/sort_date_ascending"
             android:id="@+id/action_data" />
         <item
-            android:title="Sortuj datę malejąco"
+            android:title="@string/sort_date_descending"
             android:id="@+id/action_data2" />
     </group>
 </menu>

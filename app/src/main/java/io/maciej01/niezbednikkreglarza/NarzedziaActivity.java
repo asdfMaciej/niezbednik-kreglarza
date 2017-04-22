@@ -89,7 +89,7 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
     public void wczytaj(String filen) {
         try {
             exdee.importDatabase(getApplicationContext(), filen);
-            Toast.makeText(NarzedziaActivity.this, "Wczytano bazę danych.",
+            Toast.makeText(NarzedziaActivity.this, R.string.db_opened,
                     Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,12 +100,12 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
         try {
             exdee.copyDataBase(getApplicationContext());
             String ret = "/niezbednik/niezbednikDb.db";
-            String wiad = "Zapisano bazę danych do: "+ret;
+            String wiad = getString(R.string.db_saved_to)+ret;
             Toast.makeText(NarzedziaActivity.this, wiad,
                     Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(NarzedziaActivity.this, "Wystąpił błąd przy zapisywaniu",
+            Toast.makeText(NarzedziaActivity.this, R.string.error_saving,
                     Toast.LENGTH_LONG).show();
         }
 
@@ -114,11 +114,11 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
 
     public void updateNavBar() {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
-        String spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
+        String spKlub = SP.getString("klub",getString(R.string.team_default));
+        String spZawodnik = SP.getString("zawodnik",getString(R.string.player_default));
 
         if (spKlub.equals("1")) {
-            spKlub = "KK Ustaw Klub w Opcjach";
+            spKlub = getString(R.string.team_default);
         }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -155,7 +155,7 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
                         if (appName.endsWith(".db")) {
                             wczytaj(appName);
                         } else {
-                            Toast.makeText(NarzedziaActivity.this, "Wybierz poprawny plik!",
+                            Toast.makeText(NarzedziaActivity.this, R.string.pick_correct_file,
                                     Toast.LENGTH_SHORT).show();
                         }
                     } catch (URISyntaxException e) {

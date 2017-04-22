@@ -15,7 +15,7 @@
         android:id="@+id/statLayMain">
 
         <TextView
-            android:text="Sezon 2016/2017"
+            android:text="zmieniane w kodzie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/statOkres"
@@ -42,7 +42,7 @@
             android:id="@+id/statLayIlosc">
 
             <TextView
-                android:text="Ilość startów:"
+                android:text="@string/amount_tournaments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
@@ -52,7 +52,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:text="103"
+                android:text="xxx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/statIlosc"
@@ -78,7 +78,7 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:text="Najlepszy wynik:"
+                        android:text="@string/best_score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView12"
@@ -88,7 +88,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="750"
+                        android:text="xxx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statNajlepszy"
@@ -107,7 +107,7 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:text="Najgorszy wynik:"
+                        android:text="@string/worst_score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView13"
@@ -117,7 +117,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="431"
+                        android:text="xxx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statNajgorszy"
@@ -146,7 +146,7 @@
             android:id="@+id/statLaySrednie">
 
             <TextView
-                android:text="Średnia ilość"
+                android:text="@string/amount_average"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
@@ -173,7 +173,7 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:text="Sumy kręgli:"
+                        android:text="@string/score_total"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView12"
@@ -183,7 +183,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="685"
+                        android:text="xxx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statSrWynik"
@@ -193,7 +193,7 @@
                         android:layout_marginBottom="8dp" />
 
                     <TextView
-                        android:text="Zbieranych:"
+                        android:text="@string/score_collected"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView12"
@@ -203,7 +203,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="210"
+                        android:text="xxx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statSrZbierane"
@@ -223,7 +223,7 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:text="Pełnych:"
+                        android:text="@string/score_full"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView13"
@@ -233,7 +233,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="413"
+                        android:text="xxx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statSrPelne"
@@ -243,7 +243,7 @@
                         android:layout_marginBottom="8dp" />
 
                     <TextView
-                        android:text="Rzutów zerowych:"
+                        android:text="@string/score_misses"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView13"
@@ -253,7 +253,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="2"
+                        android:text="xx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statSrDziury"
@@ -281,7 +281,7 @@
             android:id="@+id/statLayNorma">
 
             <TextView
-                android:text="Starty powyżej normy:"
+                android:text="@string/tournaments_above_average"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
@@ -309,7 +309,7 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:text="Wyniku:"
+                        android:text="@string/score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView12"
@@ -319,7 +319,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="95"
+                        android:text="xx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statNrmWynik"
@@ -342,7 +342,7 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:text="Pełnych:"
+                        android:text="@string/score_full"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView13"
@@ -352,7 +352,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="100"
+                        android:text="xxx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statNrmPelne"
@@ -374,7 +374,7 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:text="Zbieranych:"
+                        android:text="@string/score_collected"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView13"
@@ -384,7 +384,7 @@
                         android:textStyle="normal|italic" />
 
                     <TextView
-                        android:text="80"
+                        android:text="xx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/statNrmZbierane"
@@ -411,7 +411,7 @@
         android:layout_marginRight="8dp">
 
         <TextView
-            android:text="Obecnie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"
+            android:text="@string/brak_statystyk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtPusteTabele"

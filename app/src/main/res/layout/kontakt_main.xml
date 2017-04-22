@@ -14,7 +14,7 @@
             android:background="@color/colorBg">
 
             <TextView
-                android:text="v1.0.1"
+                android:text="@string/version_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView11"
@@ -29,7 +29,7 @@
                 android:layout_marginTop="16dp" />
 
             <TextView
-                android:text="Stworzył:"
+                android:text="@string/created"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
@@ -40,7 +40,7 @@
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:text="Maciej Kaszkowiak"
+                android:text="@string/maciej_kaszkowiak"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView7"
@@ -74,7 +74,7 @@
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:text="Z podziękowaniami dla:"
+                android:text="@string/with_thanks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView8"
@@ -103,7 +103,7 @@
                     android:paddingBottom="4dp">
 
                     <TextView
-                        android:text="Macieja Olczyka"
+                        android:text="@string/maciej_olczyk"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView10"
@@ -113,7 +113,7 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:text="Za konstruktywną krytykę oraz testowanie aplikacji "
+                        android:text="@string/maciej_olczyk_for"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView14"
@@ -131,7 +131,7 @@
                     android:paddingBottom="4dp">
 
                     <TextView
-                        android:text="Reya"
+                        android:text="@string/rey"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView10"
@@ -141,7 +141,7 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:text="Za pomocne uwagi odnośnie mojego designu aplikacji"
+                        android:text="@string/rey_for"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView14"
@@ -151,7 +151,7 @@
             </LinearLayout>
 
             <TextView
-                android:text="Wspomóż programistę:"
+                android:text="@string/donate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView8"

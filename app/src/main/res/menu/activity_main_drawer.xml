@@ -5,26 +5,26 @@
         <item
             android:id="@+id/nav_wyniki"
             android:icon="@drawable/ic_list_black_24dp"
-            android:title="Wyniki" />
+            android:title="@string/score_lm" />
         <item
             android:id="@+id/nav_statystyki"
             android:icon="@drawable/ic_insert_chart_black_24dp"
-            android:title="Statystyki" />
+            android:title="@string/statistics_lm" />
         <item
             android:id="@+id/nav_narzedzia"
             android:icon="@drawable/ic_wrench_black_24dp"
-            android:title="Narzędzia" />
+            android:title="@string/tools_lm" />
         <item
             android:id="@+id/nav_ustawienia"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="Ustawienia" />
+            android:title="@string/settings_lm" />
     </group>
 
-    <item android:title="Inne">
+    <item android:title="@string/others">
         <menu>
             <item
                 android:id="@+id/nav_aplikacja"
-                android:title="O aplikacji" />
+                android:title="@string/about_app" />
         </menu>
     </item>
 

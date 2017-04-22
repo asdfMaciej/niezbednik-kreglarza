@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="Personalia">
+    <PreferenceCategory android:title="@string/personal_information">
 
-        <EditTextPreference android:title="Imię i nazwisko"
+        <EditTextPreference android:title="@string/full_name"
             android:key="zawodnik"
-            android:summary="Domyślne imię i nazwisko zawodnika"
-            android:defaultValue="Standardowy Zawodnik"></EditTextPreference>
-        <ListPreference     android:title="Klub"
-            android:summary="Domyślny klub zawodnika"
+            android:summary="@string/player_full_name"
+            android:defaultValue="Standardowy Zawodnik" />
+        <ListPreference     android:title="@string/team"
+            android:summary="@string/player_team"
             android:key="klub"
             android:defaultValue="1"
             android:entries="@array/kluby"
             android:entryValues="@array/kluby" />
-        <ListPreference     android:title="Kręgielnia"
-            android:summary="Domyślna kręgielnia zawodnika"
+        <ListPreference     android:title="@string/bowling_alley"
+            android:summary="@string/player_bowling_alley"
             android:key="kregielnia"
             android:defaultValue="1"
             android:entries="@array/kregielnie"
             android:entryValues="@array/kregielnie" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Statystyki">
+    <PreferenceCategory android:title="@string/statistics">
         <CheckBoxPreference
             android:defaultValue="false"
-            android:title="Wyświetlanie normy"
+            android:title="@string/norm_display"
             android:key="norma" />
         <EditTextPreference
             android:defaultValue="510"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Norma wyniku"
+            android:title="@string/norm_score"
             android:inputType="numberDecimal"
             android:key="normaWynik"
-            android:summary="Norma wyniku - np. 510" />
+            android:summary="@string/norm_score_ex" />
         <EditTextPreference
             android:defaultValue="360"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Norma pełnych"
+            android:title="@string/norm_full"
             android:key="normaPelne"
             android:inputType="numberDecimal"
-            android:summary="Norma pełnych - np. 360" />
+            android:summary="@string/norm_full_ex" />
         <EditTextPreference
             android:defaultValue="150"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Norma zbieranych"
+            android:title="@string/norm_collected"
             android:key="normaZbierane"
             android:inputType="numberDecimal"
-            android:summary="Norma zbieranych - np. 150" />
+            android:summary="@string/norm_collected_ex" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Tabele">
+    <PreferenceCategory android:title="@string/tables">
         <CheckBoxPreference
             android:defaultValue="true"
-            android:title="Uwzględniaj tylko obecny sezon"
+            android:title="@string/season_include"
             android:key="sezon"
-            android:summary="Za początek sezonu przyjęty jest 1. sierpnia" />
+            android:summary="@string/season_start" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -28,7 +28,7 @@
             android:layout_marginTop="48dp" />
 
         <TextView
-            android:text="Statystyki"
+            android:text="@string/statistics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
@@ -42,7 +42,7 @@
             android:elevation="3dp" />
 
         <TextView
-            android:text="Grzegorz Brzęczyszczykiewicz"
+            android:text="to sie nie wyswietli"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/statZawodnik"
@@ -55,7 +55,7 @@
             android:elevation="3dp" />
 
         <TextView
-            android:text="OSiR Vector Tarnowo Podgórne"
+            android:text="to sie tez nie wyswietli"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/statKlub"

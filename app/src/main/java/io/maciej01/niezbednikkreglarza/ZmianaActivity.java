@@ -217,15 +217,15 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Wróć");
-        builder.setMessage("Czy chcesz wrócić bez zapisywania?");
-        builder.setPositiveButton("Zapisz", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.return_);
+        builder.setMessage(R.string.dialog_return);
+        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //ZmianaActivity.super.onBackPressed();
                 zapisz();
             }
         });
-        builder.setNegativeButton("Odrzuć", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.dismiss, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 ZmianaActivity.super.onBackPressed();
                 backAnimation();
@@ -278,13 +278,13 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
         EditText[] lista = {zwd, wnk, pln, zbr, dzi};
         for (EditText item : lista) {
             if (TextUtils.isEmpty(item.getText().toString())) {
-                item.setError("Należy uzupełnić pole!");
+                item.setError(getString(R.string.error_field));
                 torerr = item;
                 correct = false;
             }
         }
         if (scores.getData() == "") {
-            ((Button) findViewById(R.id.btData)).setError("Należy ustawić datę!");
+            ((Button) findViewById(R.id.btData)).setError(getString(R.string.error_data));
             torerr = ((Button) findViewById(R.id.btData));
             correct = false;
         }
@@ -300,7 +300,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
                 tortemp.setError(null);
                 tortemp.clearFocus();
                 if (TextUtils.isEmpty(tortemp.getText().toString())) {
-                    tortemp.setError("Należy uzupełnić pole!");
+                    tortemp.setError(getString(R.string.error_field));
                     torerr = tortemp;
                     correct = false;
                 }

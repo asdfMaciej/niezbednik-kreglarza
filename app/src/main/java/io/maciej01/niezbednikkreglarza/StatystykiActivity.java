@@ -89,8 +89,8 @@ public class StatystykiActivity  extends AppCompatActivity
         Intent i = getIntent();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Wykresy"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tabele"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.charts));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tables));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         tabLayout.addOnTabSelectedListener(
@@ -120,10 +120,11 @@ public class StatystykiActivity  extends AppCompatActivity
                 }
         );
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
-        spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
+        String spKlub = SP.getString("klub",getString(R.string.team_default));
+        String spZawodnik = SP.getString("zawodnik",getString(R.string.player_default));
+
         if (spKlub.equals("1")) {
-            spKlub = "KK Ustaw Klub w Opcjach";
+            spKlub = getString(R.string.team_default);
         }
         articles = (ArrayList<Article>)i.getSerializableExtra("articles");
 
@@ -356,11 +357,11 @@ public class StatystykiActivity  extends AppCompatActivity
     }
     public void updateNavBar() {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
-        String spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
+        String spKlub = SP.getString("klub",getString(R.string.team_default));
+        String spZawodnik = SP.getString("zawodnik",getString(R.string.player_default));
 
         if (spKlub.equals("1")) {
-            spKlub = "KK Ustaw Klub w Opcjach";
+            spKlub = getString(R.string.team_default);
         }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -508,9 +509,9 @@ public class StatystykiActivity  extends AppCompatActivity
             int irlyear = Calendar.getInstance().get(Calendar.YEAR);
             int irlmonth = Calendar.getInstance().get(Calendar.MONTH)+1;
             toset.setText(
-                    "Obecnie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik w obecnym sezonie! (aby widzieć wszystkie, zmień ustawienia)"
+                    R.string.brak_statystyk_sezon
             );
-            String elo = "Sezon ";
+            String elo = getString(R.string.season)+" ";
             if (irlmonth < 8) {
                 elo += Integer.toString(irlyear-1)+"/"+Integer.toString(irlyear);
             } else {
@@ -519,14 +520,15 @@ public class StatystykiActivity  extends AppCompatActivity
             statokres.setText(elo);
         } else {
             toset.setText(
-                    "Obecnie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik!"
+                    R.string.brak_statystyk
             );
-            statokres.setText("Wszystkie wyniki");
+            statokres.setText(R.string.scores_all);
         }
     }
     public void updateStats(String spZawodnik, String spKlub) {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean toja = spZawodnik.equals(SP.getString("zawodnik", "Zawodnik Domyślny"));
+
+        boolean toja = spZawodnik.equals(SP.getString("zawodnik",getString(R.string.player_default)));
         toja = toja || spZawodnik.equals("Domyślny Zawodnik");
         zmienLayout(toja); // first launch
 
@@ -534,8 +536,8 @@ public class StatystykiActivity  extends AppCompatActivity
         TextView statKlub = (TextView)findViewById(R.id.statKlub);
         statZawodnik.setText(spZawodnik);
         if (toja) {
-            String spK = SP.getString("klub","KK Dziewiątka-Amica Wronki");
-            if (spK.equals("1")) {spK = "KK Ustaw Klub w Opcjach";}
+            String spK = SP.getString("klub",getString(R.string.team_default));
+            if (spK.equals("1")) {spK = getString(R.string.team_default);}
             statKlub.setText(spK);
         } else {
             statKlub.setText(spKlub);
@@ -551,10 +553,11 @@ public class StatystykiActivity  extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == 3) { // aktualizacja ustawien
             SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-            spZawodnik = SP.getString("zawodnik","Domyślny Zawodnik");
-            spKlub = SP.getString("klub", "KK Dziewiątka-Amica Wronki");
+            String spKlub = SP.getString("klub",getString(R.string.team_default));
+            String spZawodnik = SP.getString("zawodnik",getString(R.string.player_default));
+
             if (spKlub.equals("1")) {
-                spKlub = "KK Ustaw Klub w Opcjach";
+                spKlub = getString(R.string.team_default);
             }
             updateTabele(spZawodnik);
             if (!articles.isEmpty()) {

@@ -124,8 +124,8 @@ public class WynikActivity extends AppCompatActivity {
         jedenzdrugim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ab.setMessage("Na pewno chcesz usunąć?").setPositiveButton("Tak", dialogClickListener)
-                        .setNegativeButton("Nie", dialogClickListener).show();
+                ab.setMessage(R.string.delete_sure).setPositiveButton(R.string.yes, dialogClickListener)
+                        .setNegativeButton(R.string.no, dialogClickListener).show();
             }
         });
 
@@ -170,7 +170,7 @@ public class WynikActivity extends AppCompatActivity {
         LinearLayout tor2 = (LinearLayout) findViewById(R.id.lTory2);
         EditText tvKomentarz = (EditText) findViewById(R.id.edKomentarz);
 
-        tvWynik.setText("Wynik: "+wynik);
+        tvWynik.setText(getString(R.string.score_m)+": "+wynik);
         tvPelne.setText("P: "+pelne);
         tvZbierane.setText("Z: "+zbierane);
         tvDziury.setText("X: "+dziury);
