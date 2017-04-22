@@ -89,7 +89,7 @@
     <string name="team_default">KK Ustaw Klub w Opcjach</string>
     <string name="player_default">Domyślny Zawodnik</string>
     <string name="db_opened">Wczytano bazę danych.</string>
-    <string name="db_saved_to">"Zapisano bazę danych do: "</string>
+    <string name="db_saved_to">Zapisano bazę danych do: </string>
     <string name="error_saving">Wystąpił błąd przy zapisywaniu</string>
     <string name="pick_correct_file">Wybierz poprawny plik!</string>
     <string name="brak_statystyk_sezon">Obecnie nie ma tu żadnych statystyk - potrzebny jest minimum jeden wynik w obecnym sezonie! (aby widzieć wszystkie, zmień ustawienia)</string>
