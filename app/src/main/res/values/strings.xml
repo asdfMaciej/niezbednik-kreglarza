@@ -101,7 +101,7 @@
     <string name="fb_url"><a href="http://fb.me/niezbednik.kreglarza">FB - Bowler\'s Essentials</a></string>
     <string name="maciej_kaszkowiak">Maciej Kaszkowiak</string>
     <string name="mail_url"><a href="mailto:maciej.kaszkowiak@gmail.com">Email - maciej.kaszkowiak@gmail.com</a></string>
-    <string name="version_name">v1.0.1</string>
+    <string name="version_name">v1.0.2</string>
     <string name="easter_egg_filler">Robots!</string>
     <string name="anim_duration">300</string>
 
@@ -119,7 +119,11 @@
         <item>BOSiR Brzesko</item>
         <item>MLKS Tucholanka Tuchola</item>
         <item>TPK Wejherowo</item>
+        <item>TKKF Sokół Śrem</item>
+        <item>TKKF Pleszew</item>
+        <item>TKKF Dębinki</item>
         <item>TJ Sokol Husovice</item>
+        <item>SKK Primátor Náchod</item>
         <item>Klokani CB Dobřany</item>
         <item>KK PSJ Jihlava</item>
         <item>TJ Sokol Luhačovice</item>
@@ -132,6 +136,15 @@
         <item>TJ Slavoj Veľký Šariš</item>
         <item>ŠK Modranka</item>
         <item>SKV Rot-Weiß Zerbst \'99</item>
+        <item>SKC Victoria Bamberg</item>
+        <item>SKC Staffelstein</item>
+        <item>Aufwärts Donauperle Straubing</item>
+        <item>KRC Kipfenberg</item>
+        <item>TSV Breitengüßbach</item>
+        <item>FSV Erlangen Bruck</item>
+        <item>SKC Nibelungen Lorsch</item>
+        <item>KC Schwabsberg</item>
+        <item>ESV Lok Rudolstadt</item>
     </string-array>
 
     <string-array name="kregielnie">
@@ -150,9 +163,27 @@
         <item>Kręgielnia MOSiRu w Łaziskach Górnych</item>
         <item>Kręgielnia MOKSiRu w Pucku</item>
         <item>Kręgielnia SKK Náchod</item>
+        <item>Kręgielnia TJ Sokol Husovice</item>
+        <item>Kręgielnia Klokani CB Dobřany</item>
+        <item>Kręgielnia KK PSJ Jihlava</item>
+        <item>Kręgielnia TJ Sokol Luhačovice</item>
+        <item>Kręgielnia KK Slavoj Praha</item>
+        <item>Kręgielnia SKK Rokycany</item>
+        <item>Kręgielnia KK Inter Bratislava</item>
+        <item>Kręgielnia KK Tatran Sučany</item>
+        <item>Kręgielnia TJ Slavoj Veľký Šariš</item>
+        <item>Kręgielnia ŠK Modranka</item>
         <item>Kręgielnia ŽP Šport Podbrezová</item>
         <item>Kręgielnia ŠKK Trstená</item>
         <item>Kręgielnia SKV Rot-Weiß Zerbst \'99</item>
+        <item>Kręgielnia SKC Victoria Bamberg</item>
+        <item>Kręgielnia SKC Staffelstein</item>
+        <item>Kręgielnia Aufwärts Donauperle Straubing</item>
+        <item>Kręgielnia KRC Kipfenberg</item>
+        <item>Kręgielnia TSV Breitengüßbach</item>
+        <item>Kręgielnia FSV Erlangen Bruck</item>
+        <item>Kręgielnia SKC Nibelungen Lorsch</item>
+        <item>Kręgielnia KC Schwabsberg</item>
+        <item>Kręgielnia ESV Lok Rudolstadt</item>
     </string-array>
-    <string name="app_name">Bowler\'s Essentials</string>
 </resources>
