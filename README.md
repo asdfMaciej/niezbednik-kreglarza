@@ -17,7 +17,6 @@ Aplikacja jest w pełni darmowa (również bez reklam) - aczkolwiek [donacje](ht
 *Istnieje szansa, że pojawią się w przyszłości*
 
 - możliwość dodawania treningow
-- zmiana kolorystyki aplikacji [np. tryb nocny]
 - mozliwosc ustawienia przypomnien o treningu
 
 ## Kontakt:
