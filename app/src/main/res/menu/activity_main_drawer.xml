@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_insert_chart_black_24dp"
             android:title="@string/statistics_lm" />
         <item
+            android:id="@+id/nav_turnieje"
+            android:icon="@drawable/ic_trophy_black_24dp"
+            android:title="@string/tournaments" />
+        <item
             android:id="@+id/nav_narzedzia"
             android:icon="@drawable/ic_wrench_black_24dp"
             android:title="@string/tools_lm" />

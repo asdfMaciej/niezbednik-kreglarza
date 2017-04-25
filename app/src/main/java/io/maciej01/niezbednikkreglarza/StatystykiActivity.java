@@ -50,6 +50,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
+import io.maciej01.niezbednikkreglarza.turniej.TurniejActivity;
+
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -74,6 +76,7 @@ public class StatystykiActivity  extends AppCompatActivity
         findViewById(R.id.lapp2).setVisibility(VISIBLE);
         findViewById(R.id.lapp3).setVisibility(GONE);
         findViewById(R.id.lapp4).setVisibility(GONE);
+        findViewById(R.id.lapp5).setVisibility(GONE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -191,6 +194,7 @@ public class StatystykiActivity  extends AppCompatActivity
                 if(articles.size() < 2) {
                     graphVisiblity(false);
                 }
+                //selectSpinnerValue(spinner, spZawodnik);
             }});
         thread.run();
     }
@@ -575,6 +579,7 @@ public class StatystykiActivity  extends AppCompatActivity
             sortArticlesByWynik(articles, 3);
             graphVisiblity(true);
             updateMeme(spZawodnik, spKlub);
+            selectSpinnerValue(spinner, spZawodnik);
 
         }
         if (requestCode == 666 && resultCode == RESULT_OK && null != data) {
@@ -648,6 +653,7 @@ public class StatystykiActivity  extends AppCompatActivity
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setSelection(0, false);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String zawodnik = parent.getItemAtPosition(pos).toString();
@@ -697,6 +703,11 @@ public class StatystykiActivity  extends AppCompatActivity
             return true;
         } else if (id == R.id.nav_aplikacja) {
             Intent i = new Intent(this, KontaktActivity.class);
+            finish();
+            startActivity(i);
+            return true;
+        } else if (id == R.id.nav_turnieje) {
+            Intent i = new Intent(this, TurniejActivity.class);
             finish();
             startActivity(i);
             return true;

@@ -27,6 +27,8 @@ public class TurniejList {
         tur.getTurniej().save();
     }
 
+    public int size() {return lista.size();}
+
     public Turniej findPointer(Turniej tur) {
         // to chyba nic nie bedzie robilo xD
         for (Turniej t : lista) {
@@ -37,5 +39,6 @@ public class TurniejList {
         return null;
     }
 
+    public Turniej get(int n) {return lista.get(n);}
     public ArrayList<Turniej> getLista() {return lista;}
 }

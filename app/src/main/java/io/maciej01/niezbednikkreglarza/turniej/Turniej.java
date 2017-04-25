@@ -88,4 +88,5 @@ public class Turniej {
     public String getDateEnd() { return turniej.getDateEnd(); }
     public String getKregielnia() { return turniej.getKregielnia(); }
     public String getNazwa() { return turniej.getNazwa(); }
+    public int countZawodnicy() {return new Article().zawodnicyFromArray(turniej_art).size();}
 }

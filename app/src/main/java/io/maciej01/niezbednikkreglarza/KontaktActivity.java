@@ -24,6 +24,8 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
 
+import io.maciej01.niezbednikkreglarza.turniej.TurniejActivity;
+
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -40,6 +42,7 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
         findViewById(R.id.lapp2).setVisibility(GONE);
         findViewById(R.id.lapp3).setVisibility(VISIBLE);
         findViewById(R.id.lapp4).setVisibility(GONE);
+        findViewById(R.id.lapp5).setVisibility(GONE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -162,6 +165,11 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
             startActivityForResult(i, 3);
             return true;
         } else if (id == R.id.nav_aplikacja) {
+        } else if (id == R.id.nav_turnieje) {
+            Intent i = new Intent(this, TurniejActivity.class);
+            finish();
+            startActivity(i);
+            return true;
 
         }else if (id == R.id.nav_narzedzia) {
             Intent i = new Intent(KontaktActivity.this, NarzedziaActivity.class);

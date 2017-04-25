@@ -44,6 +44,8 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import io.maciej01.niezbednikkreglarza.turniej.TurniejActivity;
+
 import static android.view.View.GONE;
 import static java.lang.Thread.sleep;
 
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity
         findViewById(R.id.lapp2).setVisibility(GONE);
         findViewById(R.id.lapp3).setVisibility(GONE);
         findViewById(R.id.lapp4).setVisibility(GONE);
+        findViewById(R.id.lapp5).setVisibility(GONE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         handleIntent(getIntent());
@@ -501,6 +504,11 @@ public class MainActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.nav_aplikacja) {
             Intent i = new Intent(this, KontaktActivity.class);
+            finish();
+            startActivity(i);
+            return true;
+        } else if (id == R.id.nav_turnieje) {
+            Intent i = new Intent(this, TurniejActivity.class);
             finish();
             startActivity(i);
             return true;

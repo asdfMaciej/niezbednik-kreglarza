@@ -8,7 +8,7 @@
     <string name="action_settings">Ustawienia</string>
     <string name="anim_duration">300</string>
     <string name="brak_wynikow">Obecnie nie ma tu żadnych wyników. Aby dodać własne, naciśnij przycisk w prawym dolnym rogu ekranu.</string>
-    <string name="version_name">v1.0.2</string>
+    <string name="version_name">v1.1.0</string>
     <string name="created">Stworzył:</string>
     <string name="maciej_kaszkowiak">Maciej Kaszkowiak</string>
     <string name="with_thanks">Z podziękowaniami dla:</string>
@@ -105,4 +105,8 @@
     <string name="error_field">Należy uzupełnić pole!</string>
     <string name="error_data">Należy ustawić datę!</string>
     <string name="app_name">Niezbędnik Kręglarza</string>
+    <string name="participated">"Wzięło udział: "</string>
+    <string name="participants_d">zawodników</string>
+    <string name="tournaments">Turnieje</string>
+    <string name="brak_turniejow">Obecnie nie ma tu żadnych turniejów. Aby dodać, naciśnij przycisk w lewym dolnym rogu.</string>
 </resources>

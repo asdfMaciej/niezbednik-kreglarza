@@ -15,7 +15,7 @@
 
         <meta-data
             android:name="VERSION"
-            android:value="4" />
+            android:value="5" />
         <activity
             android:name="io.maciej01.niezbednikkreglarza.MainActivity"
             android:label="@string/app_name"
@@ -33,6 +33,13 @@
             android:name="io.maciej01.niezbednikkreglarza.WynikActivity"
             android:windowSoftInputMode="stateHidden"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout">
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name="io.maciej01.niezbednikkreglarza.turniej.TurniejActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:label="@string/app_name"
             android:name="io.maciej01.niezbednikkreglarza.StatystykiActivity"
