@@ -21,7 +21,6 @@ public class TurniejAdapter extends RecyclerView.Adapter {
     private class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mNazwa;
         public TextView mData;
-        public TextView mZawodnicy;
         public TextView mKregielnia;
 
         public MyViewHolder(View pItem) {
@@ -29,7 +28,6 @@ public class TurniejAdapter extends RecyclerView.Adapter {
             mNazwa = (TextView) pItem.findViewById(R.id.zawody_nazwa);
             mData = (TextView) pItem.findViewById(R.id.zawody_data);
             mKregielnia = (TextView) pItem.findViewById(R.id.zawody_kregielnia);
-            mZawodnicy = (TextView) pItem.findViewById(R.id.zawody_zawodnicy);
         }
     }
 
@@ -72,12 +70,8 @@ public class TurniejAdapter extends RecyclerView.Adapter {
         // uzupełniamy layout artykułu
         Turniej article = mTurnieje.get(i);
         String sData = article.getDateStart() + " - " + article.getDateEnd();
-        String sZawodnicy = contex.getString(R.string.participated);
-        sZawodnicy += Integer.toString(article.countZawodnicy());
-        sZawodnicy +=" "+contex.getString(R.string.participants_d);
         ((TurniejAdapter.MyViewHolder) viewHolder).mNazwa.setText(article.getNazwa());
         ((TurniejAdapter.MyViewHolder) viewHolder).mData.setText(sData);
-        ((TurniejAdapter.MyViewHolder) viewHolder).mZawodnicy.setText(sZawodnicy);
         ((TurniejAdapter.MyViewHolder) viewHolder).mKregielnia.setText(article.getKregielnia());
     }
     /*@Override

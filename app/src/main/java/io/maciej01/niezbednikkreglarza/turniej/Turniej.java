@@ -20,21 +20,25 @@ public class Turniej {
     private TurniejHolder turniej;
     private ArrayList<Article> articles;
     private ArrayList<Article> turniej_art = new ArrayList<>();
+    private TurniejList parent;
 
-    public Turniej(
+    public Turniej(TurniejList tParent,
             int ySt, int mSt, int dSt, // year month day of start
             int yNd, int mNd, int dNd, // year month day of end
             String _kregielnia, String _nazwa) {
+        parent = tParent;
         turniej = new TurniejHolder(ySt,mSt,dSt,yNd,mNd,dNd,_kregielnia,_nazwa);
         initArticles();
     }
 
-    public Turniej(TurniejHolder tHolder) {
+    public Turniej(TurniejList tParent, TurniejHolder tHolder) {
         turniej = tHolder;
+        parent = tParent;
     }
 
-    public Turniej() {
+    public Turniej(TurniejList tParent) {
         turniej = new TurniejHolder();
+        parent = tParent;
         initArticles();
     }
 
@@ -57,9 +61,16 @@ public class Turniej {
         });
     }
 
+    public void save() {
+        turniej.save();
+    }
+
     private void initArticles() {
+        articles = parent.getArticles();
+    }
+
+    public void initTurniej() {
         try {
-            articles = (ArrayList<Article>) Article.listAll(Article.class);
             Date start = dataStringToDate(turniej.getDateStart());
             Date end = dataStringToDate(turniej.getDateEnd());
             for (Article a : articles) {

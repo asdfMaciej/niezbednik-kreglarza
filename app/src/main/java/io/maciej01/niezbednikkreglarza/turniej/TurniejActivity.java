@@ -15,6 +15,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,6 +120,12 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
         System.gc();
     }
 
+    public void losoweWyniki() {
+        for (int i = 0; i < 5; ++i) {
+            turnieje.add(new Turniej(turnieje));
+        }
+    }
+
 
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == 3) { // aktualizacja ustawien
@@ -138,7 +145,7 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.only_menu, menu);
+        getMenuInflater().inflate(R.menu.only_debug, menu);
         return true;
     }
 
@@ -149,9 +156,29 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
             Intent i = new Intent(this, MyPreferencesActivity.class);
             startActivityForResult(i, 3);
             return true;
+        } else if (id == R.id.action_losowe) {
+            losoweWyniki();
+            adapter.notifyDataSetChanged();
+            ((TextView) findViewById(R.id.txtPustaZawodziarka)).setVisibility(View.GONE);
+        } else if (id == R.id.action_usun) {
+            turnieje.clear();
+            adapter.notifyDataSetChanged();
+            ((TextView) findViewById(R.id.txtPustaZawodziarka)).setVisibility(View.VISIBLE);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        TurniejHolder.deleteAll(TurniejHolder.class); // :^^^))))
+
+        for (Turniej a : turnieje.getLista()) {
+            a.save();
+            Log.e("more", "savedturniej");
+        }
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

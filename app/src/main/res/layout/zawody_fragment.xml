@@ -46,15 +46,6 @@
             android:textColor="?android:attr/textColorSecondary"
             android:layout_marginBottom="4dp" />
 
-        <TextView
-            android:text="Wpisano: X zawodników"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/zawody_zawodnicy"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textStyle="normal|italic" />
-
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
