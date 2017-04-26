@@ -3,6 +3,7 @@ package io.maciej01.niezbednikkreglarza.turniej;
 import com.orm.SugarRecord;
 
 import java.io.Serializable;
+import java.util.Random;
 
 /**
  * Created by Maciej on 2017-04-24.
@@ -15,6 +16,16 @@ public class TurniejHolder extends SugarRecord implements Serializable, Cloneabl
 
     private String kregielnia = ""; // troche wydluzy runtime, ale to szczegol
     private String nazwa = ""; // daty w stringu bo tez >>>sugarrecord
+
+    private static String [] sKregielnia = {
+            "Kręgielnia Dziewiątka-Amica Wronki", "Kręgielnia Vector Tarnowo Podgórne",
+            "Kręgielnia Ośrodka Sportu i Rekreacji w Gostyniu", "Kręgielnia Czarna Kula Poznań"
+    };
+
+    private static String[] sNazwy = {
+            "34. Memoriał W. Zielińskiego i J. Krukowskiego", "31. Młodzieżowy Puchar Wronek",
+            "MP Juniorów Młodszych", "Mistrzostwa Polski Sprintów i Tandemów Mieszanych Seniorów"
+    };
 
     public TurniejHolder(
             int ySt, int mSt, int dSt, // year month day of start
@@ -33,6 +44,12 @@ public class TurniejHolder extends SugarRecord implements Serializable, Cloneabl
         nazwa = "Rychu Peja - Piętnastak";
     }
 
+    public TurniejHolder(boolean use_this_for_random_values) { // :^)
+        dateStart = "2000-03-01";
+        dateEnd = "2015-10-21";
+        losoweWartosci();
+    }
+
     public TurniejHolder clone() {
         try {
             return (TurniejHolder) super.clone();
@@ -40,6 +57,12 @@ public class TurniejHolder extends SugarRecord implements Serializable, Cloneabl
             e.printStackTrace();
         }
         return new TurniejHolder();
+    }
+
+    private void losoweWartosci() {
+        Random random = new Random();
+        kregielnia = sKregielnia[random.nextInt(sKregielnia.length)];
+        nazwa = sNazwy[random.nextInt(sNazwy.length)];
     }
 
     public String ustawDate(int year, int month, int dayOfMonth) {

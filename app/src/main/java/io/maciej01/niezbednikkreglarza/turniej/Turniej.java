@@ -42,6 +42,12 @@ public class Turniej {
         initArticles();
     }
 
+    public Turniej(TurniejList tParent, boolean use_this_for_random_values) { // :^^^)
+        turniej = new TurniejHolder(true);
+        parent = tParent;
+        initArticles();
+    }
+
     private Date dataStringToDate(String datastring) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date d = sdf.parse(datastring);

@@ -122,7 +122,7 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
 
     public void losoweWyniki() {
         for (int i = 0; i < 5; ++i) {
-            turnieje.add(new Turniej(turnieje));
+            turnieje.add(new Turniej(turnieje, true));
         }
     }
 
