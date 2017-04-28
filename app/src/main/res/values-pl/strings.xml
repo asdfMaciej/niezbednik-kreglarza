@@ -109,4 +109,11 @@
     <string name="participants_d">zawodników</string>
     <string name="tournaments">Turnieje</string>
     <string name="brak_turniejow">Obecnie nie ma tu żadnych turniejów. Aby dodać, naciśnij przycisk w lewym dolnym rogu.</string>
+    <string name="days">dni</string>
+    <string name="days_ago">dni temu</string>
+    <string name="total">"Łącznie: "</string>
+    <string name="tournament_happened">"Turniej odbył się: "</string>
+    <string name="tournament_in">"Turniej odbędzie się za: "</string>
+    <string name="tournament_pending">Turniej w toku</string>
+    <string name="string_elementarka">Obecnie nie ma wyników pasujących do tego turnieju. Po dodaniu pojawią się tu automatycznie.</string>
 </resources>

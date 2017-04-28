@@ -109,12 +109,12 @@
     <string name="participants_d">players</string>
     <string name="brak_turniejow">Currently there are no tournaments. In order to add, press the button in lower right corner.</string>
     <string name="string_elementarka">Currently there are no scores matching this tournament. After adding them, they\'ll automatically appear there.</string>
-    <string name="tournament_pending">Turniej w toku</string>
-    <string name="tournament_happened">"Turniej odbył się: "</string>
-    <string name="days_ago">dni temu</string>
-    <string name="tournament_in">"Turniej odbędzie się za: "</string>
-    <string name="days">dni</string>
-    <string name="total">"Łącznie: "</string>
+    <string name="tournament_pending">Tournament in progress</string>
+    <string name="tournament_happened">"Tournament took place: "</string>
+    <string name="days_ago">days ago</string>
+    <string name="tournament_in">"Tournament will take place in: "</string>
+    <string name="days">days</string>
+    <string name="total">"Total: "</string>
 
 
     <string-array name="kluby">
