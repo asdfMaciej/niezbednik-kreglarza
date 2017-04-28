@@ -13,7 +13,8 @@
         <item
             android:id="@+id/nav_turnieje"
             android:icon="@drawable/ic_trophy_black_24dp"
-            android:title="@string/tournaments" />
+            android:title="@string/tournaments"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_narzedzia"
             android:icon="@drawable/ic_wrench_black_24dp"
