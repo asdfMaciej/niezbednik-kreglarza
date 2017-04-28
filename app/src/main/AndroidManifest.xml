@@ -41,6 +41,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name="io.maciej01.niezbednikkreglarza.turniej.TElementActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout">
+        </activity>
         <activity android:label="@string/app_name"
             android:name="io.maciej01.niezbednikkreglarza.StatystykiActivity"
             android:theme="@style/AppTheme.NoActionBar">

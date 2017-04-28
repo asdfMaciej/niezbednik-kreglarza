@@ -102,7 +102,7 @@
     <string name="fb_url"><a href="http://fb.me/niezbednik.kreglarza">FB - Bowler\'s Essentials</a></string>
     <string name="maciej_kaszkowiak">Maciej Kaszkowiak</string>
     <string name="mail_url"><a href="mailto:maciej.kaszkowiak@gmail.com">Email - maciej.kaszkowiak@gmail.com</a></string>
-    <string name="version_name">v1.0.3</string>
+    <string name="version_name">v1.1.0</string>
     <string name="easter_egg_filler">Robots!</string>
     <string name="anim_duration">300</string>
     <string name="participated">"Participated: "</string>

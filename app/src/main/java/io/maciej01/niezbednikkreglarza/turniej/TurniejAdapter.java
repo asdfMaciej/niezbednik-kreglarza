@@ -7,13 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 import io.maciej01.niezbednikkreglarza.R;
 
 /**
  * Created by Maciej on 2017-04-25.
  */
 
-public class TurniejAdapter extends RecyclerView.Adapter {
+public class TurniejAdapter extends RecyclerView.Adapter implements Serializable {
     private TurniejList mTurnieje = new TurniejList();
     private TurniejList originalList;
     private RecyclerView mRecyclerView;
@@ -63,7 +65,7 @@ public class TurniejAdapter extends RecyclerView.Adapter {
     }
 
     public void seriotakielatwedonaprawienia(View view, Turniej wynik) {
-        //contex.openWynik(wynik);
+        contex.openTurniej(wynik);
     }
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int i) {

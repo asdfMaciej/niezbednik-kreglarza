@@ -1,5 +1,6 @@
 package io.maciej01.niezbednikkreglarza.turniej;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import io.maciej01.niezbednikkreglarza.Article;
  * Created by Maciej on 2017-04-24.
  */
 
-public class TurniejList {
+public class TurniejList implements Serializable {
     private ArrayList<Turniej> lista = new ArrayList<>();
     private ArrayList<Article> articles;
 

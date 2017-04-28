@@ -3,6 +3,7 @@ package io.maciej01.niezbednikkreglarza;
 import com.orm.SugarRecord;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -189,6 +190,36 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
             }
         }
         return ret_arr;
+    }
+
+    public String txtFromWynik(Article article) {
+        String ret = article.getData()+": "+article.getPelne();
+        ret += "+"+article.getZbierane()+"="+article.getWynik();
+        return ret;
+    }
+
+    public String summaryFromWyniki(ArrayList<Article> articles) {
+        String ret = "";
+        for (Article a: articles) {ret += txtFromWynik(a)+"\n";}
+        return ret;
+    }
+    public int podliczWyniki(ArrayList<Article> articles) {
+        int t = 0;
+        for (Article a: articles) {t += Integer.valueOf(a.getWynik());}
+        return t;
+    }
+
+    public int countZawodnicy(ArrayList<Article> articles) {
+        ArrayList<String> tZaw = new ArrayList<>();
+        int n = 0;
+        for (Article wynik : articles) {
+            String zw = wynik.getZawodnik();
+            if (!tZaw.contains(zw)) {
+                tZaw.add(zw);
+                n += 1;
+            }
+        }
+        return n;
     }
 
     public String klubFromZawodnik(ArrayList<Article> articles, String zawodnik) {

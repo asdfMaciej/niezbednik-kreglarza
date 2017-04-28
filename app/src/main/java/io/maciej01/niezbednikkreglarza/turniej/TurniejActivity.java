@@ -63,9 +63,10 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
             }
         });
-        fab.setVisibility(GONE);
+        fab.setVisibility(VISIBLE);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -124,6 +125,12 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
         for (int i = 0; i < 5; ++i) {
             turnieje.add(new Turniej(turnieje, true));
         }
+    }
+
+    public void openTurniej(Turniej t) {
+        Intent i = new Intent(TurniejActivity.this, TElementActivity.class);
+        i.putExtra("turniej", t);
+        startActivityForResult(i, 123);
     }
 
 
