@@ -23,7 +23,7 @@ import io.maciej01.niezbednikkreglarza.SugarOrmTestApplication;
  * Created by Maciej on 2017-04-24.
  */
 
-public class Turniej implements Serializable {
+public class Turniej implements Serializable, Cloneable {
     private TurniejHolder turniej;
     private ArrayList<Article> articles;
     private ArrayList<Article> turniej_art = new ArrayList<>();
@@ -84,7 +84,18 @@ public class Turniej implements Serializable {
         }
     }
 
+    public Turniej clone() {
+        try {
+            return (Turniej) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return new Turniej(parent);
+    }
+
     public void coJaUczynilem() {
+        posortowane = new ArrayList<>();
+        Log.v("turniej", "posortowane na nowo!");
         Map<String, Integer> myMap = new HashMap<String, Integer>();
         String z; // im sleepy and wondering whether this algorithm will work or not
         Integer n = 0;
@@ -169,6 +180,7 @@ public class Turniej implements Serializable {
     public void initTurniej() {
         try {
             initArticles();
+            turniej_art = new ArrayList<>();
             Date start = dataStringToDate(turniej.getDateStart());
             Date end = dataStringToDate(turniej.getDateEnd());
             for (Article a : articles) {
@@ -198,6 +210,10 @@ public class Turniej implements Serializable {
 
     public TurniejHolder getTurniej() {return turniej;}
     public ArrayList<Article> getArticles() {return turniej_art;}
+
+    public void ustawDateStart(int year, int month, int dayOfMonth) {turniej.ustawDateStart(year, month, dayOfMonth);}
+    public void ustawDateEnd(int year, int month, int dayOfMonth) {turniej.ustawDateEnd(year, month, dayOfMonth);}
+    public void ustawCoGdzie(String nzw, String kregielnia) {turniej.ustawCoGdzie(nzw, kregielnia);}
 
     public String getDateStart() { return turniej.getDateStart(); }
     public String getDateEnd() { return turniej.getDateEnd(); }

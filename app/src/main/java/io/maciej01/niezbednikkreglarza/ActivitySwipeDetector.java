@@ -16,19 +16,18 @@ public class ActivitySwipeDetector implements View.OnTouchListener {
     public ActivitySwipeDetector() {}
 
     public void onRightToLeftSwipe() {
-        Log.i("detector", "RightToLeftSwipe!");
+
     }
 
     public void onLeftToRightSwipe(){
-        Log.i("detector", "LeftToRightSwipe!");
     }
 
     public void onTopToBottomSwipe(){
-        Log.i("detector", "onTopToBottomSwipe!");
+
     }
 
     public void onBottomToTopSwipe(){
-        Log.i("detector", "onBottomToTopSwipe!");
+
     }
 
     public boolean onTouch(MotionEvent event) {
@@ -51,7 +50,7 @@ public class ActivitySwipeDetector implements View.OnTouchListener {
                     if(deltaX < 0) { this.onLeftToRightSwipe(); return true; }
                     if(deltaX > 0) { this.onRightToLeftSwipe(); return true; }
                 } else {
-                    Log.i("detector", "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
+
                 }
 
                 // swipe vertical?
@@ -59,7 +58,7 @@ public class ActivitySwipeDetector implements View.OnTouchListener {
                     // top or down
                     if(deltaY < 0) { this.onTopToBottomSwipe(); return true; }
                     if(deltaY > 0) { this.onBottomToTopSwipe(); return true; }
-                } else { Log.i("detector", "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE); }
+                } else { }
 
                 //     return true;
             }

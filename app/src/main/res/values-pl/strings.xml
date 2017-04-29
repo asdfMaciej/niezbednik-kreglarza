@@ -44,7 +44,7 @@
     <string name="player_full_name">Imię i nazwisko zawodnika</string>
     <string name="include_lanes">Dodaj tory</string>
     <string name="remarks">Tutaj możesz dodać własny komentarz.</string>
-    <string name="modify_result">Zmień wynik</string>
+    <string name="modify_result">Zmień</string>
     <string name="delete">Usuń</string>
     <string name="score_lm">Wyniki</string>
     <string name="statistics_lm">Statystyki</string>
@@ -116,4 +116,7 @@
     <string name="tournament_in">"Turniej odbędzie się za: "</string>
     <string name="tournament_pending">Turniej w toku</string>
     <string name="string_elementarka">Obecnie nie ma wyników pasujących do tego turnieju. Po dodaniu pojawią się tu automatycznie.</string>
+    <string name="beginning">Początek</string>
+    <string name="end">Koniec</string>
+    <string name="tournament_name">Nazwa turnieju</string>
 </resources>

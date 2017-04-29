@@ -116,4 +116,7 @@
     <string name="tournament_happened">"Tournament took place: "</string>
     <string name="tournament_in">"Tournament will take place in: "</string>
     <string name="tournament_pending">Tournament in progress</string>
+    <string name="beginning">Beginning</string>
+    <string name="end">End</string>
+    <string name="tournament_name">Tournament name</string>
 </resources>

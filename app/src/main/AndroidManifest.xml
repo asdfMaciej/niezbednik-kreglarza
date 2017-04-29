@@ -71,6 +71,11 @@
             android:windowSoftInputMode="stateHidden"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout">
         </activity>
+        <activity android:label="@string/app_name"
+            android:name="io.maciej01.niezbednikkreglarza.turniej.TEditActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout">
+        </activity>
     </application>
 
 </manifest>

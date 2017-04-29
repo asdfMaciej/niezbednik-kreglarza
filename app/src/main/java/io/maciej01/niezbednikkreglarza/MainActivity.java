@@ -509,6 +509,8 @@ public class MainActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.nav_turnieje) {
             Intent i = new Intent(this, TurniejActivity.class);
+            i.putExtra("main", true);
+            i.putExtra("articles", articles);
             finish();
             startActivity(i);
             return true;

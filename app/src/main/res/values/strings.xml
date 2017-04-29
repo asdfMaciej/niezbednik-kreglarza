@@ -115,6 +115,8 @@
     <string name="tournament_in">"Tournament will take place in: "</string>
     <string name="days">days</string>
     <string name="total">"Total: "</string>
+    <string name="beginning">Beginning</string>
+    <string name="end">End</string>
 
 
     <string-array name="kluby">
@@ -198,4 +200,5 @@
         <item>Kręgielnia KC Schwabsberg</item>
         <item>Kręgielnia ESV Lok Rudolstadt</item>
     </string-array>
+    <string name="tournament_name">Tournament name</string>
 </resources>

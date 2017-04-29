@@ -167,6 +167,7 @@ public class KontaktActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_aplikacja) {
         } else if (id == R.id.nav_turnieje) {
             Intent i = new Intent(this, TurniejActivity.class);
+            i.putExtra("main", false);
             finish();
             startActivity(i);
             return true;

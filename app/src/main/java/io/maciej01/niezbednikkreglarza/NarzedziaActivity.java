@@ -229,6 +229,7 @@ public class NarzedziaActivity extends AppCompatActivity implements NavigationVi
             startActivity(i);
         } else if (id == R.id.nav_turnieje) {
             Intent i = new Intent(this, TurniejActivity.class);
+            i.putExtra("main", false);
             finish();
             startActivity(i);
             return true;

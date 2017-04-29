@@ -60,6 +60,7 @@
             android:fontFamily="sans-serif"
             android:id="@+id/head_kregielnia" />
 
+
     </LinearLayout>
 
 </LinearLayout>

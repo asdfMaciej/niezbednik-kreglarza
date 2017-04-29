@@ -3,6 +3,8 @@ package io.maciej01.niezbednikkreglarza.turniej;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import io.maciej01.niezbednikkreglarza.Article;
 
@@ -17,9 +19,13 @@ public class TurniejList implements Serializable {
     public TurniejList() {
         articles = (ArrayList<Article>) Article.listAll(Article.class);
     }
+    public TurniejList(ArrayList<Article> arts) {
+        articles = arts;
+    }
     public void load() {
         ArrayList<TurniejHolder> temp = (ArrayList<TurniejHolder>) TurniejHolder.listAll(TurniejHolder.class);
         for (TurniejHolder t : temp) {lista.add(new Turniej(this, t));}
+        sortByName();
     }
 
     public void add(int ySt, int mSt, int dSt, // year month day of start
@@ -34,8 +40,24 @@ public class TurniejList implements Serializable {
         tur.getTurniej().save();
     }
 
+    public void add(int n, Turniej tur) {
+        lista.add(n, tur);
+        tur.getTurniej().save();
+    }
+
+    public void sortByName() {
+        Collections.sort(lista, new Comparator<Turniej>() {
+            @Override
+            public int compare(Turniej o1, Turniej o2) {
+                return o1.getNazwa().compareTo(o2.getNazwa());
+            }
+        });
+    }
+
     public int size() {return lista.size();}
     public void clear() {lista.clear();}
+    public void remove(int n) {lista.remove(n);}
+    public void set(int n, Turniej t) {lista.set(n, t);}
 
     public Integer findIndex(Turniej tur) {
         Integer index = null;

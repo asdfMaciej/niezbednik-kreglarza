@@ -53,22 +53,7 @@ public class WynikActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //setUpWindowAnimations();
-        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        //getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
-        //ll.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        //setupWindowAnimations();
-        //Slide s = new Slide();
-        //s.setInterpolator(bi);
-        //getWindow().setEnterTransition(s);
-        //getWindow().setEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.activity_slide));//new Explode());
-        //getWindow().setExitTransition(TransitionInflater.from(this).inflateTransition(R.transition.activity_slide));//(new Explode());
         setContentView(R.layout.wynik_main);
-
-        //ScrollView ll = (ScrollView) findViewById(R.id.lGlowny);
-
-
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){

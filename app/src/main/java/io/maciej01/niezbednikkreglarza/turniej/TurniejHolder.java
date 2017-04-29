@@ -38,10 +38,6 @@ public class TurniejHolder extends SugarRecord implements Serializable, Cloneabl
     }
 
     public TurniejHolder() {
-        dateStart = "2000-03-01";
-        dateEnd = "2015-10-21";
-        kregielnia = "Kręgielnia Dziewiątka-Amica Wronki";
-        nazwa = "Rychu Peja - Piętnastak";
     }
 
     public TurniejHolder(boolean use_this_for_random_values) { // :^)
@@ -72,6 +68,19 @@ public class TurniejHolder extends SugarRecord implements Serializable, Cloneabl
         if (smt.length() == 1) { md += "0"+smt; } else { md += smt; } md += "-";
         if (sdy.length() == 1) { md += "0"+sdy; } else { md += sdy; }
         return md;
+    }
+
+    public void ustawDateStart(int year, int month, int dayOfMonth) {
+        dateStart = ustawDate(year, month, dayOfMonth);
+    }
+
+    public void ustawDateEnd(int year, int month, int dayOfMonth) {
+        dateEnd = ustawDate(year, month, dayOfMonth);
+    }
+
+    public void ustawCoGdzie(String nm, String krg) {
+        nazwa = nm;
+        kregielnia = krg;
     }
 
     public boolean equals(TurniejHolder d) {

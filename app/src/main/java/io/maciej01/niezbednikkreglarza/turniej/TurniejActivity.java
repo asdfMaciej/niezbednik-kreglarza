@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import io.maciej01.niezbednikkreglarza.Article;
@@ -42,7 +43,7 @@ import static android.view.View.VISIBLE;
  */
 
 public class TurniejActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    public TurniejList turnieje = new TurniejList();
+    public TurniejList turnieje;
     public TurniejAdapter adapter;
     public RecyclerView recyclerView;
 
@@ -63,7 +64,10 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(TurniejActivity.this, TEditActivity.class);
+                i.putExtra("lista", turnieje);
+                i.putExtra("rodzaj", "nowy");
+                startActivityForResult(i, 666);
             }
         });
         fab.setVisibility(VISIBLE);
@@ -78,6 +82,14 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
         updateNavBar();
 
+        Intent i = getIntent();
+        boolean mainact = (boolean) i.getSerializableExtra("main");
+        if (mainact) {
+            ArrayList<Article> arts = (ArrayList<Article>) i.getSerializableExtra("articles");
+            turnieje = new TurniejList(arts);
+        } else {
+            turnieje = new TurniejList();
+        }
         recyclerView = (RecyclerView) findViewById(R.id.zawodziarka);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -133,10 +145,50 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
         startActivityForResult(i, 123);
     }
 
-
+    public int dajmicyferke(Turniej a) {
+        for (int i = 0; i < turnieje.size(); i++) {
+            if (turnieje.get(i).equals(a)) {
+                return i;
+            }
+        }
+        return 666;
+    }
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == 3) { // aktualizacja ustawien
             updateNavBar();
+        } else if (requestCode == 123) {
+            Turniej scores = (Turniej) data.getSerializableExtra("wynik");
+            Turniej scores_old = (Turniej) data.getSerializableExtra("wynik_old");
+            boolean seppuku = (boolean) data.getSerializableExtra("dead");
+            if (seppuku) {
+                int index = dajmicyferke(scores_old);
+                turnieje.remove(index);
+                adapter.notifyItemRemoved(index);
+                if (adapter.getItemCount() == 0) {
+                    ((TextView) findViewById(R.id.txtPustaZawodziarka)).setVisibility(View.VISIBLE);
+                } else {
+                    ((TextView) findViewById(R.id.txtPustaZawodziarka)).setVisibility(View.GONE);
+                }
+                return;
+            }
+            if (scores.equals(scores_old)) {
+                Log.e("komentarz", "taki sam");
+            } else {
+                // inne
+                int index = dajmicyferke(scores_old);
+                turnieje.set(index, scores);
+                adapter.notifyItemChanged(index);
+                Log.e("komentarz", "inny wynik");
+                scores.save();
+                recyclerView.smoothScrollToPosition(index);
+            }
+        } else if (requestCode == 666) { // nowe do dodania
+            if (resultCode == RESULT_OK) {
+                Turniej scores = (Turniej) data.getSerializableExtra("wynik");
+                turnieje.add(0, scores);
+                adapter.notifyItemInserted(0);
+                recyclerView.smoothScrollToPosition(0);
+            }
         }
     }
 
@@ -185,7 +237,6 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
             a.save();
             Log.e("more", "savedturniej");
         }
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -216,6 +267,7 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_turnieje) {
         } else if (id == R.id.nav_narzedzia) {
             Intent i = new Intent(TurniejActivity.this, NarzedziaActivity.class);
+            finish();
             startActivityForResult(i, 2001);
             return true;
         }
