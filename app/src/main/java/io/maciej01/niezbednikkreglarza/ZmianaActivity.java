@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -192,6 +194,28 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
                 zapisz();
             }
         });
+
+        TextWatcher textlistener = new TextWatcher() {
+            EditText wynik = ((EditText)findViewById(R.id.edWynik));
+            EditText pelne = ((EditText)findViewById(R.id.edPelne));
+            EditText zbierane = ((EditText)findViewById(R.id.edZbierane));
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String val1 = pelne.getText().toString();
+                String val2 = zbierane.getText().toString();
+                Integer value1, value2;
+                if (val1.isEmpty()){value1=0;}else{value1=Integer.valueOf(val1);}
+                if (val2.isEmpty()){value2=0;}else{value2=Integer.valueOf(val2);}
+                String sum = Integer.toString(value1 + value2);
+                wynik.setText(sum);
+            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(final CharSequence s, int start, int before, int count){}
+        };
+        ((EditText)findViewById(R.id.edPelne)).addTextChangedListener(textlistener);
+        ((EditText)findViewById(R.id.edZbierane)).addTextChangedListener(textlistener);
+
     }
 
     //@Override

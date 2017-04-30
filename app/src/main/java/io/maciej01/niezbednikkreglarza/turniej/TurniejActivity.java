@@ -68,6 +68,7 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
                 i.putExtra("lista", turnieje);
                 i.putExtra("rodzaj", "nowy");
                 startActivityForResult(i, 666);
+                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_up);
             }
         });
         fab.setVisibility(VISIBLE);
@@ -143,6 +144,7 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
         Intent i = new Intent(TurniejActivity.this, TElementActivity.class);
         i.putExtra("turniej", t);
         startActivityForResult(i, 123);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public int dajmicyferke(Turniej a) {
@@ -204,7 +206,7 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.only_debug, menu);
+        getMenuInflater().inflate(R.menu.only_menu, menu);
         return true;
     }
 
