@@ -190,6 +190,7 @@ public class TurniejActivity extends AppCompatActivity implements NavigationView
                 turnieje.add(0, scores);
                 adapter.notifyItemInserted(0);
                 recyclerView.smoothScrollToPosition(0);
+                ((TextView) findViewById(R.id.txtPustaZawodziarka)).setVisibility(View.GONE);
             }
         }
     }
