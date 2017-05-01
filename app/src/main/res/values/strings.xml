@@ -101,7 +101,7 @@
     <string name="fb_url"><a href="http://fb.me/niezbednik.kreglarza">FB - Bowler\'s Essentials</a></string>
     <string name="maciej_kaszkowiak">Maciej Kaszkowiak</string>
     <string name="mail_url"><a href="mailto:maciej.kaszkowiak@gmail.com">Email - maciej.kaszkowiak@gmail.com</a></string>
-    <string name="version_name">v1.1.0</string>
+    <string name="version_name">v1.1.1</string>
     <string name="easter_egg_filler">Robots!</string>
     <string name="anim_duration">300</string>
     <string name="tournaments">Tournaments</string>
@@ -200,5 +200,20 @@
         <item>Kręgielnia KC Schwabsberg</item>
         <item>Kręgielnia ESV Lok Rudolstadt</item>
     </string-array>
+
+    <string-array name="kategorie">
+        <item>Chłopcy - U10 M</item>
+        <item>Dziewczynki - U10 W</item>
+        <item>Młodzicy - U14 M</item>
+        <item>Młodziczki - U14 W</item>
+        <item>Juniorzy młodsi - U18 M</item>
+        <item>Juniorki młodsze - U18 W</item>
+        <item>Juniorzy - U23 M</item>
+        <item>Juniorki - U23 W</item>
+        <item>Seniorzy - M</item>
+        <item>Seniorki - W</item>
+    </string-array>
     <string name="tournament_name">Tournament name</string>
+    <string name="age_group">Age group</string>
+    <string name="age_group_player">Player\'s age group</string>
 </resources>

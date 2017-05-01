@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import static android.view.View.GONE;
 
 /**
@@ -142,6 +144,7 @@ public class WynikActivity extends AppCompatActivity {
         String zawodnik = scores.getZawodnik();
         String data = scores.getData();
         String komentarz = scores.getKomentarz();
+        String kategoria = scores.getKategoria();
         Log.e("komentarz", komentarz);
 
         TextView tvWynik = (TextView) findViewById(R.id.tWynik);
@@ -151,6 +154,7 @@ public class WynikActivity extends AppCompatActivity {
         TextView tvKregielnia = (TextView) findViewById(R.id.tKregielnia);
         TextView tvZawodnik = (TextView) findViewById(R.id.tZawodnik);
         TextView tvData = (TextView) findViewById(R.id.tData);
+        TextView tvKategoria = (TextView) findViewById(R.id.tKategoria);
         LinearLayout tor1 = (LinearLayout) findViewById(R.id.lTory1);
         LinearLayout tor2 = (LinearLayout) findViewById(R.id.lTory2);
         EditText tvKomentarz = (EditText) findViewById(R.id.edKomentarz);
@@ -163,6 +167,7 @@ public class WynikActivity extends AppCompatActivity {
         tvZawodnik.setText(zawodnik);
         tvData.setText(data);
         tvKomentarz.setText(komentarz);
+        tvKategoria.setText(kategoria);
         boolean toryustawione = scores.czyTory();
         Resources r = getApplicationContext().getResources();
         int px = (int) TypedValue.applyDimension(

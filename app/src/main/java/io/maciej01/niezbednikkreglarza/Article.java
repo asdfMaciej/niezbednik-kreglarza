@@ -28,6 +28,7 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
     private String mZawodnik = "";
     private String mKregielnia = "";
     private String mKlub = "";
+    private String mKategoria = "Juniorzy młodsi - U18 M"; // fuck sugarorm, it'll get changed anyways
 
     private String mKomentarz = "";
 
@@ -70,7 +71,11 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
     };
     private static String[] sKluby = {
             "KK Dziewiątka-Amica Wronki", "KK Polonia 1912 Leszno",
-        "KK Wrzos Sieraków","KS Zatoka Puck"
+            "KK Wrzos Sieraków","KS Zatoka Puck"
+    };
+    private static String[] sKategorie = {
+            "Chłopcy - U10 M<", "Dziewczynki - U10 W",
+            "Młodzicy - U14 M", "Młodziczki - U14 W"
     };
 
     public Article(String wynik, String pelne, String zbierane, String dziury) {
@@ -87,9 +92,10 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
         mDziury = "";
     }
 
-    public Article() {
+    public Article(boolean sugarormisfuckingwithmesoineedtodothisbullshit) {
         losoweWartosci();
     }
+    public Article() {}
 
     public Article clone() {
         try {
@@ -111,6 +117,7 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
         mKregielnia = sKregielnia[random.nextInt(sKregielnia.length)];
         mDataString = sData[random.nextInt(sData.length)];
         mKlub = sKluby[random.nextInt(sKluby.length)];
+        mKategoria = sKategorie[random.nextInt(sKategorie.length)];
     }
 
     public void ustawWynik(String wynik, String pelne, String zbierane, String dziury) {
@@ -158,6 +165,8 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
         mKregielnia = kregielnia;
     }
 
+    public void ustawKategoria(String kategoria) {mKategoria = kategoria;}
+
     public boolean contains(String cont) {
         boolean x = false;
         if (mZawodnik.toLowerCase().contains(cont)) {x = true;}
@@ -166,6 +175,7 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
         if (mKregielnia.toLowerCase().contains(cont)) {x = true;}
         if (mKlub.toLowerCase().contains(cont)) {x = true;}
         if (mKomentarz.toLowerCase().contains(cont)) {x = true;}
+        if (mKategoria.toLowerCase().contains(cont)) {x = true;}
 
         return x;
     }
@@ -283,6 +293,7 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
         if (!d.getKregielnia().equals(mKregielnia)) {x = false;}
         if (!d.getKlub().equals(mKlub)) {x = false;}
         if (!d.getKomentarz().equals(mKomentarz)) {x = false;}
+        if (!d.getKategoria().equals(mKategoria)) {x = false;}
         if (!Arrays.deepEquals(d.getTory(), this.getTory())) {x = false;}
 
         return x;
@@ -299,6 +310,7 @@ public class Article extends SugarRecord implements Serializable, Cloneable {
     public String getKregielnia() { return mKregielnia; }
     public String getKlub() {return mKlub; }
     public String getKomentarz() {return mKomentarz;}
+    public String getKategoria() {return mKategoria;}
 
     public String[][] getTory() {
         return new String[][]{

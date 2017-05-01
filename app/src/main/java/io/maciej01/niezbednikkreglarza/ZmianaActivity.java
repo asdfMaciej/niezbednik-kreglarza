@@ -89,10 +89,14 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
         final ArrayAdapter<CharSequence> adapterKregielnia = ArrayAdapter.createFromResource(this,
                 R.array.kregielnie, android.R.layout.simple_spinner_item);
 
+        final ArrayAdapter<CharSequence> adapterKategoria = ArrayAdapter.createFromResource(this,
+                R.array.kategorie, android.R.layout.simple_spinner_item);
+
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String spKlub = SP.getString("klub","KK Dziewiątka-Amica Wronki");
         String spZawodnik = SP.getString("zawodnik","");
         String spKregielnia = SP.getString("kregielnia","Kręgielnia Dziewiątka-Amica Wronki");
+        String spKategoria = SP.getString("kategoria","Chłopcy - U10 M");
 
 
                 ((Button) findViewById(R.id.btData))
@@ -107,7 +111,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
 
                 adapterKlub.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerKlub.setAdapter(adapterKlub);
-                spinnerKlub.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                /*spinnerKlub.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -116,7 +120,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> arg0) {}
-                });
+                });*/
 
                 Spinner spinnerKregielnia = (Spinner) findViewById(R.id.spnKregielnia);
 
@@ -124,7 +128,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
                 adapterKregielnia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerKregielnia.setAdapter(adapterKregielnia);
 
-                spinnerKregielnia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                /*spinnerKregielnia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -133,17 +137,24 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> arg0) {}
-                });
+                });*/
 
+        Spinner spinnerKategoria = (Spinner) findViewById(R.id.spnKategoria);
+
+
+        adapterKategoria.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerKategoria.setAdapter(adapterKategoria);
 
         spinnerKlub.setSelection(getIndex(spinnerKlub, spKlub));
         spinnerKregielnia.setSelection(getIndex(spinnerKregielnia, spKregielnia));
+        spinnerKategoria.setSelection(getIndex(spinnerKategoria, spKategoria));
         ((CheckBox) findViewById(R.id.button2)).setChecked(false);
         ((EditText)findViewById(R.id.edZawodnik)).setText(spZawodnik);
                 if (rodzaj.equals("zmiana")) {
                     scores = (Article) i.getSerializableExtra("wynik");
                     spinnerKlub.setSelection(adapterKlub.getPosition(scores.getKlub()));
                     spinnerKregielnia.setSelection(adapterKregielnia.getPosition(scores.getKregielnia()));
+                    spinnerKategoria.setSelection(adapterKategoria.getPosition(scores.getKategoria()));
                     ((EditText)findViewById(R.id.edWynik)).setText(scores.getWynik());
                     ((EditText)findViewById(R.id.edPelne)).setText(scores.getPelne());
                     ((EditText)findViewById(R.id.edZbierane)).setText(scores.getZbierane());
@@ -296,6 +307,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
 
         Spinner klb = (Spinner) findViewById(R.id.spnKlub);
         Spinner krg = (Spinner) findViewById(R.id.spnKregielnia);
+        Spinner ktg = (Spinner) findViewById(R.id.spnKategoria);
 
         CheckBox tor = (CheckBox) findViewById(R.id.button2);
         View torerr = null;
@@ -353,6 +365,7 @@ public class ZmianaActivity extends AppCompatActivity implements DatePickerDialo
         scores.ustawKtoGdzie(zwd.getText().toString(), klb.getSelectedItem().toString(),
                 krg.getSelectedItem().toString()
         );
+        scores.ustawKategoria(ktg.getSelectedItem().toString());
 
         Intent returnIntent = new Intent();
         returnIntent.putExtra("wynik", scores);

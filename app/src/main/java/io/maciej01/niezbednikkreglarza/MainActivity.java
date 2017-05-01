@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity
 
     public void losoweWyniki() {
         for (int i = 0; i < 20; ++i)
-            articles.add(new Article());
+            articles.add(new Article(true));
     }
 
     public void firstLaunch() {

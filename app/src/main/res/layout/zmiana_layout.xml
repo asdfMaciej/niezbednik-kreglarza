@@ -125,6 +125,17 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp" />
 
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spnKategoria"
+                android:spinnerMode="dialog"
+                android:minHeight="50dp"
+                android:background="@color/cardview_light_background"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

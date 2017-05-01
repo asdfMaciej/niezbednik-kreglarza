@@ -17,9 +17,9 @@
             android:text="Wynik: XXX"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_below="@+id/tKategoria"
+            android:layout_marginTop="4dp"
             android:id="@+id/tWynik"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textStyle="normal|bold"
@@ -35,6 +35,18 @@
             android:layout_alignBottom="@+id/tPelne"
             android:layout_alignEnd="@+id/tWynik"
             android:textSize="18sp" />
+        <TextView
+            android:text="Juniorki młodsze - U18 W"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tKategoria"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/tZawodnik"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:textStyle="normal|italic" />
 
         <TextView
             android:text="X: xx"
@@ -74,10 +86,11 @@
             android:layout_marginTop="30dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:textAlignment="center"
-            android:textStyle="normal|italic" />
+            android:textColor="?android:attr/textColorSecondary"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:text="P: xxx"
