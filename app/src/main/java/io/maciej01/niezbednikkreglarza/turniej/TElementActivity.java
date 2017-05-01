@@ -3,6 +3,7 @@ package io.maciej01.niezbednikkreglarza.turniej;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,7 +14,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import io.maciej01.niezbednikkreglarza.ActivitySwipeDetector;
 import io.maciej01.niezbednikkreglarza.Article;
@@ -34,6 +38,8 @@ public class TElementActivity extends AppCompatActivity {
     public TElementAdapter adapter;
     public AccelerateInterpolator bi = new AccelerateInterpolator();
     public WynikSwipe ws = new WynikSwipe();
+    public DialogInterface.OnClickListener dialogClickListener;
+    public AlertDialog.Builder ab;
 
     public class WynikSwipe extends ActivitySwipeDetector {
 
@@ -62,6 +68,8 @@ public class TElementActivity extends AppCompatActivity {
             turniej = (Turniej) i.getSerializableExtra("turniej");
             turniej_old = turniej.clone();
         }
+
+
         turniej.initTurniej();
         turniej.coJaUczynilem();
 
@@ -70,10 +78,34 @@ public class TElementActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        setTextViews(true);
+        setTextViews(true, 0);
         getSupportActionBar().setElevation(0);
 
-        final DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.head_tablayout);
+        //String[] kategorie = getResources().getStringArray(R.array.kategorie);
+        ArrayList<String> kategorie_modified = turniej.getKategorie();
+        for (String a: kategorie_modified) {
+            tabLayout.addTab(tabLayout.newTab().setText(a));
+        }
+
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+
+        tabLayout.addOnTabSelectedListener(
+                new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        setTextViews(false, tab.getPosition());
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {}
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {}
+                }
+        );
+        getSupportActionBar().setElevation(0);
+
+        dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
@@ -88,26 +120,20 @@ public class TElementActivity extends AppCompatActivity {
             }
         };
 
-        final AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab = new AlertDialog.Builder(this);
 
-        Button jedenzdrugim = (Button) findViewById(R.id.head_delete);
-        jedenzdrugim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ab.setMessage(R.string.delete_sure).setPositiveButton(R.string.yes, dialogClickListener)
-                        .setNegativeButton(R.string.no, dialogClickListener).show();
-            }
-        });
 
-        (findViewById(R.id.head_change)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(TElementActivity.this, TEditActivity.class);
-                i.putExtra("wynik", turniej);
-                i.putExtra("rodzaj", "zmiana");
-                startActivityForResult(i, 2001);
-            }
-        });
+    }
+
+    public void jedenzdrugim() {
+        ab.setMessage(R.string.delete_sure).setPositiveButton(R.string.yes, dialogClickListener)
+                .setNegativeButton(R.string.no, dialogClickListener).show();
+    }
+    public void kolejnyprzycisk() {
+        Intent i = new Intent(TElementActivity.this, TEditActivity.class);
+        i.putExtra("wynik", turniej);
+        i.putExtra("rodzaj", "zmiana");
+        startActivityForResult(i, 2001);
     }
 
     public void seppuku() {
@@ -126,8 +152,8 @@ public class TElementActivity extends AppCompatActivity {
     }
 
 
-    public void setTextViews(boolean nadapt) {
-        adapter = new TElementAdapter(turniej, recyclerView, this);
+    public void setTextViews(boolean nadapt, int kategoria) {
+        adapter = new TElementAdapter(turniej, recyclerView, this, kategoria);
         if (nadapt) {recyclerView.setAdapter(adapter);} else {recyclerView.swapAdapter(adapter, true);}
         if ((adapter.getItemCount() == 1) || (adapter.getItemCount() == 0)) { // bo zawsze jest header
             ((TextView) findViewById(R.id.txtPustaElementarka)).setVisibility(VISIBLE);
@@ -145,7 +171,7 @@ public class TElementActivity extends AppCompatActivity {
                 turniej = (Turniej) data.getSerializableExtra("wynik");
                 turniej.initTurniej();
                 turniej.coJaUczynilem();
-                setTextViews(false);
+                setTextViews(false, 0);
                 turniej.save();
                 Log.v("onactresult", "here comes dat turniej");
             }

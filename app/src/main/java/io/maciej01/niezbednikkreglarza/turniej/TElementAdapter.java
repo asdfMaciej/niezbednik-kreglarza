@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -37,6 +38,7 @@ import io.maciej01.niezbednikkreglarza.R;
 public class TElementAdapter extends RecyclerView.Adapter implements Serializable {
     private Turniej turniej;
     private RecyclerView mRecyclerView;
+    private int kategoria;
     public TElementActivity contex;
     private class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mN;
@@ -74,10 +76,11 @@ public class TElementAdapter extends RecyclerView.Adapter implements Serializabl
     }
 
     // konstruktor adaptera
-    public TElementAdapter(Turniej pTurniej, RecyclerView pRecyclerView, TElementActivity cnt){
+    public TElementAdapter(Turniej pTurniej, RecyclerView pRecyclerView, TElementActivity cnt, int ktg){
         turniej = pTurniej;
         mRecyclerView = pRecyclerView;
         contex = cnt;
+        kategoria = ktg;
     }
 
     @Override
@@ -119,15 +122,30 @@ public class TElementAdapter extends RecyclerView.Adapter implements Serializabl
             ((TElementAdapter.MyViewHolder) viewHolder).hKregielnia.setText(turniej.getKregielnia());
             ((TElementAdapter.MyViewHolder) viewHolder).hData.setText(sData);
             ((TElementAdapter.MyViewHolder) viewHolder).hDatadesc.setText(turniej.desc_date());
+
+            Button jedenzdrugim = (Button) viewHolder.itemView.findViewById(R.id.head_delete);
+            jedenzdrugim.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    contex.jedenzdrugim();
+                }
+            });
+
+            (viewHolder.itemView.findViewById(R.id.head_change)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    contex.kolejnyprzycisk();
+                }
+            });
         } else {
-            ArrayList<ArrayList<Article>> posortowane = turniej.getPosortowane();
-            Article ex = posortowane.get(i-1).get(0);
+            ArrayList<ArrayList<ArrayList<Article>>> posortowane = turniej.getPosortowane();
+            Article ex = posortowane.get(kategoria).get(i-1).get(0);
             String lacznie = contex.getString(R.string.total);
-            lacznie += Integer.toString(ex.podliczWyniki(posortowane.get(i-1)));
+            lacznie += Integer.toString(ex.podliczWyniki(posortowane.get(kategoria).get(i-1)));
             ((TElementAdapter.MyViewHolder) viewHolder).mN.setText("#"+Integer.toString(i));
             ((TElementAdapter.MyViewHolder) viewHolder).mNazwa.setText(ex.getZawodnik());
             ((TElementAdapter.MyViewHolder) viewHolder).mKlub.setText(ex.getKlub());
-            ((TElementAdapter.MyViewHolder) viewHolder).mTekst.setText(ex.summaryFromWyniki(posortowane.get(i-1)));
+            ((TElementAdapter.MyViewHolder) viewHolder).mTekst.setText(ex.summaryFromWyniki(posortowane.get(kategoria).get(i-1)));
             ((TElementAdapter.MyViewHolder) viewHolder).mLacznie.setText(lacznie);
 
         }
@@ -176,11 +194,10 @@ public class TElementAdapter extends RecyclerView.Adapter implements Serializabl
     */
     @Override
     public int getItemCount() {
-        ArrayList<Article> arts = turniej.getArticles();
-        if (!arts.isEmpty()) {
-            int n = turniej.getArticles().get(0).countZawodnicy(arts)+1;
+        ArrayList<ArrayList<ArrayList<Article>>> posortowane = turniej.getPosortowane();
+        if (!posortowane.isEmpty()) {
+            int n = posortowane.get(kategoria).size()+1;
             Log.v("mojametoda", Integer.toString(n));
-            Log.v("normalnie", Integer.toString(turniej.getArticles().size()));
             return n;
         } else {
             return 1;

@@ -12,6 +12,32 @@
         android:elevation="3dp"
         android:layout_marginBottom="8dp">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="@string/modify_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/head_change"
+                android:layout_weight="1"
+                style="@style/Widget.AppCompat.Button"
+                android:backgroundTint="@color/colorPrimaryLightest"
+                android:textColor="?android:attr/textColorSecondary" />
+
+            <Button
+                android:text="@string/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/head_delete"
+                android:layout_weight="1"
+                style="@style/Widget.AppCompat.Button"
+                android:backgroundTint="@color/colorPrimaryLightest"
+                android:textColor="?android:attr/textColorSecondary" />
+        </LinearLayout>
+
         <TextView
             android:text="2017-03-25 - 2017-03-25"
             android:layout_width="match_parent"
@@ -20,7 +46,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="24sp"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColorSecondaryInverse" />
+            android:textColor="?android:attr/textColorSecondaryInverse"
+            android:layout_marginTop="8dp" />
 
         <TextView
             android:text="Odbędzie się za: 123 dni"

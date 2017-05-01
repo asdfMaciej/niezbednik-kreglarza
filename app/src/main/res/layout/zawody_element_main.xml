@@ -6,37 +6,30 @@
     android:layout_height="match_parent"
     android:background="@color/colorBg">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/head_appbar"
+        app:elevation="0dp">
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:background="@color/colorPrimary"
+            android:elevation="0dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:visibility="visible"
+            android:id="@+id/head_tablayout"
+            app:tabMode="scrollable" />
+    </android.support.design.widget.AppBarLayout>
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary">
-
-                <Button
-                    android:text="@string/modify_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/head_change"
-                    android:layout_weight="1"
-                    style="@style/Widget.AppCompat.Button"
-                    android:backgroundTint="@color/colorPrimaryLight"
-                    android:textColor="?android:attr/textColorPrimaryInverse" />
-
-                <Button
-                    android:text="@string/delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/head_delete"
-                    android:layout_weight="1"
-                    style="@style/Widget.AppCompat.Button"
-                    android:backgroundTint="@color/colorPrimaryLight"
-                    android:textColor="?android:attr/textColorPrimaryInverse" />
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head_appbar">
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"

@@ -27,7 +27,8 @@ public class Turniej implements Serializable, Cloneable {
     private TurniejHolder turniej;
     private ArrayList<Article> articles;
     private ArrayList<Article> turniej_art = new ArrayList<>();
-    private ArrayList<ArrayList<Article>> posortowane = new ArrayList<>();
+    private ArrayList<ArrayList<ArrayList<Article>>> posortowane = new ArrayList<>();
+    private ArrayList<String> kategorie = new ArrayList<>();
     private TurniejList parent;
 
     public Turniej(TurniejList tParent,
@@ -95,39 +96,61 @@ public class Turniej implements Serializable, Cloneable {
 
     public void coJaUczynilem() {
         posortowane = new ArrayList<>();
+        kategorie = new ArrayList<>();
         Log.v("turniej", "posortowane na nowo!");
         Map<String, Integer> myMap = new HashMap<String, Integer>();
-        String z; // im sleepy and wondering whether this algorithm will work or not
+        String z, k; // im sleepy and wondering whether this algorithm will work or not
         Integer n = 0;
+        ArrayList<Integer> nn = new ArrayList<>();
         for (Article a : turniej_art) {
-            z = a.getZawodnik();
+            Integer kategorian = 0;
+            k = a.getKategoria();
+            z = a.getZawodnik()+k;
+            if (!kategorie.contains(k)) {kategorie.add(k); posortowane.add(new ArrayList<ArrayList<Article>>()); nn.add(0);}
+            kategorian = kategorie.indexOf(k);
             if (!myMap.containsKey(z)) {
-                myMap.put(z, n);
-                posortowane.add(new ArrayList<Article>());
-                posortowane.get(n).add(a);
-                n += 1;
+                myMap.put(z, nn.get(kategorian));
+                posortowane.get(kategorian).add(new ArrayList<Article>());
+                posortowane.get(kategorian).get(nn.get(kategorian)).add(a);
+                nn.set(kategorian, nn.get(kategorian) + 1);
             } else {
                 Integer x = myMap.get(z);
-                posortowane.get(x).add(a);
+                posortowane.get(kategorian).get(x).add(a);
             }
         }
 
-        Collections.sort(posortowane, new Comparator<ArrayList<Article>>() {
-            @Override // jak to zadziala to bede szczesliwy
-            public int compare(ArrayList<Article> o1, ArrayList<Article> o2) {
-                int int1 = 0; // a jak nie to czeka mnie dlugie debuggowanie
-                int int2 = 0; // :V
-                for (Article a : o1) {int1 += Integer.parseInt(a.getWynik());}                     // UPDATE - DZIALA ZA PIERWSZYM XD
-                for (Article a : o2) {int2 += Integer.parseInt(a.getWynik());}
-                return ((Integer) int2).compareTo(int1);
-                //return ((Integer) Integer.parseInt(o2.getWynik())).compareTo(Integer.parseInt(o1.getWynik()));
-            }
-        });
+        for (ArrayList poso : posortowane ) {
+            Collections.sort(poso, new Comparator<ArrayList<Article>>() {
+                @Override // jak to zadziala to bede szczesliwy
+                public int compare(ArrayList<Article> o1, ArrayList<Article> o2) {
+                    int int1 = 0; // a jak nie to czeka mnie dlugie debuggowanie
+                    int int2 = 0; // :V
+                    for (Article a : o1) {
+                        int1 += Integer.parseInt(a.getWynik());
+                    }                     // UPDATE - DZIALA ZA PIERWSZYM XD
+                    for (Article a : o2) {
+                        int2 += Integer.parseInt(a.getWynik());
+                    }
+                    return ((Integer) int2).compareTo(int1);
+                    //return ((Integer) Integer.parseInt(o2.getWynik())).compareTo(Integer.parseInt(o1.getWynik()));
+                }
+            });
+        }
         /*
         RESULT:
-        tablica w ktorej [0] = Arraylist z wynikami jednej osoby z najwyzszym wynikiem
-        [1] - arraylist z wynikami drugiej osoby
-        etc..
+        Najpierw sa kategorie! i to moze byc cos w stylu
+        kategorie[0] - j. mlodszy
+        kategorie[1] - dziecko
+        kategorie[2] - senior
+            a w posortowane[0] wyniki j.mlodszych itd..
+            w srodku:
+                tablica w ktorej [0] = Arraylist z wynikami jednej osoby z najwyzszym wynikiem
+                [1] - arraylist z wynikami drugiej osoby
+                etc..
+
+       Czyli jak chcemy znalezc po kategorii to musimy:
+       1. n = getKategorie().indexOf(kategoria)
+       2. arr = getPosortowane().get(n)
          */
     }
 
@@ -219,6 +242,7 @@ public class Turniej implements Serializable, Cloneable {
     public String getDateEnd() { return turniej.getDateEnd(); }
     public String getKregielnia() { return turniej.getKregielnia(); }
     public String getNazwa() { return turniej.getNazwa(); }
-    public ArrayList<ArrayList<Article>> getPosortowane() { return posortowane; }
+    public ArrayList<ArrayList<ArrayList<Article>>> getPosortowane() { return posortowane; } // nice meme
+    public ArrayList<String> getKategorie() { return kategorie; }
     public int countZawodnicy() {return new Article().zawodnicyFromArray(turniej_art).size();}
 }
