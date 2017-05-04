@@ -78,23 +78,17 @@ public class TElementActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        setTextViews(true, 0);
+        setTextViews(true, 0, true);
         getSupportActionBar().setElevation(0);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.head_tablayout);
-        //String[] kategorie = getResources().getStringArray(R.array.kategorie);
-        ArrayList<String> kategorie_modified = turniej.getKategorie();
-        for (String a: kategorie_modified) {
-            tabLayout.addTab(tabLayout.newTab().setText(a));
-        }
-
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
         tabLayout.addOnTabSelectedListener(
                 new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
-                        setTextViews(false, tab.getPosition());
+                        setTextViews(false, tab.getPosition(), false);
                     }
 
                     @Override
@@ -152,7 +146,8 @@ public class TElementActivity extends AppCompatActivity {
     }
 
 
-    public void setTextViews(boolean nadapt, int kategoria) {
+    public void setTextViews(boolean nadapt, int kategoria, boolean settabs) {
+        Log.v("telementact", "setTextViews called");
         adapter = new TElementAdapter(turniej, recyclerView, this, kategoria);
         if (nadapt) {recyclerView.setAdapter(adapter);} else {recyclerView.swapAdapter(adapter, true);}
         if ((adapter.getItemCount() == 1) || (adapter.getItemCount() == 0)) { // bo zawsze jest header
@@ -162,6 +157,17 @@ public class TElementActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.txtPustaElementarka)).setVisibility(GONE);
         }
         adapter.notifyDataSetChanged();
+        if (settabs) {
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.head_tablayout);
+            tabLayout.removeAllTabs();
+            ArrayList<String> kategorie_modified = turniej.getKategorie();
+            int vis = GONE;
+            for (String a : kategorie_modified) {
+                tabLayout.addTab(tabLayout.newTab().setText(a));
+                vis = VISIBLE;
+            }
+            tabLayout.setVisibility(vis);
+        }
     }
 
     @Override
@@ -171,7 +177,7 @@ public class TElementActivity extends AppCompatActivity {
                 turniej = (Turniej) data.getSerializableExtra("wynik");
                 turniej.initTurniej();
                 turniej.coJaUczynilem();
-                setTextViews(false, 0);
+                setTextViews(false, 0, true);
                 turniej.save();
                 Log.v("onactresult", "here comes dat turniej");
             }
